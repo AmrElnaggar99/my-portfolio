@@ -39,13 +39,13 @@ function TechStackSlide() {
           </div>
         </h2>
       </div>
-      <div className="mt-5 flex items-center justify-center">
-        <div className="flex space-x-4 mb- h-10">
+      <div className="mt-5 flex max-w-[800px] mx-auto items-center justify-center gap-6 flex-wrap p-3">
+        <div className="flex min-h-10 flex-wrap gap-2">
           {["All", "Frontend", "Backend", "Database", "Others"].map((filter) => (
             <button
               key={filter}
               onClick={() => handleFilterChange(filter)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition duration-300 
+              className={`px-4 py-2 rounded-full text-sm font-medium transition duration-300
             ${
               selectedFilter === filter
                 ? "bg-white text-black"
@@ -56,7 +56,7 @@ function TechStackSlide() {
             </button>
           ))}
         </div>
-        <div className="relative ml-6 min-w-32">
+        <div className="relative my-2 flex-1 min-w-[300px] max-w-[427px]">
           <input
             type="text"
             placeholder="Search technologies"
