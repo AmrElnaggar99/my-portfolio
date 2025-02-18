@@ -19,3 +19,9 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.moveable-control-box,
+.moveable-control,
+.moveable-line {
+  display: none;
+}

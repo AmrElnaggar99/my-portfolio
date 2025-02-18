@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import FixedHeader from "@/components/Header";
+import FixedHeader from "@/components/FixedHeader";
 import HeroSlide from "@/components/slides/HeroSlide";
 import TechStackSlide from "@/components/slides/TechStackSlide";
 

@@ -1,4 +1,4 @@
-import { FC } from "react";
+"use client";
 import { motion, Variants, HTMLMotionProps } from "framer-motion";
 
 interface Props extends HTMLMotionProps<"div"> {
@@ -7,7 +7,7 @@ interface Props extends HTMLMotionProps<"div"> {
   duration?: number;
 }
 
-const WavyText: FC<Props> = ({ text, delay = 0, duration = 0.05, ...props }: Props) => {
+function WavyText({ text, delay = 0, duration = 0.05, ...props }: Props) {
   const letters = Array.from(text);
 
   const container: Variants = {
@@ -56,6 +56,6 @@ const WavyText: FC<Props> = ({ text, delay = 0, duration = 0.05, ...props }: Pro
       ))}
     </motion.span>
   );
-};
+}
 
 export default WavyText;
