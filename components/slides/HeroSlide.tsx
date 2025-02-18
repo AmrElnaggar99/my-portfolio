@@ -8,7 +8,7 @@ import Slide from "@/components/slides/Slide";
 import Image from "next/image";
 import AnimatedHead from "@/components/animations/AnimatedHead";
 
-function HeroSlide() {
+function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateAction<string>> }) {
   const [_, setMousePosition] = useState({ x: 0, y: 0 });
 
   const x = useMotionValue(0);
@@ -34,13 +34,18 @@ function HeroSlide() {
 
   return (
     <motion.div
+      id="HeroSlideContainer"
       className="relative z-0"
       style={{
         y: y1,
         x: 0,
       }}
     >
-      <Slide className="flex items-center justify-center bg-cover bg-center overflow-hidden bg-[url(/gradient-bg.jpg)]">
+      <Slide
+        setActive={setActive}
+        id="HeroSlide"
+        className="flex items-center justify-center bg-cover bg-center overflow-hidden bg-[url(/gradient-bg.jpg)]"
+      >
         <div className="relative flex w-full px-5 lg:flex-row flex-col md:px-24 lg:px-12 xl:px-24 h-full">
           <div className="w-full lg:w-[70%] md:min-h-80">
             <div className="relative flex h-full items-center">
@@ -72,25 +77,27 @@ function HeroSlide() {
           </div>
           <div className="w-full lg:w-[30%] pt-5 flex justify-center flex-col relative z-30 pb-32 lg:pb-5">
             <h2 className="mt-6 text-3xl md:text-4xl font-light font-merriweather leading-10 md:leading-snug max-w-3xl">
-              <TypingText>I design and build </TypingText> <br />
-              <span className="block pr-2">
+              <div className="text-white">
+                <TypingText>I design and build </TypingText>
+              </div>
+              <div className="pr-2">
                 <span className="font-bold text-yellow-400">
                   <TypingText>fast</TypingText>
                 </span>
                 ,
-              </span>
-              <span className="block pr-2">
-                <span className="font-bold text-yellow-400">
+              </div>
+              <div>
+                <span className="font-bold text-yellow-400 pr-2">
                   <TypingText>scalable</TypingText>
                 </span>
                 ,
-              </span>
-              <span className="block">
-                <span className="font-bold text-yellow-400">
-                  <TypingText>user-friendly</TypingText>
-                </span>
-              </span>
-              <WavyText text="full-stack applications." />
+              </div>
+              <div className="font-bold text-yellow-400">
+                <TypingText>user-friendly</TypingText>
+              </div>
+              <div className="text-white">
+                <WavyText text="full-stack applications." />
+              </div>
             </h2>
             <div className="mt-10 flex w-full flex-col gap-4">
               <motion.button

@@ -7,7 +7,11 @@ import BubbleCloud from "@/components/BubbleCloud";
 import { FiSearch } from "react-icons/fi";
 import MyTechStackArray from "@/utils/MyTechStackArray";
 
-function TechStackSlide() {
+function TechStackSlide({
+  setActive,
+}: {
+  setActive: React.Dispatch<React.SetStateAction<string>>;
+}) {
   const [selectedFilter, setSelectedFilter] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -27,7 +31,11 @@ function TechStackSlide() {
   );
 
   return (
-    <Slide className="z-10 w-full min-h-fit bg-gray-950 py-12 md:px-12">
+    <Slide
+      id="TechStackSlide"
+      setActive={setActive}
+      className="z-10 w-full min-h-fit bg-gray-950 py-12 md:px-12"
+    >
       <div className="w-full h-fit items-center px-12 md:px-0">
         <h2 className="text-6xl block w-full font-monasans text-center font-bold text-white">
           <AnimatedHead>My Tech Stack</AnimatedHead>

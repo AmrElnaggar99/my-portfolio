@@ -2,7 +2,7 @@ import { ItemsList } from "@/components/BubbleCloud";
 
 const MyTechStackArray: ItemsList[] = [
   { id: 1, proficiency: 100, color: "bg-[#61dafb]", text: "React", category: "frontend" },
-  { id: 2, proficiency: 80, color: "bg-[#000000]", text: "Next.js", category: "frontend" },
+  { id: 2, proficiency: 80, color: "bg-[#1C1E26]", text: "Next.js", category: "frontend" },
   {
     id: 3,
     proficiency: 80,
@@ -42,7 +42,7 @@ const MyTechStackArray: ItemsList[] = [
     category: "others",
     textColor: "text-black",
   },
-  { id: 15, proficiency: 75, color: "bg-[#000000]", text: "Expo", category: "mobile" },
+  { id: 15, proficiency: 75, color: "bg-[#1A1A1A]", text: "Expo", category: "mobile" },
   {
     id: 16,
     proficiency: 50,
