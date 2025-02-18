@@ -15,8 +15,10 @@
     "next": "15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-icons": "^5.4.0",
     "react-intersection-observer": "^9.15.1",
-    "react-moveable": "^0.56.0"
+    "react-moveable": "^0.56.0",
+    "simplex-noise": "^4.0.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

@@ -2,38 +2,45 @@ import React, { useState } from "react";
 import AnimatedHead from "@/components/animations/AnimatedHead";
 import Slide from "./Slide";
 import SlidingText from "@/components/animations/SlidingText";
-import BubbleCloud, { ItemsList } from "@/components/BubbleCloud";
+import BubbleCloud from "@/components/BubbleCloud";
+import { FiSearch } from "react-icons/fi";
+import MyTechStackArray from "@/utils/MyTechStackArray";
 
 function TechStackSlide() {
-  const [selectedFilter, setSelectedFilter] = useState<string>("all");
-
-  const bubblesData: ItemsList[] = [
-    { id: 1, proficiency: 90, color: "bg-red-500", text: "React", category: "frontend" },
-    { id: 2, proficiency: 80, color: "bg-blue-500", text: "Next", category: "frontend" },
-    { id: 3, proficiency: 60, color: "bg-green-500", text: "Java", category: "backend" },
-    { id: 4, proficiency: 75, color: "bg-yellow-500", text: "Spring Boot", category: "backend" },
-    { id: 5, proficiency: 50, color: "bg-purple-500", text: "MongoDB", category: "database" },
-  ];
+  const [selectedFilter, setSelectedFilter] = useState<string>("All");
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   const handleFilterChange = (filter: string) => {
     setSelectedFilter(filter);
   };
 
-  const filteredItems =
-    selectedFilter === "all"
-      ? bubblesData
-      : bubblesData.filter((item) => item.category === selectedFilter);
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedFilter("All");
+    setSearchQuery(event.target.value);
+  };
+
+  const filteredItems = MyTechStackArray.filter(
+    (item) =>
+      item.text.toLowerCase().includes(searchQuery.toLowerCase()) &&
+      (selectedFilter === "All" || item.category === selectedFilter.toLowerCase()),
+  );
+
   return (
-    <Slide className="z-10 w-full min-h-fit bg-gray-950 p-12">
-      <div className="flex justify-between w-full h-fit items-center">
-        <h2 className="text-6xl block w-full font-monasans text-left font-bold text-white">
+    <Slide className="z-10 w-full min-h-fit bg-gray-950 py-12 md:px-12">
+      <div className="w-full h-fit items-center px-12 md:px-0">
+        <h2 className="text-6xl block w-full font-monasans text-center font-bold text-white">
           <AnimatedHead>My Tech Stack</AnimatedHead>
-          <div className="text-gray-500 text-sm text-left font-light mt-4">
+          <div className="text-gray-400 text-sm text-center font-light mt-4">
             <SlidingText>My go-to tools for crafting modern applications.</SlidingText>
           </div>
+          <div className="text-gray-500 text-sm text-center font-light">
+            <SlidingText>Larger bubbles represent greater expertise in a skill.</SlidingText>
+          </div>
         </h2>
+      </div>
+      <div className="mt-5 flex items-center justify-center">
         <div className="flex space-x-4 mb- h-10">
-          {["all", "frontend", "backend", "database", "devops", "Mobile"].map((filter) => (
+          {["All", "Frontend", "Backend", "Database", "Others"].map((filter) => (
             <button
               key={filter}
               onClick={() => handleFilterChange(filter)}
@@ -48,8 +55,19 @@ function TechStackSlide() {
             </button>
           ))}
         </div>
+        <div className="relative ml-6 min-w-32">
+          <input
+            type="text"
+            placeholder="Search technologies"
+            value={searchQuery}
+            onChange={handleSearchChange}
+            className="focus-visible:bg-white hover:bg-white hover:text-black transition duration-300 focus-visible:text-black pr-4 pl-12 py-2 rounded-full border border-white text-white bg-transparent focus:outline-none w-full"
+          />
+          <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
+            <FiSearch className="text-gray-400 text-xl" />
+          </div>
+        </div>
       </div>
-
       <div className="space-y-10">
         <BubbleCloud data={filteredItems} />
       </div>

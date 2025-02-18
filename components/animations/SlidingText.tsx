@@ -8,7 +8,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2, // Stagger the animation of children by 0.2 seconds
+      staggerChildren: 0.2,
     },
   },
 };

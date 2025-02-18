@@ -14,15 +14,15 @@ function HeroSlide() {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  // Update the motion values based on mouse movement
+  // Move my name according to the mouse movement
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
       const { clientX, clientY } = event;
       setMousePosition({ x: clientX, y: clientY });
-
+      const movementTolerance = 30; // Move within ±px of that value
       // Adjust the motion values for a parallax effect
-      x.set((clientX / window.innerWidth - 0.5) * 30); // Move within ±10px
-      y.set((clientY / window.innerHeight - 0.5) * 30);
+      x.set((clientX / window.innerWidth - 0.5) * movementTolerance);
+      y.set((clientY / window.innerHeight - 0.5) * movementTolerance);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -116,18 +116,17 @@ function HeroSlide() {
           className="absolute bottom-10 right-1/2 -mr-[25px] w-[50px] h-[50px] z-50 transform -translate-x-1/2 p-4 bg-white rounded-full shadow-lg flex justify-center items-center"
           animate={{
             y: [0, 20, 0],
-          }} // Arrow moves from 0 to 20px and back to 0
+          }}
           transition={{
             repeat: Infinity,
-            // Repeat the animation infinitely
             repeatType: "loop",
-            // Loop the animation back and forth
             duration: 1.5,
-            // Duration of each cycle
-            ease: "easeInOut", // Smooth ease-in-out transition
+            ease: "easeInOut",
           }}
         >
-          <span className="text-xl font-light font-monasans text-gray-800">↓</span>
+          <span className="text-xl font-light font-monasans text-gray-800 pointer-events-none select-none">
+            ↓
+          </span>
         </motion.div>
         <motion.div
           initial={{

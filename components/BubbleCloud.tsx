@@ -1,7 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Moveable from "react-moveable";
+import { createNoise2D } from "simplex-noise";
 
 type BubbleProps = {
   id: number;
@@ -10,7 +11,8 @@ type BubbleProps = {
   top: string;
   left: string;
   text: string;
-  ref?: React.RefObject<HTMLDivElement>;
+  bubbleRef?: React.RefObject<HTMLDivElement | null>;
+  textColor?: string;
 };
 
 export type ItemsList = {
@@ -19,6 +21,7 @@ export type ItemsList = {
   color: string;
   text: string;
   category: string;
+  textColor?: string;
 };
 
 const proficiencyToSize = (proficiency: number) => {
@@ -27,28 +30,36 @@ const proficiencyToSize = (proficiency: number) => {
   return minSize + (proficiency / 100) * (maxSize - minSize);
 };
 
-const Bubble = ({
-  size,
-  color,
-  top,
-  left,
-  text,
-  bubbleRef,
-}: BubbleProps & { bubbleRef: React.RefObject<HTMLDivElement | null> }) => {
+const simplex = createNoise2D();
+
+const Bubble = ({ size, color, top, left, text, bubbleRef, textColor }: BubbleProps) => {
+  const randomDuration = Math.random() * (4 - 2) + 2; // Random duration between 2 and 4 seconds
+
   return (
-    <div
-      ref={bubbleRef}
-      className={`cursor-move absolute rounded-full ${color} shadow-lg flex items-center justify-center`}
-      style={{
-        width: size,
-        height: size,
-        top,
-        left,
-        position: "absolute", // Ensure absolute positioning for moveable
+    <motion.div
+      animate={{
+        y: [0, -10, 0], // Float up and down with a slight movement
+      }}
+      transition={{
+        duration: randomDuration,
+        repeat: Infinity,
+        ease: "easeInOut",
       }}
     >
-      <span className="text-white font-semibold">{text}</span>
-    </div>
+      <div
+        ref={bubbleRef}
+        className={`cursor-move absolute rounded-full font-merriweather ${color} hover:scale-105 shadow-lg flex items-center justify-center ${textColor ?? "text-white"}`}
+        style={{
+          width: size,
+          height: size,
+          top,
+          left,
+          position: "absolute",
+        }}
+      >
+        <span className="font-semibold">{text}</span>
+      </div>
+    </motion.div>
   );
 };
 
@@ -58,20 +69,29 @@ const getRandomPosition = (
   containerHeight: number,
   placedBubbles: { top: number; left: number; size: number }[],
 ) => {
-  const maxAttempts = 50;
+  const maxAttempts = 500;
+  const minDistance = size / 1.5; // Allow bubbles to be closer
   let attempt = 0;
+
   while (attempt < maxAttempts) {
-    const top = Math.random() * (containerHeight - size);
-    const left = Math.random() * (containerWidth - size);
+    const noiseX = simplex(Math.random(), Math.random());
+    const noiseY = simplex(Math.random(), Math.random());
+
+    const top = (noiseY * containerHeight) / 2 + containerHeight / 2 - size / 2;
+    const left = (noiseX * containerWidth) / 2 + containerWidth / 2 - size / 2;
 
     const isOverlapping = placedBubbles.some(
-      (bubble) => Math.hypot(bubble.left - left, bubble.top - top) < (bubble.size + size) / 2 + 10,
+      (bubble) => Math.hypot(bubble.left - left, bubble.top - top) < minDistance,
     );
 
-    if (!isOverlapping) return { top: `${top}px`, left: `${left}px` };
+    if (!isOverlapping) {
+      return { top: `${top}px`, left: `${left}px` };
+    }
 
     attempt++;
   }
+
+  // In case max attempts are reached, return a default position
   return { top: "50%", left: "50%" };
 };
 
@@ -124,14 +144,25 @@ function BubbleCloud({ data }: { data: ItemsList[] }) {
     setMoveableTargets(updatedTargets);
   }, [bubbles]);
 
+  // Calculate container height based on the number of bubbles
+  const containerHeight =
+    data.length > 0
+      ? Math.min(proficiencyToSize(data[0].proficiency) * data.length * 1.1, 1000)
+      : 500;
+
   return (
-    <div ref={containerRef} className="relative w-full min-h-[400px] overflow-hidden">
+    <div
+      ref={containerRef}
+      className="relative w-full overflow-hidden"
+      style={{ minHeight: `${containerHeight}px` }}
+    >
       {bubbles.map((bubble) => (
         <div key={bubble.id} className="relative">
           <Bubble
             id={bubble.id}
             size={bubble.size}
             color={bubble.color}
+            textColor={bubble.textColor}
             top={bubble.top}
             left={bubble.left}
             text={bubble.text}
