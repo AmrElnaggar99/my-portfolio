@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Merriweather, Mona_Sans } from "next/font/google";
+import { Merriweather, Mona_Sans } from "next/font/google";
 import "./globals.css";
 
 const merriweather = Merriweather({

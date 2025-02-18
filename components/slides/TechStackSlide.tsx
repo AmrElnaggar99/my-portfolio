@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import AnimatedHead from "@/components/animations/AnimatedHead";
 import Slide from "./Slide";
