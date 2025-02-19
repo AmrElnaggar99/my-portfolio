@@ -12,7 +12,7 @@ function TechStackSlide({
 }: {
   setActive: React.Dispatch<React.SetStateAction<string>>;
 }) {
-  const [selectedFilter, setSelectedFilter] = useState<string>("All");
+  const [selectedFilter, setSelectedFilter] = useState<string>("frontend");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
   const handleFilterChange = (filter: string) => {
@@ -27,7 +27,7 @@ function TechStackSlide({
   const filteredItems = MyTechStackArray.filter(
     (item) =>
       item.text.toLowerCase().includes(searchQuery.toLowerCase()) &&
-      (selectedFilter === "All" || item.category === selectedFilter.toLowerCase()),
+      (selectedFilter.toLowerCase() === "all" || item.category === selectedFilter.toLowerCase()),
   );
 
   return (
@@ -39,7 +39,7 @@ function TechStackSlide({
       <div className="w-full h-fit items-center px-12 md:px-0">
         <h2 className="text-6xl block w-full font-monasans text-center font-bold text-white">
           <AnimatedHead>My Tech Stack</AnimatedHead>
-          <div className="text-gray-400 text-sm text-center font-light">
+          <div className="text-gray-400 text-sm text-center font-light py-4">
             <SlidingText>Larger bubbles represent greater expertise in a skill.</SlidingText>
           </div>
         </h2>
@@ -52,7 +52,7 @@ function TechStackSlide({
               onClick={() => handleFilterChange(filter)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition duration-300
             ${
-              selectedFilter === filter
+              selectedFilter.toLowerCase() === filter.toLowerCase()
                 ? "bg-white text-black"
                 : "bg-transparent border border-white hover:bg-white hover:text-black text-gray-300"
             }`}
