@@ -42,9 +42,9 @@ function StickyHeader({ active }: { active: string }) {
         style={{
           y,
         }}
-        className="fixed w-full z-50 flex justify-start md:justify-center items-center pt-16 font-monasans font-bold"
+        className="fixed w-full z-50 flex justify-start lg:justify-center items-center pt-16 font-monasans font-bold"
       >
-        <nav className="w-full h-18 top-9 md:top-auto hamburgermenu md:rounded-full gap-2 fixed md:h-12 flex items-center md:justify-evenly md:p-8 md:w-fit mx-auto backdrop-filter backdrop-blur-lg">
+        <nav className="w-full h-18 top-9 lg:top-auto hamburgermenu lg:rounded-full gap-2 fixed lg:h-12 flex items-center lg:justify-evenly lg:p-8 lg:w-fit mx-auto backdrop-filter backdrop-blur-lg">
           {/* Hamburger Icon for Mobile */}
           <div
             className="lg:hidden p-8 w-18 h-18 hamburgermenu cursor-pointer"
