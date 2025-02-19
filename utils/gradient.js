@@ -417,6 +417,9 @@ function e(object, propertyName, val) {
 
 //Gradient object
 class Gradient {
+  initGradient(arg0, height) {
+    throw new Error("Method not implemented.");
+  }
   constructor(...t) {
     e(this, "el", void 0),
       e(this, "cssVarRetries", 0),

@@ -46,12 +46,11 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
         setActive={setActive}
         id="HeroSlide"
         className="flex items-center justify-center bg-cover bg-center overflow-hidden relative"
-        // className="flex items-center justify-center bg-cover bg-center overflow-hidden bg-[url(/gradient-bg.jpg)]"
       >
         <div
           className="absolute top-0 left-0 w-full h-full z-10"
           style={{
-            background: "linear-gradient(to bottom right, #1a1a1a 30%, transparent 100%)",
+            background: "linear-gradient(to bottom right, #171717 30%, transparent 100%)",
           }}
         ></div>
         <div className="absolute top-0 right-0 bottom-0 left-0 z-0">
