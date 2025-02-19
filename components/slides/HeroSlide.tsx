@@ -7,7 +7,7 @@ import TypingText from "@/components/animations/TypingText";
 import Slide from "@/components/slides/Slide";
 import Image from "next/image";
 import AnimatedHead from "@/components/animations/AnimatedHead";
-import GradientSlide from "./GradientSlide";
+import { Gradient } from "@/utils/gradient.js";
 
 function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateAction<string>> }) {
   const [_, setMousePosition] = useState({ x: 0, y: 0 });
@@ -100,8 +100,8 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
             </div>
           </div>
           <div className="w-full lg:w-[30%] pt-5 flex justify-center flex-col relative z-30 pb-32 lg:pb-5">
-            <h2 className="mt-6 text-3xl md:text-4xl font-light font-merriweather leading-10 md:leading-snug max-w-3xl">
-              <div className="text-white">
+            <h2 className="mt-6 text-3xl md:text-4xl font-light font-merriweather leading-10 md:leading-snug max-w-3xl text-white">
+              <div>
                 <TypingText>I design and build </TypingText>
               </div>
               <div className="pr-2">
@@ -119,7 +119,7 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
               <div className="font-bold text-yellow-400">
                 <TypingText>user-friendly</TypingText>
               </div>
-              <div className="text-white">
+              <div>
                 <WavyText text="full-stack applications." />
               </div>
             </h2>
@@ -195,6 +195,15 @@ function MyNameHeading() {
       </h1>
     </AnimatedHead>
   );
+}
+
+function GradientSlide() {
+  useEffect(() => {
+    const gradient = new Gradient();
+    gradient.initGradient("#gradient-canvas");
+  }, []);
+
+  return <canvas id="gradient-canvas" data-js-darken-top data-transition-in />;
 }
 
 export default HeroSlide;
