@@ -31,14 +31,28 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
   }, [x, y]);
 
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 2000], [0, 500]);
+  let y1 = useTransform(scrollY, [0, 2000], [0, 500]);
+
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  // Disable parallax scroll on mobiles
+  useEffect(() => {
+    const updateWindowDimensions = () => {
+      const newWidth = window.innerWidth;
+      setWindowWidth(newWidth);
+    };
+
+    window.addEventListener("resize", updateWindowDimensions);
+
+    return () => window.removeEventListener("resize", updateWindowDimensions);
+  }, []);
 
   return (
     <motion.div
       id="HeroSlideContainer"
       className="relative z-0"
       style={{
-        y: y1,
+        y: windowWidth < 1024 ? 0 : y1,
         x: 0,
       }}
     >
