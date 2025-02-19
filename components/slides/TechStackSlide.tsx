@@ -39,10 +39,7 @@ function TechStackSlide({
       <div className="w-full h-fit items-center px-12 md:px-0">
         <h2 className="text-6xl block w-full font-monasans text-center font-bold text-white">
           <AnimatedHead>My Tech Stack</AnimatedHead>
-          <div className="text-gray-400 text-sm text-center font-light mt-4">
-            <SlidingText>My go-to tools for crafting modern applications.</SlidingText>
-          </div>
-          <div className="text-gray-500 text-sm text-center font-light">
+          <div className="text-gray-400 text-sm text-center font-light">
             <SlidingText>Larger bubbles represent greater expertise in a skill.</SlidingText>
           </div>
         </h2>

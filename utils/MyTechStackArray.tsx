@@ -1,7 +1,14 @@
 import { ItemsList } from "@/components/BubbleCloud";
 
 const MyTechStackArray: ItemsList[] = [
-  { id: 1, proficiency: 100, color: "bg-[#61dafb]", text: "React", category: "frontend" },
+  {
+    id: 1,
+    proficiency: 100,
+    color: "bg-[#61dafb]",
+    text: "React",
+    category: "frontend",
+    textColor: "text-black",
+  },
   { id: 2, proficiency: 80, color: "bg-[#1C1E26]", text: "Next.js", category: "frontend" },
   {
     id: 3,
@@ -59,14 +66,6 @@ const MyTechStackArray: ItemsList[] = [
   { id: 22, proficiency: 50, color: "bg-[#f1502f]", text: "Git", category: "others" },
   { id: 23, proficiency: 50, color: "bg-[#764abc]", text: "Redux", category: "frontend" },
   { id: 24, proficiency: 50, color: "bg-[#5d5f60]", text: "Zustand", category: "frontend" },
-  {
-    id: 25,
-    proficiency: 50,
-    color: "bg-[#ADA880]",
-    text: "Hibernate",
-    category: "backend",
-    textColor: "black",
-  },
   { id: 26, proficiency: 80, color: "bg-[#ff4154]", text: "React Query", category: "frontend" },
   { id: 27, proficiency: 80, color: "bg-[#ff4785]", text: "Storybook", category: "frontend" },
   { id: 28, proficiency: 60, color: "bg-[#1c1e26]", text: "Express.js", category: "backend" },
@@ -76,7 +75,6 @@ const MyTechStackArray: ItemsList[] = [
     color: "bg-[#E52655]",
     text: "NestJS",
     category: "backend",
-    textColor: "text-black",
   },
 ];
 
