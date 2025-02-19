@@ -52,8 +52,8 @@ function StickyHeader({ active }: { active: string }) {
           >
             <svg
               className="w-6 h-6 hamburgermenu"
-              fill="none"
-              stroke="currentColor"
+              fill="white"
+              stroke="white"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -108,7 +108,7 @@ function StickyHeader({ active }: { active: string }) {
                 setIsMenuOpen(false); // Close menu when clicking "Start"
               }}
               className={`${
-                active === "HeroSlide" ? "bg-white text-black" : ""
+                active === "HeroSlide" ? "bg-white text-black" : "text-white"
               } block rounded-full cursor-pointer px-4 py-2 mb-2 transition duration-300`}
             >
               Start
@@ -116,7 +116,7 @@ function StickyHeader({ active }: { active: string }) {
             <a
               onClick={() => ScrollTo("TechStackSlide")}
               className={`${
-                active === "TechStackSlide" ? "bg-white text-black" : ""
+                active === "TechStackSlide" ? "bg-white text-black" : "text-white"
               } block rounded-full cursor-pointer px-4 py-2 mb-2 transition duration-300`}
             >
               Tech Stack
