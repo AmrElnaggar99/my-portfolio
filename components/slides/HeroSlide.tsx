@@ -176,8 +176,14 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
           }}
           className="absolute md:-right-[300px] md:-bottom-10 lg:-bottom-32 xl:-bottom-48 lg:right-1/2 lg:-mr-[200px] xl:-mr-[240px] z-10 hidden md:block"
         >
-          <div className="w-[620px] h-[864px] lg:w-[550px] lg:h-[750px] xl:w-[620px] xl:h-[845px]">
-            <Image src="/amr1.png" alt="" fill className="-scale-x-100 lg:scale-x-100" />
+          <div className="relative w-[620px] h-[864px] lg:w-[550px] lg:h-[750px] xl:w-[620px] xl:h-[845px]">
+            <Image
+              src="/amr1.png"
+              alt=""
+              fill
+              className="-scale-x-100 lg:scale-x-100"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
           </div>
         </motion.div>
       </Slide>
