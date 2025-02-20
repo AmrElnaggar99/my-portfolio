@@ -31,7 +31,7 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
   }, [x, y]);
 
   const { scrollY } = useScroll();
-  let y1 = useTransform(scrollY, [0, 2000], [0, 500]);
+  let y1 = useTransform(scrollY, [0, 2000], [0, 700]);
 
   const [windowWidth, setWindowWidth] = useState(0);
 
@@ -42,6 +42,7 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
       setWindowWidth(newWidth);
     };
 
+    updateWindowDimensions();
     window.addEventListener("resize", updateWindowDimensions);
 
     return () => window.removeEventListener("resize", updateWindowDimensions);
