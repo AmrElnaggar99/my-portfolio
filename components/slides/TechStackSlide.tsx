@@ -41,7 +41,7 @@ function TechStackSlide({
       className="z-10 w-full min-h-fit bg-gray-950 py-12 md:px-12"
     >
       <div className="w-full h-fit items-center px-12 md:px-0">
-        <h2 className="text-[clamp(2.5rem,8vw,3.5rem)] block w-full font-monasans text-center font-black">
+        <h2 className="text-[clamp(2.5rem,8vw,3.5rem)] block w-full font-monasans text-center font-bold">
           <AnimatedHead>My Tech Stack</AnimatedHead>
           <div className="text-white text-sm text-center font-light py-4">
             <SlidingText>Larger bubbles represent greater expertise in a skill.</SlidingText>
