@@ -72,7 +72,7 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
           <GradientSlide />
         </div>
         <div className="relative z-20 flex w-full px-5 lg:flex-row flex-col md:px-24 lg:px-12 xl:px-24 h-full">
-          <div className="w-full lg:w-[70%] md:min-h-80">
+          <div className="w-full lg:w-[68%] md:min-h-80">
             <div className="relative flex h-full items-center">
               <div className="flex flex-col lg:absolute">
                 <span className="font-merriweather text-yellow-400 font-light text-2xl mb-2">
@@ -100,7 +100,7 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
               </div>
             </div>
           </div>
-          <div className="w-full lg:w-[30%] pt-5 flex justify-center flex-col relative z-30 pb-32 lg:pb-5">
+          <div className="w-full lg:w-[33%] pt-5 flex justify-center flex-col relative z-30 pb-32 lg:pb-5">
             <h2 className="mt-6 text-3xl md:text-4xl font-light font-merriweather leading-10 md:leading-snug max-w-3xl text-white">
               <div>
                 <TypingText>I design and build </TypingText>
@@ -113,7 +113,7 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
               </div>
               <div>
                 <span className="font-bold text-yellow-400 pr-2">
-                  <TypingText>scalable</TypingText>
+                  <TypingText>beautiful</TypingText>
                 </span>
                 ,
               </div>
@@ -121,20 +121,20 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
                 <TypingText>user-friendly</TypingText>
               </div>
               <div>
-                <WavyText text="full-stack applications." />
+                <WavyText text="Full-stack applications." />
               </div>
             </h2>
             <div className="mt-10 flex w-full flex-col gap-4">
               <motion.button
-                className="border-2 lg:w-full  w-[280px] border-white font-monasans text-white text-base md:text-xl px-8 py-4 rounded-full hover:bg-white hover:text-black transition"
+                className="border-2 max-w-[500px] lg:w-full  w-[280px] border-white font-monasans text-white text-base md:text-xl px-8 py-4 rounded-full hover:bg-white hover:text-black transition"
                 whileTap={{
                   scale: 0.85,
                 }}
               >
-                view my work
+                View my work
               </motion.button>
               <motion.button
-                className="bg-yellow-400 lg:w-full w-[280px] font-monasans text-black text-base md:text-xl px-8 py-4 rounded-full font-bold hover:bg-yellow-300 transition"
+                className="bg-yellow-400 max-w-[500px] lg:w-full w-[280px] font-monasans text-black text-base md:text-xl px-8 py-4 rounded-full font-bold hover:bg-yellow-300 transition"
                 whileTap={{
                   scale: 0.85,
                 }}
