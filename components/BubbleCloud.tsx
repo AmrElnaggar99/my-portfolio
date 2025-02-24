@@ -62,6 +62,7 @@ const Bubble = ({ size, color, top, left, text, bubbleRef, textColor }: BubblePr
     </motion.div>
   );
 };
+const overlappingFactor = 1.2;
 
 const getRandomPosition = (
   size: number,
@@ -70,29 +71,43 @@ const getRandomPosition = (
   placedBubbles: { top: number; left: number; size: number }[],
 ) => {
   const maxAttempts = 500;
-  const minDistance = size / 1.5; // Allow bubbles to be closer
+  const minDistance = size * overlappingFactor; // Reduce overlap but keep bubbles close
+  const randomOffset = size * 0.2; // Small randomization factor
+  const margin = size * 0.2; // Keep bubbles away from the edges
+
   let attempt = 0;
+  let top = margin;
+  let left = margin;
 
-  while (attempt < maxAttempts) {
-    const noiseX = simplex(Math.random(), Math.random());
-    const noiseY = simplex(Math.random(), Math.random());
+  while (top + size <= containerHeight - margin && attempt < maxAttempts) {
+    // If the bubble exceeds container width, move to the next row
+    if (left + size > containerWidth - margin) {
+      left = margin; // Reset to the start of the row
+      top += size * overlappingFactor; // Move down slightly less than the bubble size to keep them close
+    }
 
-    const top = (noiseY * containerHeight) / 2 + containerHeight / 2 - size / 2;
-    const left = (noiseX * containerWidth) / 2 + containerWidth / 2 - size / 2;
+    // Add slight randomization to make placement look more natural
+    const randomizedTop = top + (Math.random() * randomOffset - randomOffset / 2);
+    const randomizedLeft = left + (Math.random() * randomOffset - randomOffset / 2);
 
     const isOverlapping = placedBubbles.some(
-      (bubble) => Math.hypot(bubble.left - left, bubble.top - top) < minDistance,
+      (bubble) =>
+        Math.hypot(bubble.left - randomizedLeft, bubble.top - randomizedTop) < minDistance,
     );
 
     if (!isOverlapping) {
-      return { top: `${top}px`, left: `${left}px` };
+      return { top: `${randomizedTop}px`, left: `${randomizedLeft}px` };
     }
 
+    left += size * overlappingFactor; // Move to the right for the next bubble
     attempt++;
   }
 
-  // In case max attempts are reached, return a default position
-  return { top: "50%", left: "50%" };
+  // If structured placement fails, pick a completely random position within bounds (with margins)
+  const randomTop = margin + Math.random() * (containerHeight - size - 2 * margin);
+  const randomLeft = margin + Math.random() * (containerWidth - size - 2 * margin);
+
+  return { top: `${randomTop}px`, left: `${randomLeft}px` };
 };
 
 function BubbleCloud({ data }: { data: ItemsList[] }) {
@@ -144,10 +159,17 @@ function BubbleCloud({ data }: { data: ItemsList[] }) {
     setMoveableTargets(updatedTargets);
   }, [bubbles]);
 
-  // Calculate container height based on the number of bubbles
+  const bubbleSize = proficiencyToSize(data[0]?.proficiency || 0);
+  const maxBubblesPerRow = Math.max(
+    1,
+    Math.floor(window.innerWidth / (bubbleSize * overlappingFactor)),
+  );
+
+  const totalRequiredRows = Math.ceil(data.length / maxBubblesPerRow);
+
   const containerHeight =
     data.length > 0
-      ? Math.min(proficiencyToSize(data[0].proficiency) * data.length * 1.1, 1000)
+      ? totalRequiredRows * bubbleSize * overlappingFactor + 50 // Adjust height dynamically and add a safety padding
       : 500;
 
   return (
