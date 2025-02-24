@@ -156,7 +156,7 @@ function BubbleCloud({ data }: { data: ItemsList[] }) {
 
     const containerHeight =
       data.length > 0
-        ? totalRequiredRows * bubbleSize * overlappingFactor + 50 // Adjust height dynamically and add a safety padding
+        ? totalRequiredRows * bubbleSize * overlappingFactor // Adjust initial height dynamically based on data size
         : 500;
 
     setHeight(containerHeight);
