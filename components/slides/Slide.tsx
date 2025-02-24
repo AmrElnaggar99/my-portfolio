@@ -15,7 +15,7 @@ function Slide({
 }) {
   const { ref, inView } = useInView({
     triggerOnce: false,
-    threshold: 0.4, // Trigger when 40% of the slide is in view
+    threshold: window.innerWidth > 1024 ? 0.4 : 0.2,
   });
 
   useEffect(() => {

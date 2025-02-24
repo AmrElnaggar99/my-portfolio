@@ -1,14 +1,33 @@
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 
+const sections = [
+  {
+    title: "start",
+    slide: "HeroSlide",
+  },
+  {
+    title: "Tech Stack",
+    slide: "TechStackSlide",
+  },
+  {
+    title: "Experience",
+    slide: "ProfessionalExperienceSlide",
+  },
+];
+
 function StickyHeader({ active }: { active: string }) {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 100], [0, -36]); // Adjust the scroll distance as needed
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  function ScrollTo(id: string) {
-    const targetElement = document.getElementById(id);
-    targetElement?.scrollIntoView({ behavior: "smooth", block: "start" });
+  function scrollTo(id: string) {
+    if (id === "HeroSlide") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      const targetElement = document.getElementById(id);
+      targetElement?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
     setIsMenuOpen(false); // Close the menu after clicking a link
   }
 
@@ -69,24 +88,17 @@ function StickyHeader({ active }: { active: string }) {
 
           {/* Regular Navigation Links (Hidden on Mobile) */}
           <div className="hidden lg:flex gap-2">
-            <a
-              onClick={() => {
-                window.scrollTo({ top: 0, behavior: "smooth" });
-              }}
-              className={`${
-                active === "HeroSlide" ? "bg-white text-black" : ""
-              } rounded-full cursor-pointer md:px-6 transition duration-300 lg:px-12 h-fit py-2 flex items-center w-fit`}
-            >
-              Start
-            </a>
-            <a
-              onClick={() => ScrollTo("TechStackSlide")}
-              className={`${
-                active === "TechStackSlide" ? "bg-white text-black" : ""
-              } rounded-full cursor-pointer md:px-6 transition duration-300 lg:px-12 h-fit py-2 flex items-center w-fit`}
-            >
-              Tech Stack
-            </a>
+            {sections.map((item) => (
+              <a
+                key={item.title}
+                onClick={() => scrollTo(item.slide)}
+                className={`${
+                  active === item.slide ? "bg-white text-black" : ""
+                } rounded-full cursor-pointer md:px-6 transition duration-300 lg:px-12 h-fit py-2 flex items-center w-fit`}
+              >
+                {item.title}
+              </a>
+            ))}
           </div>
         </nav>
       </motion.header>
@@ -102,7 +114,18 @@ function StickyHeader({ active }: { active: string }) {
             exit={{ x: "100%" }} // When exiting, slide back to the right
             transition={{ type: "spring", stiffness: 200, damping: 30 }} // Animation settings
           >
-            <a
+            {sections.map((item) => (
+              <a
+                key={item.title}
+                onClick={() => scrollTo(item.slide)}
+                className={`${
+                  active === item.slide ? "bg-white text-black" : "text-white"
+                } block rounded-full cursor-pointer px-4 py-2 mb-2 transition duration-300`}
+              >
+                {item.title}
+              </a>
+            ))}
+            {/* <a
               onClick={() => {
                 window.scrollTo({ top: 0, behavior: "smooth" });
                 setIsMenuOpen(false); // Close menu when clicking "Start"
@@ -114,13 +137,13 @@ function StickyHeader({ active }: { active: string }) {
               Start
             </a>
             <a
-              onClick={() => ScrollTo("TechStackSlide")}
+              onClick={() => scrollTo("TechStackSlide")}
               className={`${
                 active === "TechStackSlide" ? "bg-white text-black" : "text-white"
               } block rounded-full cursor-pointer px-4 py-2 mb-2 transition duration-300`}
             >
               Tech Stack
-            </a>
+            </a> */}
           </motion.div>
         )}
       </AnimatePresence>
