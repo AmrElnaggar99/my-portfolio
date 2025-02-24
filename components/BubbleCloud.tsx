@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
 import Moveable from "react-moveable";
 
 type BubbleProps = {
@@ -59,31 +59,30 @@ const Bubble = ({ size, color, top, left, text, bubbleRef, textColor }: BubblePr
     </motion.div>
   );
 };
-const overlappingFactor = 1.2;
+const overlappingFactor = 0.9;
 
 const getRandomPosition = (
   size: number,
   containerWidth: number,
   containerHeight: number,
   placedBubbles: { top: number; left: number; size: number }[],
+  setHeight: React.Dispatch<React.SetStateAction<number>>,
 ) => {
   const maxAttempts = 500;
-  const minDistance = size * overlappingFactor; // Reduce overlap but keep bubbles close
-  const randomOffset = size * 0.2; // Small randomization factor
-  const margin = size * 0.2; // Keep bubbles away from the edges
+  const minDistance = size * overlappingFactor;
+  const randomOffset = size * 0.2;
+  const margin = size * 0.2;
 
   let attempt = 0;
   let top = margin;
   let left = margin;
 
   while (top + size <= containerHeight - margin && attempt < maxAttempts) {
-    // If the bubble exceeds container width, move to the next row
     if (left + size > containerWidth - margin) {
-      left = margin; // Reset to the start of the row
-      top += size * overlappingFactor; // Move down slightly less than the bubble size to keep them close
+      left = margin;
+      top += size * overlappingFactor;
     }
 
-    // Add slight randomization to make placement look more natural
     const randomizedTop = Math.min(
       top + (Math.random() * randomOffset - randomOffset / 2),
       containerHeight - size - 10,
@@ -99,44 +98,35 @@ const getRandomPosition = (
       return { top: `${randomizedTop}px`, left: `${randomizedLeft}px` };
     }
 
-    left += size * overlappingFactor; // Move to the right for the next bubble
+    left += size * overlappingFactor;
     attempt++;
   }
 
-  // If structured placement fails, pick a completely random position within bounds (with margins)
-  const randomTop = Math.random() * (containerHeight - size - 2 * margin);
-  const randomLeft = Math.random() * (containerWidth - size - 2 * margin);
-  return { top: `${randomTop}px`, left: `${randomLeft}px` };
+  // Expand the container height and place the bubble in the new space
+  const newContainerHeight = containerHeight + size * overlappingFactor;
+  setHeight(newContainerHeight);
+
+  return {
+    top: `${newContainerHeight - size * overlappingFactor - 10}px`,
+    left: `${margin}px`,
+  };
 };
 
 function BubbleCloud({ data }: { data: ItemsList[] }) {
   const [bubbles, setBubbles] = useState<BubbleProps[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const bubbleRefs = useRef<Record<number, React.RefObject<HTMLDivElement | null>>>({});
-  const [windowWidth, setWindowWidth] = useState(0);
   const [moveableTargets, setMoveableTargets] = useState<Record<number, HTMLDivElement | null>>({});
-
-  useEffect(() => {
-    const updateWindowDimensions = () => {
-      const newWidth = window.innerWidth;
-      setWindowWidth(newWidth);
-    };
-
-    updateWindowDimensions();
-    window.addEventListener("resize", updateWindowDimensions);
-
-    return () => window.removeEventListener("resize", updateWindowDimensions);
-  }, []);
+  const [height, setHeight] = useState(200);
 
   useEffect(() => {
     if (!containerRef.current) return;
     const containerWidth = containerRef.current.offsetWidth;
-    const containerHeight = containerRef.current.offsetHeight;
 
-    const placedBubbles: { top: number; left: number; size: number }[] = [];
+    let placedBubbles: { top: number; left: number; size: number }[] = [];
     const newBubbles = data.map((bubble) => {
       const size = proficiencyToSize(bubble.proficiency);
-      const position = getRandomPosition(size, containerWidth, containerHeight, placedBubbles);
+      const position = getRandomPosition(size, containerWidth, height, placedBubbles, setHeight);
 
       if (!bubbleRefs.current[bubble.id]) {
         bubbleRefs.current[bubble.id] = React.createRef();
@@ -153,6 +143,23 @@ function BubbleCloud({ data }: { data: ItemsList[] }) {
     });
 
     setBubbles(newBubbles);
+  }, [data, height]);
+
+  useEffect(() => {
+    const bubbleSize = proficiencyToSize(data[0]?.proficiency || 0);
+    const maxBubblesPerRow = Math.max(
+      1,
+      Math.floor(window.innerWidth / (bubbleSize * overlappingFactor)),
+    );
+
+    const totalRequiredRows = Math.ceil(data.length / maxBubblesPerRow);
+
+    const containerHeight =
+      data.length > 0
+        ? totalRequiredRows * bubbleSize * overlappingFactor + 50 // Adjust height dynamically and add a safety padding
+        : 500;
+
+    setHeight(containerHeight);
   }, [data]);
 
   useEffect(() => {
@@ -170,21 +177,11 @@ function BubbleCloud({ data }: { data: ItemsList[] }) {
     setMoveableTargets(updatedTargets);
   }, [bubbles]);
 
-  const bubbleSize = proficiencyToSize(data[0]?.proficiency || 0);
-  const maxBubblesPerRow = Math.max(1, Math.floor(windowWidth / (bubbleSize * overlappingFactor)));
-
-  const totalRequiredRows = Math.ceil(data.length / maxBubblesPerRow);
-
-  let containerHeight =
-    data.length > 0
-      ? totalRequiredRows * bubbleSize * overlappingFactor + 50 // Adjust height dynamically and add a safety padding
-      : 500;
-
   return (
     <div
       ref={containerRef}
       className="relative w-full overflow-hidden"
-      style={{ minHeight: `${containerHeight}px` }}
+      style={{ minHeight: `${height}px` }}
     >
       {bubbles.map((bubble) => (
         <div key={bubble.id} className="relative">
