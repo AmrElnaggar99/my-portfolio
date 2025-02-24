@@ -71,10 +71,18 @@ function ProfessionalExperienceSlide({
                         </p>
                         <ul className="text-gray-50 mt-2 list-disc font-light pl-5">
                           {exp.description.map((item, index) => (
-                            <li
+                            <motion.li
+                              ref={ref}
                               key={index}
                               className="my-1"
                               dangerouslySetInnerHTML={{ __html: item }}
+                              initial={{ opacity: 0, y: 40 }}
+                              animate={inView ? { opacity: 1, y: 0 } : {}}
+                              transition={{
+                                duration: 0.4,
+                                delay: index * 0.1,
+                                ease: "easeOut",
+                              }}
                             />
                           ))}
                         </ul>
