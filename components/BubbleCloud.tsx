@@ -84,7 +84,10 @@ const getRandomPosition = (
     }
 
     // Add slight randomization to make placement look more natural
-    const randomizedTop = top + (Math.random() * randomOffset - randomOffset / 2);
+    const randomizedTop = Math.min(
+      top + (Math.random() * randomOffset - randomOffset / 2),
+      containerHeight - size - 10,
+    );
     const randomizedLeft = left + (Math.random() * randomOffset - randomOffset / 2);
 
     const isOverlapping = placedBubbles.some(
@@ -101,9 +104,8 @@ const getRandomPosition = (
   }
 
   // If structured placement fails, pick a completely random position within bounds (with margins)
-  const randomTop = margin + Math.random() * (containerHeight - size - 2 * margin);
-  const randomLeft = margin + Math.random() * (containerWidth - size - 2 * margin);
-
+  const randomTop = Math.random() * (containerHeight - size - 2 * margin);
+  const randomLeft = Math.random() * (containerWidth - size - 2 * margin);
   return { top: `${randomTop}px`, left: `${randomLeft}px` };
 };
 
@@ -173,7 +175,7 @@ function BubbleCloud({ data }: { data: ItemsList[] }) {
 
   const totalRequiredRows = Math.ceil(data.length / maxBubblesPerRow);
 
-  const containerHeight =
+  let containerHeight =
     data.length > 0
       ? totalRequiredRows * bubbleSize * overlappingFactor + 50 // Adjust height dynamically and add a safety padding
       : 500;
