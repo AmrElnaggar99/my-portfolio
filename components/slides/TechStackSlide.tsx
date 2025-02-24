@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AnimatedHead from "@/components/animations/AnimatedHead";
 import Slide from "./Slide";
 import SlidingText from "@/components/animations/SlidingText";
@@ -14,7 +14,7 @@ function TechStackSlide({
 }) {
   const [selectedFilter, setSelectedFilter] = useState<string>("frontend");
   const [searchQuery, setSearchQuery] = useState<string>("");
-
+  const [filteredItems, setFilteredItems] = useState(MyTechStackArray);
   const handleFilterChange = (filter: string) => {
     setSelectedFilter(filter);
   };
@@ -24,11 +24,15 @@ function TechStackSlide({
     setSearchQuery(event.target.value);
   };
 
-  const filteredItems = MyTechStackArray.filter(
-    (item) =>
-      item.text.toLowerCase().includes(searchQuery.toLowerCase()) &&
-      (selectedFilter.toLowerCase() === "all" || item.category === selectedFilter.toLowerCase()),
-  );
+  useEffect(() => {
+    const filtered = MyTechStackArray.filter(
+      (item) =>
+        item.text.toLowerCase().includes(searchQuery.toLowerCase()) &&
+        (selectedFilter.toLowerCase() === "all" || item.category === selectedFilter.toLowerCase()),
+    );
+
+    setFilteredItems(filtered);
+  }, [searchQuery, selectedFilter]);
 
   return (
     <Slide
