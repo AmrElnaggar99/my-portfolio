@@ -15,7 +15,7 @@ function Slide({
 }) {
   const { ref, inView } = useInView({
     triggerOnce: false,
-    threshold: window.innerWidth > 1024 ? 0.4 : 0.2,
+    threshold: typeof window !== "undefined" && window.innerWidth > 1024 ? 0.4 : 0.2,
   });
 
   useEffect(() => {

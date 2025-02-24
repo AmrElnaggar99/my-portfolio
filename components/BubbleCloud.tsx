@@ -2,7 +2,6 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState, useRef } from "react";
 import Moveable from "react-moveable";
-import { createNoise2D } from "simplex-noise";
 
 type BubbleProps = {
   id: number;
@@ -29,8 +28,6 @@ const proficiencyToSize = (proficiency: number) => {
   const maxSize = 150;
   return minSize + (proficiency / 100) * (maxSize - minSize);
 };
-
-const simplex = createNoise2D();
 
 const Bubble = ({ size, color, top, left, text, bubbleRef, textColor }: BubbleProps) => {
   const randomDuration = Math.random() * (4 - 2) + 2; // Random duration between 2 and 4 seconds
@@ -114,8 +111,20 @@ function BubbleCloud({ data }: { data: ItemsList[] }) {
   const [bubbles, setBubbles] = useState<BubbleProps[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const bubbleRefs = useRef<Record<number, React.RefObject<HTMLDivElement | null>>>({});
-
+  const [windowWidth, setWindowWidth] = useState(0);
   const [moveableTargets, setMoveableTargets] = useState<Record<number, HTMLDivElement | null>>({});
+
+  useEffect(() => {
+    const updateWindowDimensions = () => {
+      const newWidth = window.innerWidth;
+      setWindowWidth(newWidth);
+    };
+
+    updateWindowDimensions();
+    window.addEventListener("resize", updateWindowDimensions);
+
+    return () => window.removeEventListener("resize", updateWindowDimensions);
+  }, []);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -160,10 +169,7 @@ function BubbleCloud({ data }: { data: ItemsList[] }) {
   }, [bubbles]);
 
   const bubbleSize = proficiencyToSize(data[0]?.proficiency || 0);
-  const maxBubblesPerRow = Math.max(
-    1,
-    Math.floor(window.innerWidth / (bubbleSize * overlappingFactor)),
-  );
+  const maxBubblesPerRow = Math.max(1, Math.floor(windowWidth / (bubbleSize * overlappingFactor)));
 
   const totalRequiredRows = Math.ceil(data.length / maxBubblesPerRow);
 

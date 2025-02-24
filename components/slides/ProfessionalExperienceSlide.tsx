@@ -12,7 +12,7 @@ function ProfessionalExperienceSlide({
 }) {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: window.innerWidth > 1024 ? 0.2 : 0,
+    threshold: typeof window !== "undefined" && window.innerWidth > 1024 ? 0.2 : 0,
   });
 
   return (
