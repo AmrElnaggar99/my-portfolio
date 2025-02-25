@@ -22,7 +22,7 @@ function ProfessionalExperienceSlide({
       }`}
     >
       <Slide id="ProfessionalExperienceSlide" setActive={setActive}>
-        <AnimatedHeadline>Professional Experience</AnimatedHeadline>
+        <MarqueeHeadline>Professional Experience</MarqueeHeadline>
         <div className="md:px-12">
           <section className="mx-auto py-12 px-6">
             <div className="flex justify-between items-center mb-8">
@@ -110,7 +110,7 @@ function ProfessionalExperienceSlide({
   );
 }
 
-function AnimatedHeadline({ children }: { children: string }) {
+function MarqueeHeadline({ children }: { children: string }) {
   const { ref, inView } = useInView({
     triggerOnce: true,
   });

@@ -35,7 +35,7 @@ function SpotifySlide({ setActive }: { setActive: React.Dispatch<React.SetStateA
           </h2>
           <p className="text-gray-300">
             <TypingText>
-              Music fuels my creativity, drag, explore, and see what's been on repeat in my world!
+              Music fuels my creativity. See what's been on repeat in my world
             </TypingText>
           </p>
         </div>

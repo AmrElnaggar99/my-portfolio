@@ -32,7 +32,7 @@ export async function GET() {
 
     const { access_token } = await tokenResponse.json();
 
-    // Step 2: Fetch the user's top artists
+    // Step 2: Fetch my top artists
     const artistsResponse = await fetch(
       "https://api.spotify.com/v1/me/top/artists?limit=10&time_range=medium_term",
       {

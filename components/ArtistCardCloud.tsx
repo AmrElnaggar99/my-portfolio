@@ -41,13 +41,12 @@ const ArtistCard = ({ id, images, name, position, ref }: ArtistProps) => {
   );
 };
 
-const overlappingFactor = 0.9;
-
 const getRandomPosition = (
   size: number,
   containerWidth: number,
   placedBubbles: { top: number; left: number; size: number }[],
 ) => {
+  const overlappingFactor = 0.9;
   const maxAttempts = 500;
   const minDistance = size * overlappingFactor;
   const randomOffset = size * 0.2;
@@ -94,7 +93,7 @@ function ArtistCardCloud({ data }: { data: ArtistProps[] }) {
       id: number;
       images: { url: string; height: number; width: number }[];
       name: string;
-      position: any;
+      position: { top: number; left: number; size: number };
     }[]
   >([]);
 
@@ -137,14 +136,10 @@ function ArtistCardCloud({ data }: { data: ArtistProps[] }) {
     setMoveableTargets(updatedTargets);
   }, [artists]);
 
-  const maxBottom = Math.max(0, ...artists.map((artist) => parseFloat(artist.top) + 150));
+  const maxBottom = Math.max(0, ...artists.map((artist) => parseFloat(artist.top) + 250));
 
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full"
-      style={{ minHeight: `${maxBottom + 50}px` }}
-    >
+    <div ref={containerRef} className="relative w-full" style={{ minHeight: `${maxBottom}px` }}>
       {artists.map((artist) => (
         <div key={artist.id} className="relative">
           <ArtistCard

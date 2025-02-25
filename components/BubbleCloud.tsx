@@ -102,7 +102,7 @@ const getRandomPosition = (
     attempt++;
   }
 
-  // Expand the container height and place the bubble in the new space
+  // Expand the container height and place the new bubble in the new space
   const newContainerHeight = containerHeight + size * overlappingFactor;
   setHeight(newContainerHeight);
 
