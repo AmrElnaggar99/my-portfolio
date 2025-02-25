@@ -12,7 +12,10 @@ function SpotifySlide() {
   useEffect(() => {
     fetch("/api/spotify")
       .then((res) => res.json())
-      .then((data) => setArtists(data.items || []));
+      .then((data) => {
+        setArtists(data.items || []);
+        console.log("artists: ", artists);
+      });
   }, []);
 
   return (
