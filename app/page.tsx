@@ -3,10 +3,12 @@
 import React, { useState } from "react";
 import StickyHeader from "@/components/StickyHeader";
 import HeroSlide from "@/components/slides/HeroSlide";
-import TechStackSlide from "@/components/slides/TechStackSlide";
 import ProfessionalExperienceSlide from "@/components/slides/ProfessionalExperienceSlide";
 import ContactSlide from "@/components/slides/ContactSlide";
-import SpotifySlide from "@/components/slides/SpotifySlide";
+import dynamic from "next/dynamic";
+
+const TechStackSlide = dynamic(() => import("@/components/slides/TechStackSlide"));
+const SpotifySlide = dynamic(() => import("@/components/slides/SpotifySlide"));
 
 const HomePage: React.FC = () => {
   const [active, setActive] = useState("");
