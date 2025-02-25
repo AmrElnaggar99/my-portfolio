@@ -23,7 +23,7 @@ function SpotifySlide({ setActive }: { setActive: React.Dispatch<React.SetStateA
       className="w-full min-h-fit bg-gray-950 py-12 md:px-12"
       setActive={setActive}
     >
-      <div className="p-6 font-monasans">
+      <div className="p-6 font-monasans items-center text-center">
         <div className="relative z-0 flex items-center flex-col">
           <div className="mb-3">
             <AnimatedHead className="bg-gradient-to-r from-[#EEA525] to-[#FADC3A] bg-clip-text text-transparent">
@@ -39,9 +39,9 @@ function SpotifySlide({ setActive }: { setActive: React.Dispatch<React.SetStateA
             </TypingText>
           </p>
         </div>
-        <div className="relative w-full p-8">
-          <ArtistCardCloud data={artists} />
-        </div>
+      </div>
+      <div className="relative w-full py-8 md:px-8 overflow-x-hidden">
+        <ArtistCardCloud data={artists} />
       </div>
     </Slide>
   );
