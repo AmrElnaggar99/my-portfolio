@@ -29,14 +29,16 @@ function ProfessionalExperienceSlide({
             <div className="flex justify-between items-center mb-8">
               <h2 className="text-3xl text-white font-monasans font-medium">My resume</h2>
 
-              <motion.button
-                className="bg-purple-600 hover:bg-purple-700 text-white font-medium font-monasans py-2 px-4 rounded-full transition"
+              <motion.a
+                className="bg-[#796ef6] hover:bg-[#8080F4] text-white font-medium font-monasans py-2 px-4 rounded-full transition"
                 whileTap={{
                   scale: 0.85,
                 }}
+                href="/Amr_Elnaggar_resume.pdf"
+                target="_blank"
               >
                 View PDF Resume
-              </motion.button>
+              </motion.a>
             </div>
 
             {/* Experience Section */}
