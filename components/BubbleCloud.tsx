@@ -1,8 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
 import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
-import Moveable from "react-moveable";
+import dynamic from "next/dynamic";
 
+const Moveable = dynamic(() => import("react-moveable"), { ssr: false });
 type BubbleProps = {
   id: number;
   size: number;

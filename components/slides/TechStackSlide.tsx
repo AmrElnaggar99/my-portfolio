@@ -85,7 +85,6 @@ function TechStackSlide({
       </div>
       <div className="space-y-10">
         <BubbleCloud data={filteredItems} />
-        {/* <div className="h-[500px]"></div> */}
       </div>
     </Slide>
   );

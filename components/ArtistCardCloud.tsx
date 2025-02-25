@@ -1,7 +1,9 @@
 "use client";
 import React, { useEffect, useState, useRef } from "react";
-import Moveable from "react-moveable";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+
+const Moveable = dynamic(() => import("react-moveable"), { ssr: false });
 
 type ArtistProps = {
   id: number;
