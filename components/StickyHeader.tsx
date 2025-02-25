@@ -36,7 +36,7 @@ function StickyHeader({ active }: { active: string }) {
   const [offset, setOffset] = useState(0);
 
   useMotionValueEvent(scrollY, "change", (currentScrollY) => {
-    if (currentScrollY > lastScrollY) {
+    if (currentScrollY > lastScrollY || window.innerWidth < 1024) {
       // Scrolling down, move navbar up (-36px)
       setOffset(-36);
     } else {
