@@ -25,7 +25,6 @@ function ProfessionalExperienceSlide({
         <AnimatedHeadline>Professional Experience</AnimatedHeadline>
         <div className="md:px-12">
           <section className="mx-auto py-12 px-6">
-            {/* Header Section */}
             <div className="flex justify-between items-center mb-8">
               <h2 className="text-3xl text-white font-monasans font-medium">My resume</h2>
 
@@ -46,7 +45,6 @@ function ProfessionalExperienceSlide({
               {experiences.map((exp, index) => {
                 const { ref, inView } = useInView({
                   triggerOnce: true,
-                  threshold: 0.2,
                 });
 
                 return (
@@ -57,7 +55,7 @@ function ProfessionalExperienceSlide({
                     initial={{ opacity: 0, y: 40 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{
-                      duration: 0.4,
+                      duration: 0.2,
                       delay: index * 0.1,
                       ease: "easeOut",
                     }}
@@ -80,7 +78,7 @@ function ProfessionalExperienceSlide({
                               initial={{ opacity: 0, y: 40 }}
                               animate={inView ? { opacity: 1, y: 0 } : {}}
                               transition={{
-                                duration: 0.4,
+                                duration: 0.2,
                                 delay: index * 0.1,
                                 ease: "easeOut",
                               }}
@@ -112,17 +110,24 @@ function ProfessionalExperienceSlide({
 }
 
 function AnimatedHeadline({ children }: { children: string }) {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+  });
+
   return (
     <>
-      <div className="flex whitespace-nowrap w-full overflow-hidden">
-        <h2 className="text-[clamp(2.5rem,8vw,5.5rem)] uppercase font-monasans animate-loopText text-white">
+      <div className="flex whitespace-nowrap w-full overflow-hidden" ref={ref}>
+        <h2
+          className={`text-[clamp(2.5rem,8vw,5.5rem)] uppercase font-monasans ${inView ? "animate-loopText" : ""} text-white`}
+        >
+          <span className="w-[200px] md:w-[400px] inline-block"></span>
           {children}
           <span className="w-[100px] md:w-[200px] inline-block"></span>
         </h2>
         {[0, 1].map((item) => (
           <span
             key={item}
-            className="text-[clamp(2.5rem,8vw,5.5rem)] uppercase font-monasans animate-loopText text-white"
+            className={`text-[clamp(2.5rem,8vw,5.5rem)] uppercase font-monasans ${inView ? "animate-loopText" : ""} text-white`}
           >
             {children}
             <span className="w-[100px] md:w-[200px] inline-block"></span>
