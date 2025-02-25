@@ -64,10 +64,11 @@ function ProfessionalExperienceSlide({
                     <div className="flex gap-2 md:items-center justify-between flex-col md:flex-row">
                       <div className="flex flex-col">
                         <p className="flex gap-1 text-lg font-monasans text-gray-300 flex-col md:flex-row">
-                          <span>{exp.company}</span>{" "}
-                          <span className="text-white hidden md:inline-block">—</span>
+                          <span>{exp.company}</span>
+                          <span className="text-white hidden md:inline-block"> — </span>
                           <span>{exp.location}</span>
                         </p>
+                        <p className="text-md font-monasans text-gray-500">{exp.duration}</p>
                         <ul className="text-gray-50 mt-2 list-disc font-light pl-5">
                           {exp.description.map((item, index) => (
                             <motion.li
@@ -143,7 +144,7 @@ const experiences = [
     title: "Full Stack Engineer",
     company: "Infrasoft Software House",
     location: "Kuwait City, Kuwait (Remote)",
-    duration: "April 2023 – January 2025",
+    duration: "April 2023 - January 2025",
     description: [
       "Maintained a robust suite of scalable full-stack applications using <span style='font-weight:bold;color:#8080F4'>React, TypeScript, Java, Spring Boot, and MySQL</span> and containerized with <span style='font-weight:bold;color:#8080F4'>Docker</span>.",
       "Deployed applications on <span style='font-weight:bold;color:#8080F4'>AWS</span> using <span style='font-weight:bold;color:#8080F4'>Git</span> within a <span style='font-weight:bold;color:#8080F4'>Continuous Integration</span> environment.",
@@ -154,7 +155,7 @@ const experiences = [
     title: "Frontend Engineer",
     company: "GeoGebra",
     location: "Linz, Austria",
-    duration: "August 2022 – April 2023",
+    duration: "August 2022 - April 2023",
     description: [
       "Directed highly accessible and reusable UI components in <span style='font-weight:bold;color:#8080F4'>React, Next.js, TypeScript using Tailwind, Radix UI</span>, focusing on UX, optimization, and bundling; and offered documentation with <span style='font-weight:bold;color:#8080F4'>Storybook</span>.",
       "Ensured a 100% Lighthouse score for <span style='font-weight:bold;color:#8080F4'>SEO</span> and performance by optimizing assets, implementing <span style='font-weight:bold;color:#8080F4'>server-side rendering (SSR)</span>, and improving Core Web Vitals.",
@@ -167,7 +168,7 @@ const experiences = [
     title: "Full Stack Engineer",
     company: "Oncoustics",
     location: "Toronto, Canada (Remote)",
-    duration: "May 2022 – August 2022",
+    duration: "May 2022 - August 2022",
     description: [
       "Built 2 scalable pixel-perfect full-stack web applications with <span style='font-weight:bold;color:#8080F4'>Next.js, React Query, and TypeScript</span>, leveraging <span style='font-weight:bold;color:#8080F4'>Node.js and NestJS</span> for REST Web Services.",
       "Executed the installation and configuration of a <span style='font-weight:bold;color:#8080F4'>MongoDB</span> environment for two full-stack web applications, ensuring seamless data migration.",
@@ -178,7 +179,7 @@ const experiences = [
     title: "Full Stack Engineer",
     company: "Aschl Management Systems",
     location: "Schluesslberg, Austria",
-    duration: "October 2020 – August 2022",
+    duration: "October 2020 - August 2022",
     description: [
       "Engineered and deployed applications for the web with <span style='font-weight:bold;color:#8080F4'>JavaScript and PHP</span>, and built mobile and desktop applications using Windev in an MVC pattern.",
       "Executed high-performance modifications on existing ERP systems by enhancing querying techniques, achieving 50% faster query performance on MySQL.",
@@ -189,7 +190,7 @@ const experiences = [
     title: "Full Stack Engineer (Internship)",
     company: "Vodafone",
     location: "Smart Village, Egypt (Remote)",
-    duration: "August 2020 – September 2020",
+    duration: "August 2020 - September 2020",
     description: [
       "Developed a data visualization dashboard using <span style='font-weight:bold;color:#8080F4'>React and ECharts</span>, enabling real-time insights into the data of over 1 million users.",
     ],
@@ -199,7 +200,7 @@ const experiences = [
     title: "Software Engineer (Internship)",
     company: "Qatar Computing Research Institute",
     location: "Ar-Rayyan, Qatar (Remote)",
-    duration: "May 2020 – July 2020",
+    duration: "May 2020 - July 2020",
     description: [
       "Built <span style='font-weight:bold;color:#8080F4'>Python and Node.js</span> backend applications and created <span style='font-weight:bold;color:#8080F4'>Docker</span> images, cutting deployment time by 50%.",
     ],
