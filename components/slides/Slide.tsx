@@ -10,7 +10,7 @@ function Slide({
 }: {
   className?: string;
   id: string;
-  setActive?: React.Dispatch<React.SetStateAction<string>>;
+  setActive: React.Dispatch<React.SetStateAction<string>>;
   children?: ReactNode;
 }) {
   const { ref, inView } = useInView({

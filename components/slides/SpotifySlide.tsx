@@ -6,7 +6,7 @@ import AnimatedHead from "../animations/AnimatedHead";
 import TypingText from "../animations/TypingText";
 import Slide from "./Slide";
 
-function SpotifySlide() {
+function SpotifySlide({ setActive }: { setActive: React.Dispatch<React.SetStateAction<string>> }) {
   const [artists, setArtists] = useState([]);
 
   useEffect(() => {
@@ -14,12 +14,15 @@ function SpotifySlide() {
       .then((res) => res.json())
       .then((data) => {
         setArtists(data.items || []);
-        console.log("artists: ", artists);
       });
   }, []);
 
   return (
-    <Slide id="SpotifySlide" className="w-full min-h-fit bg-gray-950 py-12 md:px-12">
+    <Slide
+      id="SpotifySlide"
+      className="w-full min-h-fit bg-gray-950 py-12 md:px-12"
+      setActive={setActive}
+    >
       <div className="p-6 font-monasans">
         <div className="relative z-0 flex items-center flex-col">
           <div className="mb-3 bg-gradient-to-r from-[#EEA525] to-[#FADC3A] bg-clip-text text-transparent">

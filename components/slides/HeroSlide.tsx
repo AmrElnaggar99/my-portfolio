@@ -121,23 +121,31 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
                 <TypingText>user-friendly</TypingText>
               </div>
               <div>
-                <WavyText text="Full-stack applications." />
+                <WavyText text="Full-Stack applications." />
               </div>
             </h2>
             <div className="mt-10 flex w-full flex-col gap-4">
-              <motion.button
-                className="border-2 max-w-[500px] lg:w-full  w-[280px] border-white font-monasans text-white text-base md:text-xl px-8 py-4 rounded-full hover:bg-white hover:text-black transition"
+              <motion.a
+                className="border-2 text-center max-w-[500px] lg:w-full  w-[280px] border-white font-monasans text-white text-base md:text-xl px-8 py-4 rounded-full hover:bg-white hover:text-black transition"
                 whileTap={{
                   scale: 0.85,
                 }}
+                href="/Amr_Elnaggar_resume.pdf"
+                target="_blank"
               >
-                View my work
-              </motion.button>
+                View my resume
+              </motion.a>
               <motion.button
                 className="bg-yellow-400 max-w-[500px] lg:w-full w-[280px] font-monasans text-black text-base md:text-xl px-8 py-4 rounded-full font-bold hover:bg-yellow-300 transition"
                 whileTap={{
                   scale: 0.85,
                 }}
+                onClick={() =>
+                  window.scrollTo({
+                    top: document.getElementById("ContactSlide")?.offsetTop,
+                    behavior: "smooth",
+                  })
+                }
               >
                 Let's connect →
               </motion.button>

@@ -18,6 +18,7 @@ const sections = [
     title: "Contact",
     slide: "ContactSlide",
   },
+  { title: "Bonus", slide: "SpotifySlide" },
 ];
 
 function StickyHeader({ active }: { active: string }) {
@@ -129,25 +130,6 @@ function StickyHeader({ active }: { active: string }) {
                 {item.title}
               </a>
             ))}
-            {/* <a
-              onClick={() => {
-                window.scrollTo({ top: 0, behavior: "smooth" });
-                setIsMenuOpen(false); // Close menu when clicking "Start"
-              }}
-              className={`${
-                active === "HeroSlide" ? "bg-white text-black" : "text-white"
-              } block rounded-full cursor-pointer px-4 py-2 mb-2 transition duration-300`}
-            >
-              Start
-            </a>
-            <a
-              onClick={() => scrollTo("TechStackSlide")}
-              className={`${
-                active === "TechStackSlide" ? "bg-white text-black" : "text-white"
-              } block rounded-full cursor-pointer px-4 py-2 mb-2 transition duration-300`}
-            >
-              Tech Stack
-            </a> */}
           </motion.div>
         )}
       </AnimatePresence>

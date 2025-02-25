@@ -15,8 +15,9 @@ const monasans = Mona_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Amr Elnaggar Portfolio",
-  description: "TBD",
+  title: "Amr Elnaggar | Frontend & Full-Stack Engineer",
+  description:
+    "Amr Elnaggar, a Frontend and Full-Stack Engineer with expertise in React, Next.js, and backend technologies. Passionate about building scalable, beautiful, interactive web applications with optimized performance.",
 };
 
 export default function RootLayout({

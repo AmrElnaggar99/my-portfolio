@@ -17,7 +17,7 @@ const HomePage: React.FC = () => {
       <TechStackSlide setActive={setActive} />
       <ProfessionalExperienceSlide setActive={setActive} />
       <ContactSlide setActive={setActive} />
-      <SpotifySlide />
+      <SpotifySlide setActive={setActive} />
     </>
   );
 };
