@@ -8,6 +8,7 @@ import Slide from "@/components/slides/Slide";
 import Image from "next/image";
 import AnimatedHead from "@/components/animations/AnimatedHead";
 import { Gradient } from "@/utils/gradient.js";
+import amrWebp from "@/public/amr.webp";
 
 function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateAction<string>> }) {
   const [_, setMousePosition] = useState({ x: 0, y: 0 });
@@ -192,9 +193,11 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
         >
           <div className="relative w-[620px] h-[864px] lg:w-[550px] lg:h-[750px] xl:w-[620px] xl:h-[845px]">
             <Image
-              src="/amr1.png"
+              src={amrWebp}
               alt=""
               fill
+              priority
+              placeholder="blur"
               className="-scale-x-100 lg:scale-x-100"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
