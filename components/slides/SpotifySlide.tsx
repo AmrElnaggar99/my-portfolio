@@ -25,8 +25,10 @@ function SpotifySlide({ setActive }: { setActive: React.Dispatch<React.SetStateA
     >
       <div className="p-6 font-monasans">
         <div className="relative z-0 flex items-center flex-col">
-          <div className="mb-3 bg-gradient-to-r from-[#EEA525] to-[#FADC3A] bg-clip-text text-transparent">
-            <AnimatedHead>✨ Bonus section ✨</AnimatedHead>
+          <div className="mb-3">
+            <AnimatedHead className="bg-gradient-to-r from-[#EEA525] to-[#FADC3A] bg-clip-text text-transparent">
+              ✨ Bonus section ✨
+            </AnimatedHead>
           </div>
           <h2 className="text-[clamp(2.5rem,8vw,3.5rem)] font-bold mb-4">
             <AnimatedHead>My Most Played Artists</AnimatedHead>
