@@ -1,21 +1,30 @@
 "use client";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
-export default function TypingText({ children }: { children: string }) {
-  const baseText = children;
+function TypingText({ children }: { children: string }) {
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
   const count = useMotionValue(0);
   const rounded = useTransform(count, (latest) => Math.round(latest));
-  const displayText = useTransform(rounded, (latest) => baseText.slice(0, latest));
+  const displayText = useTransform(rounded, (latest) => children.slice(0, latest));
 
   useEffect(() => {
-    const controls = animate(count, baseText.length, {
-      type: "tween",
-      duration: 1,
-      ease: "easeInOut",
-    });
-    return controls.stop;
-  }, []);
+    if (inView) {
+      const controls = animate(count, children.length, {
+        type: "tween",
+        duration: 1,
+        ease: "easeInOut",
+      });
+      return controls.stop;
+    }
+  }, [inView]);
 
-  return <motion.span>{displayText}</motion.span>;
+  return (
+    <motion.span ref={ref} className="inline-block">
+      {displayText}
+    </motion.span>
+  );
 }
+
+export default TypingText;

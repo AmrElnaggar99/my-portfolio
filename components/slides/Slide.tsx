@@ -10,7 +10,7 @@ function Slide({
 }: {
   className?: string;
   id: string;
-  setActive: React.Dispatch<React.SetStateAction<string>>;
+  setActive?: React.Dispatch<React.SetStateAction<string>>;
   children?: ReactNode;
 }) {
   const { ref, inView } = useInView({
@@ -20,7 +20,7 @@ function Slide({
 
   useEffect(() => {
     if (inView) {
-      setActive(id); // Set the active navigation item based on the id of the slide
+      setActive && setActive(id); // Set the active navigation item based on the id of the slide
     }
   }, [inView, id, setActive]);
 

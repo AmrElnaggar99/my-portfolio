@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 
-function AnimatedHead({ children }: { children: ReactNode }) {
+function AnimatedHead({ children, className }: { children: ReactNode; className?: string }) {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -30,8 +30,7 @@ function AnimatedHead({ children }: { children: ReactNode }) {
         duration: 0.5,
         ease: "easeOut",
       }}
-      className="inline-block relative z-30 from-[#605E66] via-[#C5C4C6] to-[#605E66] text-transparent bg-clip-text [background-size:100%_100%] [background-position:0%] 
-      [background-image:linear-gradient(to_right,#605E66_0%,#C5C4C6_22%,#C5C4C6_76%,#605E66_100%)]"
+      className={`inline-block relative z-30 ${className}`}
     >
       {children}
     </motion.span>

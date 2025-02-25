@@ -6,6 +6,7 @@ import HeroSlide from "@/components/slides/HeroSlide";
 import TechStackSlide from "@/components/slides/TechStackSlide";
 import ProfessionalExperienceSlide from "@/components/slides/ProfessionalExperienceSlide";
 import ContactSlide from "@/components/slides/ContactSlide";
+import SpotifySlide from "@/components/slides/SpotifySlide";
 
 const HomePage: React.FC = () => {
   const [active, setActive] = useState("");
@@ -16,6 +17,7 @@ const HomePage: React.FC = () => {
       <TechStackSlide setActive={setActive} />
       <ProfessionalExperienceSlide setActive={setActive} />
       <ContactSlide setActive={setActive} />
+      <SpotifySlide />
     </>
   );
 };
