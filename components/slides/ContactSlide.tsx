@@ -22,7 +22,7 @@ function ContactSlide({ setActive }: { setActive: React.Dispatch<React.SetStateA
       <Slide
         id="ContactSlide"
         setActive={setActive}
-        className="overflow-hidden relative flex items-center justify-center !pt-0"
+        className="overflow-hidden relative flex items-center justify-center !py-10"
       >
         <div className="absolute top-0 right-0 bottom-0 left-0 z-0">
           <GradientSlide />

@@ -112,7 +112,7 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
                 ,
               </div>
               <div>
-                <span className="font-bold text-yellow-400 pr-2">
+                <span className="font-bold text-yellow-400">
                   <TypingText>beautiful</TypingText>
                 </span>
                 ,
