@@ -207,10 +207,10 @@ function MyNameHeading() {
 function GradientSlide() {
   useEffect(() => {
     const gradient = new Gradient();
-    gradient.initGradient("#gradient-canvas");
+    gradient.initGradient("#hero-gradient-canvas");
   }, []);
 
-  return <canvas id="gradient-canvas" data-js-darken-top data-transition-in />;
+  return <canvas id="hero-gradient-canvas" data-js-darken-top data-transition-in />;
 }
 
 export default HeroSlide;

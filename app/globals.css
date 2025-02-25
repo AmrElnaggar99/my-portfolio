@@ -25,11 +25,20 @@ body {
   display: none;
 }
 
-#gradient-canvas {
+#hero-gradient-canvas {
   width: 100%;
   height: 100%;
   --gradient-color-1: #5c06fd;
   --gradient-color-2: #780ae5;
   --gradient-color-3: #2d173d;
+  --gradient-color-4: #1a1a1a;
+}
+
+#contact-gradient-canvas {
+  width: 100%;
+  height: 100%;
+  --gradient-color-1: #000000;
+  --gradient-color-2: #16e0df;
+  --gradient-color-3: #796ef6;
   --gradient-color-4: #1a1a1a;
 }

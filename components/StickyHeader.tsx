@@ -14,6 +14,10 @@ const sections = [
     title: "Experience",
     slide: "ProfessionalExperienceSlide",
   },
+  {
+    title: "Contact",
+    slide: "ContactSlide",
+  },
 ];
 
 function StickyHeader({ active }: { active: string }) {

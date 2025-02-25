@@ -3,7 +3,6 @@ import React from "react";
 import Slide from "./Slide";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import DOMPurify from "dompurify";
 
 function ProfessionalExperienceSlide({
   setActive,
