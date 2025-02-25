@@ -147,7 +147,11 @@ function DesktopNavigationMenu({
       {sections.map((item) => (
         <a
           key={item.title}
-          onClick={() => scrollTo(item.slide)}
+          href={`#${item.slide}`}
+          onClick={(e) => {
+            e.preventDefault();
+            scrollTo(item.slide);
+          }}
           className={`${active === item.slide ? "bg-white text-black" : "text-white"} rounded-full cursor-pointer md:px-6 transition duration-300 lg:px-12 h-fit py-2 flex items-center w-fit`}
         >
           {item.title}
@@ -192,7 +196,11 @@ function MobileNavigationMenu({
           {sections.map((item) => (
             <a
               key={item.title}
-              onClick={() => scrollTo(item.slide)}
+              href={`#${item.slide}`}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo(item.slide);
+              }}
               className={`${active === item.slide ? "bg-white text-black" : "text-white"} block rounded-full cursor-pointer px-4 py-2 mb-2 transition duration-300`}
             >
               {item.title}
