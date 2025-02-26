@@ -87,10 +87,13 @@ function StickyHeader({ active }: { active: string }) {
   return (
     <>
       <motion.header
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, ease: "easeIn" }}
         style={{
           y: offset,
         }}
-        className="fixed w-full z-50 flex justify-start lg:justify-center items-center pt-16 font-monasans font-bold transition duration-300"
+        className="fixed w-full z-50 flex justify-start lg:justify-center items-center pt-16 font-monasans font-bold transition duration-300 will-change-transform"
       >
         <nav className="w-full h-18 top-9 lg:top-auto hamburgermenu lg:rounded-full gap-2 fixed lg:h-12 flex items-center lg:justify-evenly lg:p-8 lg:w-fit mx-auto backdrop-filter backdrop-blur-lg">
           <MobileHamburgerMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />

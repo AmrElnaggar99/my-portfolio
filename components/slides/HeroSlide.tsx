@@ -155,7 +155,7 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
               id="heroImage"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 1, ease: "easeOut" }}
+              transition={{ duration: 1, ease: "easeIn" }}
               className="will-change-opacity"
               onAnimationComplete={(definition) => {
                 const element = document.querySelector("#heroImage");
