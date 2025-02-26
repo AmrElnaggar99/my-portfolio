@@ -81,7 +81,7 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
                 </span>
                 <div className="relative z-30">
                   <motion.div
-                    className="hidden md:block"
+                    className="hidden md:block will-change-transform"
                     style={{
                       x: x,
                       y: y,

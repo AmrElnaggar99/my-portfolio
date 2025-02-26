@@ -4,12 +4,13 @@ import React, { useState } from "react";
 import StickyHeader from "@/components/StickyHeader";
 import HeroSlide from "@/components/slides/HeroSlide";
 import ProfessionalExperienceSlide from "@/components/slides/ProfessionalExperienceSlide";
-import ContactSlide from "@/components/slides/ContactSlide";
+
 import dynamic from "next/dynamic";
 import ProjectsSlide from "@/components/slides/ProjectsSlide";
 
 const TechStackSlide = dynamic(() => import("@/components/slides/TechStackSlide"));
 const SpotifySlide = dynamic(() => import("@/components/slides/SpotifySlide"));
+const ContactSlide = dynamic(() => import("@/components/slides/ContactSlide"));
 
 const HomePage: React.FC = () => {
   const [active, setActive] = useState("");
