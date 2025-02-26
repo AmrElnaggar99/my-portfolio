@@ -31,7 +31,7 @@ function SpotifySlide({ setActive }: { setActive: React.Dispatch<React.SetStateA
             </AnimatedHead>
           </div>
           <h2 className="text-[clamp(2.5rem,8vw,3.5rem)] font-bold mb-4">
-            <AnimatedHead>My Most Played Artists</AnimatedHead>
+            <AnimatedHead className="text-white">My Most Played Artists</AnimatedHead>
           </h2>
           <p className="text-gray-300">
             <TypingText>

@@ -46,7 +46,7 @@ function ContactSlide({ setActive }: { setActive: React.Dispatch<React.SetStateA
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, ease: "easeIn" }}
-              className="text-3xl font-medium font-monasans mb-4"
+              className="text-3xl font-medium font-monasans mb-4 text-white"
             >
               Get in touch
             </motion.h2>

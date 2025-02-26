@@ -30,7 +30,7 @@ function AnimatedHead({ children, className }: { children: ReactNode; className?
         duration: 0.5,
         ease: "easeOut",
       }}
-      className={`inline-block relative z-30 ${className}`}
+      className={`inline-block relative z-30 ${className ? className : ""}`}
     >
       {children}
     </motion.span>
