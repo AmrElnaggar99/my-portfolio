@@ -156,7 +156,7 @@ function DesktopNavigationMenu({
             e.preventDefault();
             scrollTo(item.slide);
           }}
-          className={`${active === item.slide ? "bg-white text-black" : "text-white"} rounded-full cursor-pointer md:px-6 transition duration-300 lg:px-12 h-fit py-2 flex items-center w-fit`}
+          className={`${active === item.slide ? "bg-white text-black" : "text-white"} rounded-full cursor-pointer md:px-6 transition duration-300 lg:px-6 xl:px-12 h-fit py-2 flex items-center w-fit`}
         >
           {item.title}
         </a>
