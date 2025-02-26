@@ -36,11 +36,11 @@ function TechStackSlide({
 
   useEffect(() => {
     function isOldBrowser() {
-      return !CSS.supports("background-image", "linear-gradient(to right, #605E66, #C5C4C6)");
+      return !CSS.supports("background-clip", "text");
     }
 
     if (isOldBrowser()) {
-      document.documentElement.classList.add("old-browser"); // Add a class to <html>
+      document.documentElement.classList.add("old-browser");
     }
   }, []);
   return (
