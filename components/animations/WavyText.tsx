@@ -1,5 +1,6 @@
 "use client";
 import { motion, Variants, HTMLMotionProps } from "framer-motion";
+import { useEffect, useState } from "react";
 
 interface Props extends HTMLMotionProps<"div"> {
   text: string;
@@ -9,13 +10,10 @@ interface Props extends HTMLMotionProps<"div"> {
 
 function WavyText({ text, delay = 0, duration = 0.05, ...props }: Props) {
   const letters = Array.from(text);
+  const [animationEnded, setAnimationEnded] = useState(false);
 
   const container: Variants = {
-    hidden: {
-      opacity: 0,
-    },
     visible: (i: number = 1) => ({
-      opacity: 1,
       transition: { staggerChildren: duration, delayChildren: i * delay },
     }),
   };
@@ -41,16 +39,28 @@ function WavyText({ text, delay = 0, duration = 0.05, ...props }: Props) {
     },
   };
 
+  useEffect(() => {
+    const timeout = setTimeout(
+      () => setAnimationEnded(true),
+      (letters.length * duration + delay) * 1000,
+    );
+    return () => clearTimeout(timeout);
+  }, [letters.length, duration, delay]);
+
   return (
     <motion.span
-      className="flex overflow-hidden flex-nowrap"
+      className={`flex overflow-hidden flex-nowrap ${animationEnded ? "will-change-auto" : "will-change-opacity"}`}
       variants={container}
       initial="hidden"
-      animate={"visible"}
+      animate="visible"
       {...props}
     >
       {letters.map((letter, index) => (
-        <motion.span key={index} variants={child}>
+        <motion.span
+          key={index}
+          variants={child}
+          className={`${animationEnded ? "will-change-auto" : "will-change-opacity will-change-transform"}`}
+        >
           {letter === " " ? "\u00A0" : letter}
         </motion.span>
       ))}

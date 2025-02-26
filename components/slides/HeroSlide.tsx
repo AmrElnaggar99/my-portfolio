@@ -130,42 +130,11 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
                 </div>
               </div>
             </h2>
-            <motion.div
-              className="mt-10 flex w-full flex-col gap-4"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-            >
-              <motion.a
-                className="border-2 text-center max-w-[500px] lg:w-full  w-[280px] border-white font-monasans text-white text-base md:text-xl px-8 py-4 rounded-full hover:bg-white hover:text-black transition"
-                whileTap={{
-                  scale: 0.85,
-                }}
-                href="/Amr_Elnaggar_resume.pdf"
-                target="_blank"
-              >
-                View my resume
-              </motion.a>
-              <motion.button
-                className="bg-yellow-400 max-w-[500px] lg:w-full w-[280px] font-monasans text-black text-base md:text-xl px-8 py-4 rounded-full font-bold hover:bg-yellow-300 transition"
-                whileTap={{
-                  scale: 0.85,
-                }}
-                onClick={() =>
-                  window.scrollTo({
-                    top: document.getElementById("ContactSlide")?.offsetTop,
-                    behavior: "smooth",
-                  })
-                }
-              >
-                Let's connect →
-              </motion.button>
-            </motion.div>
+            <CallToActionButtons />
           </div>
         </div>
         <motion.div
-          className="absolute bottom-10 right-1/2 -mr-[25px] w-[50px] h-[50px] z-50 transform -translate-x-1/2 p-4 bg-white rounded-full shadow-lg flex justify-center items-center"
+          className="will-change-transform absolute bottom-10 right-1/2 -mr-[25px] w-[50px] h-[50px] z-50 transform -translate-x-1/2 p-4 bg-white rounded-full shadow-lg flex justify-center items-center"
           animate={{
             y: [0, 20, 0],
           }}
@@ -182,14 +151,26 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
         </motion.div>
         <div className="absolute md:-right-[300px] md:-bottom-10 lg:-bottom-32 xl:-bottom-48 lg:right-1/2 lg:-mr-[200px] xl:-mr-[240px] z-10 hidden md:block">
           <div className="relative w-[620px] h-[864px] lg:w-[550px] lg:h-[750px] xl:w-[620px] xl:h-[845px]">
-            <Image
-              src={amrWebp}
-              alt=""
-              fill
-              priority
-              className="-scale-x-100 lg:scale-x-100"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
+            <motion.div
+              id="heroImage"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              className="will-change-opacity"
+              onAnimationComplete={(definition) => {
+                const element = document.querySelector("#heroImage");
+                element?.classList.replace("will-change-opacity", "will-change-auto");
+              }}
+            >
+              <Image
+                src={amrWebp}
+                alt=""
+                fill
+                priority
+                className="-scale-x-100 lg:scale-x-100"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
+            </motion.div>
           </div>
         </div>
       </Slide>
@@ -216,6 +197,53 @@ function GradientSlide() {
   }, []);
 
   return <canvas id="hero-gradient-canvas" data-js-darken-top data-transition-in />;
+}
+
+function CallToActionButtons() {
+  return (
+    <motion.div
+      id="callToActionButtons"
+      className="mt-10 flex w-full flex-col gap-4 will-change-opacity will-change-transform"
+      initial={{
+        opacity: 0,
+        y: 30,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+      }}
+      onAnimationComplete={() => {
+        const element = document.querySelector("#callToActionButtons");
+        if (element) element.classList.replace("will-change-opacity", "will-change-auto");
+        element?.classList.remove("will-change-transform");
+      }}
+    >
+      <motion.a
+        className="border-2 text-center max-w-[500px] lg:w-full  w-[280px] border-white font-monasans text-white text-base md:text-xl px-8 py-4 rounded-full hover:bg-white hover:text-black transition"
+        whileTap={{
+          scale: 0.85,
+        }}
+        href="/Amr_Elnaggar_resume.pdf"
+        target="_blank"
+      >
+        View my resume
+      </motion.a>
+      <motion.button
+        className="bg-yellow-400 max-w-[500px] lg:w-full w-[280px] font-monasans text-black text-base md:text-xl px-8 py-4 rounded-full font-bold hover:bg-yellow-300 transition"
+        whileTap={{
+          scale: 0.85,
+        }}
+        onClick={() =>
+          window.scrollTo({
+            top: document.getElementById("ContactSlide")?.offsetTop,
+            behavior: "smooth",
+          })
+        }
+      >
+        Let's connect →
+      </motion.button>
+    </motion.div>
+  );
 }
 
 export default HeroSlide;

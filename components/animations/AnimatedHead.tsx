@@ -1,5 +1,5 @@
 "use client";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 
@@ -16,6 +16,15 @@ function AnimatedHead({ children, className }: { children: ReactNode; className?
     triggerOnce: true,
     threshold: 0.5,
   });
+  const [animationEnded, setAnimationEnded] = useState(false);
+
+  useEffect(() => {
+    if (inView) {
+      const timeout = setTimeout(() => setAnimationEnded(true), 500);
+      return () => clearTimeout(timeout);
+    }
+  }, [inView]);
+
   return (
     <motion.span
       ref={ref}
@@ -30,7 +39,7 @@ function AnimatedHead({ children, className }: { children: ReactNode; className?
         duration: 0.5,
         ease: "easeOut",
       }}
-      className={`inline-block relative z-30 ${className ? className : ""}`}
+      className={`inline-block relative z-30 ${animationEnded ? "will-change-auto" : "will-change-opacity will-change-transform"} ${className ? className : ""}`}
     >
       {children}
     </motion.span>
