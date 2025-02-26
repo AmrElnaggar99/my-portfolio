@@ -26,7 +26,7 @@ function SpotifySlide({ setActive }: { setActive: React.Dispatch<React.SetStateA
       <div className="p-6 font-monasans items-center text-center">
         <div className="relative z-0 flex items-center flex-col">
           <div className="mb-3">
-            <AnimatedHead className="bg-gradient-to-r from-[#EEA525] to-[#FADC3A] bg-clip-text text-transparent">
+            <AnimatedHead className="text-gradient bg-gradient-to-r from-[#EEA525] to-[#FADC3A] bg-clip-text text-transparent">
               ✨ Bonus section ✨
             </AnimatedHead>
           </div>
