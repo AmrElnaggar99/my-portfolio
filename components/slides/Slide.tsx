@@ -1,5 +1,5 @@
 "use client";
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
 function Slide({
@@ -13,7 +13,13 @@ function Slide({
   setActive: React.Dispatch<React.SetStateAction<string>>;
   children?: ReactNode;
 }) {
-  const slideHeight = document.querySelector(`#${id}`)?.clientHeight ?? 700;
+  const [slideHeight, setSlideHeight] = useState(700); // Default height
+
+  useEffect(() => {
+    const slide = document.querySelector(`#${id}`);
+    setSlideHeight(slide?.clientHeight ?? 700);
+  }, [id]);
+
   const { ref, inView } = useInView({
     triggerOnce: false,
     threshold:
@@ -30,9 +36,6 @@ function Slide({
     }
   }, [inView, id, setActive]);
 
-  useEffect(() => {
-    console.log(id, document.querySelector(`#${id}`)?.clientHeight);
-  }, []);
   return (
     <div
       ref={ref}
