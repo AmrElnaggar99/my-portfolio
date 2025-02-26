@@ -34,6 +34,15 @@ function TechStackSlide({
     setFilteredItems(filtered);
   }, [searchQuery, selectedFilter]);
 
+  useEffect(() => {
+    function isOldBrowser() {
+      return !CSS.supports("background-image", "linear-gradient(to right, #605E66, #C5C4C6)");
+    }
+
+    if (isOldBrowser()) {
+      document.documentElement.classList.add("old-browser"); // Add a class to <html>
+    }
+  }, []);
   return (
     <Slide
       id="TechStackSlide"
@@ -43,7 +52,7 @@ function TechStackSlide({
       <div className="w-full h-fit items-center px-12 md:px-0">
         <h2 className="text-[clamp(2.5rem,8vw,3.5rem)] block w-full font-monasans text-center font-bold">
           <AnimatedHead
-            className="from-[#605E66] via-[#C5C4C6] to-[#605E66] text-transparent bg-clip-text [background-size:100%_100%] [background-position:0%] 
+            className="text-gradient from-[#605E66] via-[#C5C4C6] to-[#605E66] text-transparent bg-clip-text [background-size:100%_100%] [background-position:0%] 
       [background-image:linear-gradient(to_right,#605E66_0%,#C5C4C6_22%,#C5C4C6_76%,#605E66_100%)]"
           >
             My Tech Stack

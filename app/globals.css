@@ -42,3 +42,8 @@ body {
   --gradient-color-3: #796ef6;
   --gradient-color-4: #1a1a1a;
 }
+
+.old-browser .text-gradient {
+  background-image: none !important;
+  color: white !important;
+}
