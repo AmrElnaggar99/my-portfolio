@@ -13,9 +13,15 @@ function Slide({
   setActive: React.Dispatch<React.SetStateAction<string>>;
   children?: ReactNode;
 }) {
+  const slideHeight = document.querySelector(`#${id}`)?.clientHeight ?? 700;
   const { ref, inView } = useInView({
     triggerOnce: false,
-    threshold: typeof window !== "undefined" && window.innerWidth > 1024 ? 0.4 : 0.2,
+    threshold:
+      slideHeight > 1000
+        ? 0.2
+        : typeof window !== "undefined" && window.innerWidth > 1024
+          ? 0.4
+          : 0.2,
   });
 
   useEffect(() => {
@@ -24,6 +30,9 @@ function Slide({
     }
   }, [inView, id, setActive]);
 
+  useEffect(() => {
+    console.log(id, document.querySelector(`#${id}`)?.clientHeight);
+  }, []);
   return (
     <div
       ref={ref}
