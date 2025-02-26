@@ -150,28 +150,26 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
           </span>
         </motion.div>
         <div className="absolute md:-right-[300px] md:-bottom-10 lg:-bottom-32 xl:-bottom-48 lg:right-1/2 lg:-mr-[200px] xl:-mr-[240px] z-10 hidden md:block">
-          <div className="relative w-[620px] h-[864px] lg:w-[550px] lg:h-[750px] xl:w-[620px] xl:h-[845px]">
-            <motion.div
-              id="heroImage"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, ease: "easeIn" }}
-              className="will-change-opacity"
-              onAnimationComplete={(definition) => {
-                const element = document.querySelector("#heroImage");
-                element?.classList.replace("will-change-opacity", "will-change-auto");
-              }}
-            >
-              <Image
-                src={amrWebp}
-                alt=""
-                fill
-                priority
-                className="-scale-x-100 lg:scale-x-100"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              />
-            </motion.div>
-          </div>
+          <motion.div
+            id="heroImage"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, ease: "easeIn" }}
+            className="relative w-[620px] h-[864px] lg:w-[550px] lg:h-[750px] xl:w-[620px] xl:h-[845px] will-change-opacity"
+            onAnimationComplete={(definition) => {
+              const element = document.querySelector("#heroImage");
+              element?.classList.replace("will-change-opacity", "will-change-auto");
+            }}
+          >
+            <Image
+              src={amrWebp}
+              alt=""
+              fill
+              priority
+              className="-scale-x-100 lg:scale-x-100"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          </motion.div>
         </div>
       </Slide>
     </motion.div>

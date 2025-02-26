@@ -34,15 +34,6 @@ function TechStackSlide({
     setFilteredItems(filtered);
   }, [searchQuery, selectedFilter]);
 
-  useEffect(() => {
-    function isOldBrowser() {
-      return !CSS.supports("background-clip", "text");
-    }
-
-    if (isOldBrowser()) {
-      document.documentElement.classList.add("old-browser");
-    }
-  }, []);
   return (
     <Slide
       id="TechStackSlide"

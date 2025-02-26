@@ -55,13 +55,13 @@ function ProjectCard({
   return (
     <motion.div
       ref={ref}
-      className="sm:max-w-xs min-w-[320px] rounded-[40px] overflow-hidden bg-white"
+      className="w-[320px] rounded-[40px] overflow-hidden bg-white"
       variants={cardVariants}
       initial="hidden"
       animate={controls}
     >
-      <motion.div className="relative w-full h-[300px]" variants={itemVariants}>
-        <Image src={image} alt={title} fill className="rounded-t-3xl" />
+      <motion.div className="relative w-full" variants={itemVariants}>
+        <Image src={image} alt={title} width={320} height={320} className="rounded-t-3xl" />
       </motion.div>
       <motion.div className="px-6 py-4" variants={itemVariants}>
         <motion.h2 className="font-bold text-left text-xl text-gray-800" variants={itemVariants}>
