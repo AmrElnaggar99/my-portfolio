@@ -1,10 +1,9 @@
 "use client";
 
-import AnimatedGridDotsBackground from "@/components/AnimatedGridDotsBackground";
+import GridDotsBackground from "@/components/GridDotsBackground";
 import Slide from "./Slide";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import SlidingText from "../animations/SlidingText";
 import ProjectCard from "../ProjectCard";
 import MERNThumbnail from "@/public/mern-ecommerce-thumbnail.png";
 import meme from "@/public/meme.png";
@@ -71,9 +70,7 @@ function ProjectsSlide({ setActive }: { setActive: React.Dispatch<React.SetState
           </div>
         </div>
       </div>
-      <div className="absolute top-0 bottom-0 right-0 left-0">
-        <AnimatedGridDotsBackground />
-      </div>
+      <GridDotsBackground />
     </Slide>
   );
 }
