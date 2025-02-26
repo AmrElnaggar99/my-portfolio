@@ -187,7 +187,6 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
               alt=""
               fill
               priority
-              placeholder="blur"
               className="-scale-x-100 lg:scale-x-100"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
