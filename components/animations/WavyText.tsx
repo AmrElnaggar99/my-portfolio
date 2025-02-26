@@ -43,7 +43,7 @@ function WavyText({ text, delay = 0, duration = 0.05, ...props }: Props) {
 
   return (
     <motion.span
-      className="flex overflow-hidden flex-wrap"
+      className="flex overflow-hidden flex-nowrap"
       variants={container}
       initial="hidden"
       animate={"visible"}

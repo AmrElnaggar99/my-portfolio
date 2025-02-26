@@ -121,13 +121,13 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
               <div className="font-bold text-yellow-400">
                 <TypingText>user-friendly</TypingText>
               </div>
-              <div className="flex flex-wrap justify-start items-start">
-                <span className="w-[165px] md:w-[200px]">
+              <div className="flex flex-wrap ">
+                <div className="w-fit">
                   <WavyText text="Full-Stack " />
-                </span>
-                <span className="w-[200px] md:w-[230px] flex">
+                </div>
+                <div className="w-fit">
                   <WavyText text="applications." />
-                </span>
+                </div>
               </div>
             </h2>
             <motion.div
