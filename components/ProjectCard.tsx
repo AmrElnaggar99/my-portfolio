@@ -84,7 +84,7 @@ function ProjectCard({
               }}
               href={demoURL}
               target="_blank"
-              className="bg-gray-900 items-center flex justify-center text-white px-4 py-3 rounded-full w-full hover:bg-gray-800 transition font-medium"
+              className="bg-gray-900 items-center flex justify-center text-sm text-white px-4 py-3 rounded-full w-full hover:bg-gray-800 transition font-medium"
             >
               View Demo
             </motion.a>
@@ -95,9 +95,9 @@ function ProjectCard({
             }}
             href={learnMoreURL}
             target="_blank"
-            className="border-gray-100 items-center justify-centerflex border-2 text-gray-950 px-4 py-3 rounded-full w-full hover:bg-gray-100 duration-300 font-medium transition"
+            className="border-gray-100 items-center justify-centerflex border-2 text-sm text-gray-950 px-4 py-3 rounded-full w-full hover:bg-gray-100 duration-300 font-medium transition"
           >
-            Learn more
+            Check Github
           </motion.a>
         </motion.div>
       </motion.div>
