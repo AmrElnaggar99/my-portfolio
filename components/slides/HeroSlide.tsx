@@ -61,7 +61,7 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
       <Slide
         setActive={setActive}
         id="HeroSlide"
-        className="flex items-center justify-center bg-cover bg-center overflow-hidden relative"
+        className="flex items-center justify-center bg-cover bg-center overflow-hidden relative bg-gradient-to-br from-black via-[#1a002b] to-[#3a0080]"
       >
         <div
           className="absolute top-0 left-0 w-full h-full z-10"
@@ -110,13 +110,13 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
                 <span className="font-bold text-yellow-400">
                   <TypingText>fast</TypingText>
                 </span>
-                ,
+                <TypingText>,</TypingText>
               </div>
               <div>
                 <span className="font-bold text-yellow-400">
                   <TypingText>beautiful</TypingText>
                 </span>
-                ,
+                <TypingText>,</TypingText>
               </div>
               <div className="font-bold text-yellow-400">
                 <TypingText>user-friendly</TypingText>
@@ -130,7 +130,13 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
                 </span>
               </div>
             </h2>
-            <div className="mt-10 flex w-full flex-col gap-4">
+            <motion.div
+              className="mt-10 flex w-full flex-col gap-4"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 30 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
               <motion.a
                 className="border-2 text-center max-w-[500px] lg:w-full  w-[280px] border-white font-monasans text-white text-base md:text-xl px-8 py-4 rounded-full hover:bg-white hover:text-black transition"
                 whileTap={{
@@ -155,7 +161,7 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
               >
                 Let's connect →
               </motion.button>
-            </div>
+            </motion.div>
           </div>
         </div>
         <motion.div
@@ -174,23 +180,7 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
             ↓
           </span>
         </motion.div>
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 20,
-            scale: 0.95,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-            scale: 1,
-          }}
-          transition={{
-            duration: 0.6,
-            ease: "easeOut",
-          }}
-          className="absolute md:-right-[300px] md:-bottom-10 lg:-bottom-32 xl:-bottom-48 lg:right-1/2 lg:-mr-[200px] xl:-mr-[240px] z-10 hidden md:block"
-        >
+        <div className="absolute md:-right-[300px] md:-bottom-10 lg:-bottom-32 xl:-bottom-48 lg:right-1/2 lg:-mr-[200px] xl:-mr-[240px] z-10 hidden md:block">
           <div className="relative w-[620px] h-[864px] lg:w-[550px] lg:h-[750px] xl:w-[620px] xl:h-[845px]">
             <Image
               src={amrWebp}
@@ -202,7 +192,7 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
-        </motion.div>
+        </div>
       </Slide>
     </motion.div>
   );

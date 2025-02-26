@@ -54,11 +54,15 @@ function ProjectsSlide({ setActive }: { setActive: React.Dispatch<React.SetState
             </motion.span>
           </div>
           <div ref={ref} className="h-fit overflow-hidden flex justify-center">
-            <span className="text-sm text-gray-400 font-normal block">
-              <SlidingText>
+            <motion.span
+              initial={{ y: 100 }}
+              animate={{ y: inView ? 0 : 100 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: [0.2, 0.65, 0.3, 0.9] }}
+            >
+              <span className="text-sm text-gray-400 font-normal block">
                 Projects showcasing my full-stack expertise across diverse technologies
-              </SlidingText>
-            </span>
+              </span>
+            </motion.span>
           </div>
           <div className="pb-10 pt-3 mt-5 flex gap-12 justify-center flex-wrap">
             {projects.map((item) => (
