@@ -14,6 +14,7 @@ const cardVariants = {
     transition: {
       duration: 0.2,
       ease: "easeOut",
+      delay: 0.45,
       when: "beforeChildren",
       staggerChildren: 0.1,
     },
