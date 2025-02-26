@@ -6,6 +6,7 @@ import HeroSlide from "@/components/slides/HeroSlide";
 import ProfessionalExperienceSlide from "@/components/slides/ProfessionalExperienceSlide";
 import ContactSlide from "@/components/slides/ContactSlide";
 import dynamic from "next/dynamic";
+import ProjectsSlide from "@/components/slides/ProjectsSlide";
 
 const TechStackSlide = dynamic(() => import("@/components/slides/TechStackSlide"));
 const SpotifySlide = dynamic(() => import("@/components/slides/SpotifySlide"));
@@ -18,6 +19,7 @@ const HomePage: React.FC = () => {
       <HeroSlide setActive={setActive} />
       <TechStackSlide setActive={setActive} />
       <ProfessionalExperienceSlide setActive={setActive} />
+      <ProjectsSlide setActive={setActive} />
       <ContactSlide setActive={setActive} />
       <SpotifySlide setActive={setActive} />
     </>

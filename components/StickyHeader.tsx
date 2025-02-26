@@ -21,6 +21,10 @@ const sections = [
     slide: "ProfessionalExperienceSlide",
   },
   {
+    title: "Projects",
+    slide: "ProjectsSlide",
+  },
+  {
     title: "Contact",
     slide: "ContactSlide",
   },
