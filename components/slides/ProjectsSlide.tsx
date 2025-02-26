@@ -45,7 +45,7 @@ function ProjectsSlide({ setActive }: { setActive: React.Dispatch<React.SetState
             <motion.span
               initial={{ y: 100 }}
               animate={{ y: inView ? 0 : 100 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.2, 0.65, 0.3, 0.9] }}
+              transition={{ duration: 0.8, ease: [0.2, 0.65, 0.3, 0.9] }}
             >
               <h2 className="text-[clamp(2.5rem,8vw,3.5rem)] text-white font-bold block">
                 My side projects
@@ -56,7 +56,7 @@ function ProjectsSlide({ setActive }: { setActive: React.Dispatch<React.SetState
             <motion.span
               initial={{ y: 100 }}
               animate={{ y: inView ? 0 : 100 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: [0.2, 0.65, 0.3, 0.9] }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.2, 0.65, 0.3, 0.9] }}
             >
               <span className="text-sm text-gray-400 font-normal block">
                 Projects showcasing my full-stack expertise across diverse technologies
