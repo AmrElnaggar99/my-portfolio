@@ -19,7 +19,10 @@ const projects = [
   },
   {
     title: "E-commerce application",
-    description: ["Built with Node.js, Express, React, MongoDB.", "Offers PayPal integration."],
+    description: [
+      "Built with Node.js, Express, React, Redux, MongoDB.",
+      "Offers PayPal integration.",
+    ],
     image: MERNThumbnail,
     date: "December 2020",
     demoURL: "https://mern-ecommerce-yuvr.onrender.com/",

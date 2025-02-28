@@ -34,7 +34,7 @@ export async function GET() {
 
     // Step 2: Fetch my top artists
     const artistsResponse = await fetch(
-      "https://api.spotify.com/v1/me/top/artists?limit=10&time_range=medium_term",
+      "https://api.spotify.com/v1/me/top/artists?limit=10&time_range=long_term",
       {
         headers: { Authorization: `Bearer ${access_token}` },
       },
