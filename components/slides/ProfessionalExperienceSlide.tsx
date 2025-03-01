@@ -144,7 +144,7 @@ const experiences = [
     title: "Full Stack Engineer",
     company: "Infrasoft Software House",
     location: "Kuwait City, Kuwait (Remote)",
-    duration: "April 2023 - January 2025",
+    duration: "April 2023 - Present",
     description: [
       "Maintained a robust suite of scalable full-stack applications using <span style='font-weight:bold;color:#8080F4'>React, TypeScript, Java, Spring Boot, and MySQL</span> and containerized with <span style='font-weight:bold;color:#8080F4'>Docker</span>.",
       "Deployed applications on <span style='font-weight:bold;color:#8080F4'>AWS</span> using <span style='font-weight:bold;color:#8080F4'>Git</span> within a <span style='font-weight:bold;color:#8080F4'>Continuous Integration</span> environment.",
