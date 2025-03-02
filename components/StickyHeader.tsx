@@ -142,29 +142,41 @@ function MobileHamburgerMenu({
   );
 }
 
-function ActiveBackgroundEffect(props) {
+function ActiveBackgroundEffect({
+  activeRef,
+  activeStyle,
+}: {
+  activeRef: React.Ref<HTMLDivElement> | undefined;
+  activeStyle: { left: any; width: any; opacity: any };
+}) {
   return (
     <div
-      ref={props.activeRef}
+      ref={activeRef}
       className="absolute bg-white rounded-full h-full top-0 transition-all duration-300"
       style={{
-        left: props.activeStyle.left,
-        width: props.activeStyle.width,
-        opacity: props.activeStyle.opacity,
+        left: activeStyle.left,
+        width: activeStyle.width,
+        opacity: activeStyle.opacity,
       }}
     ></div>
   );
 }
 
-function HoverBackgroundEffect(props) {
+function HoverBackgroundEffect({
+  hoverRef,
+  hoverStyle,
+}: {
+  hoverRef: React.Ref<HTMLDivElement> | undefined;
+  hoverStyle: { left: any; width: any; opacity: any };
+}) {
   return (
     <div
-      ref={props.hoverRef}
+      ref={hoverRef}
       className="absolute bg-white bg-opacity-10 rounded-full h-full top-0"
       style={{
-        left: props.hoverStyle.left,
-        width: props.hoverStyle.width,
-        opacity: props.hoverStyle.opacity,
+        left: hoverStyle.left,
+        width: hoverStyle.width,
+        opacity: hoverStyle.opacity,
       }}
     ></div>
   );
