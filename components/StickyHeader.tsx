@@ -142,6 +142,34 @@ function MobileHamburgerMenu({
   );
 }
 
+function ActiveBackgroundEffect(props) {
+  return (
+    <div
+      ref={props.activeRef}
+      className="absolute bg-white rounded-full h-full top-0 transition-all duration-300"
+      style={{
+        left: props.activeStyle.left,
+        width: props.activeStyle.width,
+        opacity: props.activeStyle.opacity,
+      }}
+    ></div>
+  );
+}
+
+function HoverBackgroundEffect(props) {
+  return (
+    <div
+      ref={props.hoverRef}
+      className="absolute bg-white bg-opacity-10 rounded-full h-full top-0"
+      style={{
+        left: props.hoverStyle.left,
+        width: props.hoverStyle.width,
+        opacity: props.hoverStyle.opacity,
+      }}
+    ></div>
+  );
+}
+
 function DesktopNavigationMenu({
   active,
   scrollTo,
@@ -149,21 +177,73 @@ function DesktopNavigationMenu({
   active: string;
   scrollTo: (id: string) => void;
 }) {
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const [hoverStyle, setHoverStyle] = useState({ left: 0, width: 0, opacity: 0, immediate: false });
+  const [activeStyle, setActiveStyle] = useState({ left: 0, width: 0, opacity: 1 });
+  const hoverRef = useRef<HTMLDivElement>(null);
+  const activeRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (hoverRef.current) {
+      hoverRef.current.style.left = `${hoverStyle.left}px`;
+      hoverRef.current.style.width = `${hoverStyle.width}px`;
+      hoverRef.current.style.opacity = `${hoverStyle.opacity}`;
+      hoverRef.current.style.transition = hoverStyle.immediate ? "none" : "all 0.3s ease";
+    }
+  }, [hoverStyle]);
+
+  useEffect(() => {
+    const activeItem = document.querySelector(`[href='#${active}']`);
+    if (activeItem) {
+      const rect = activeItem.getBoundingClientRect();
+      const menuRect = menuRef.current!.getBoundingClientRect();
+      setActiveStyle({
+        left: rect.left - menuRect.left,
+        width: rect.width,
+        opacity: 1,
+      });
+    }
+  }, [active]);
+
   return (
-    <div className="hidden lg:flex gap-2">
-      {sections.map((item) => (
-        <a
-          key={item.title}
-          href={`#${item.slide}`}
-          onClick={(e) => {
-            e.preventDefault();
-            scrollTo(item.slide);
-          }}
-          className={`${active === item.slide ? "bg-white text-black" : "text-white"} rounded-full cursor-pointer md:px-6 transition duration-300 lg:px-6 xl:px-12 h-fit py-2 flex items-center w-fit`}
-        >
-          {item.title}
-        </a>
-      ))}
+    <div
+      ref={menuRef}
+      className="hidden lg:flex gap-2 relative"
+      onMouseLeave={() => setHoverStyle((prev) => ({ ...prev, opacity: 0 }))}
+    >
+      <ActiveBackgroundEffect activeStyle={activeStyle} activeRef={activeRef} />
+      <HoverBackgroundEffect hoverStyle={hoverStyle} hoverRef={hoverRef} />
+
+      {sections.map((item) => {
+        const isActive = active === item.slide;
+        return (
+          <a
+            key={item.title}
+            href={`#${item.slide}`}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollTo(item.slide);
+            }}
+            onMouseEnter={(e) => {
+              const rect = e.currentTarget.getBoundingClientRect();
+              const menuRect = menuRef.current!.getBoundingClientRect();
+              const isNewHover = hoverStyle.opacity === 0;
+              setHoverStyle({
+                left: rect.left - menuRect.left,
+                width: rect.width,
+                opacity: 1,
+                immediate: isNewHover,
+              });
+            }}
+            className={`relative z-10 rounded-full cursor-pointer md:px-6 transition duration-300 lg:px-6 xl:px-12 h-fit py-2 flex items-center w-fit ${
+              isActive ? "text-black" : "text-white"
+            }`}
+          >
+            {item.title}
+          </a>
+        );
+      })}
     </div>
   );
 }
