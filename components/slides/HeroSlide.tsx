@@ -134,7 +134,7 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
           </div>
         </div>
         <motion.div
-          className="will-change-transform absolute bottom-10 right-1/2 -mr-[25px] w-[50px] h-[50px] z-50 transform -translate-x-1/2 p-4 bg-white rounded-full shadow-lg flex justify-center items-center"
+          className="will-change-transform absolute bottom-10 right-1/2 -mr-[25px] w-[50px] h-[50px] z-50 transform -translate-x-1/2 p-4 flex justify-center items-center"
           animate={{
             y: [0, 20, 0],
           }}
@@ -145,7 +145,7 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
             ease: "easeInOut",
           }}
         >
-          <span className="text-xl font-light font-monasans text-gray-800 pointer-events-none select-none">
+          <span className="text-3xl font-light font-monasans text-white pointer-events-none select-none">
             ↓
           </span>
         </motion.div>
