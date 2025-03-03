@@ -40,8 +40,8 @@ const GridDotsBackground: React.FC = () => {
           const dx = x - mouseRef.current.x;
           const dy = y - mouseRef.current.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          const maxRadius = 1.5;
-          radius = Math.max(0.6, maxRadius * Math.exp(-distance / 500));
+          const maxRadius = 3;
+          radius = Math.max(0.8, maxRadius * Math.exp(-distance / 300));
         }
 
         ctx.moveTo(x + radius, y);
