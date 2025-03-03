@@ -206,16 +206,25 @@ function DesktopNavigationMenu({
   }, [hoverStyle]);
 
   useEffect(() => {
-    const activeItem = document.querySelector(`[href='#${active}']`);
-    if (activeItem) {
-      const rect = activeItem.getBoundingClientRect();
-      const menuRect = menuRef.current!.getBoundingClientRect();
-      setActiveStyle({
-        left: rect.left - menuRect.left,
-        width: rect.width,
-        opacity: 1,
-      });
-    }
+    const updateActiveStyle = () => {
+      const activeItem = document.querySelector(`[href='#${active}']`);
+      if (activeItem && menuRef.current) {
+        const rect = activeItem.getBoundingClientRect();
+        const menuRect = menuRef.current.getBoundingClientRect();
+        setActiveStyle({
+          left: rect.left - menuRect.left,
+          width: rect.width,
+          opacity: 1,
+        });
+      }
+    };
+    updateActiveStyle();
+
+    window.addEventListener("resize", updateActiveStyle);
+
+    return () => {
+      window.removeEventListener("resize", updateActiveStyle);
+    };
   }, [active]);
 
   return (
