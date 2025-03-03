@@ -12,6 +12,7 @@ export default {
       fontFamily: {
         merriweather: "var(--font-merriweather)",
         monasans: "var(--font-monasans)",
+        sigmar: "var(--font-sigmar)",
       },
       colors: {
         background: "var(--background)",

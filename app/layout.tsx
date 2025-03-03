@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Merriweather, Mona_Sans } from "next/font/google";
+import { Merriweather, Mona_Sans, Sigmar } from "next/font/google";
 import "./globals.css";
 
 const merriweather = Merriweather({
@@ -12,6 +12,12 @@ const monasans = Mona_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "700", "900"],
   variable: "--font-monasans",
+});
+
+const sigmar = Sigmar({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-sigmar",
 });
 
 export const metadata: Metadata = {
@@ -50,7 +56,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${merriweather.variable} ${monasans.variable} antialiased`}>
+      <body
+        className={`${merriweather.variable} ${monasans.variable} ${sigmar.variable} antialiased`}
+      >
         {children}
       </body>
     </html>

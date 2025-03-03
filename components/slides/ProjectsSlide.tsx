@@ -7,6 +7,7 @@ import { useInView } from "react-intersection-observer";
 import ProjectCard from "../ProjectCard";
 import MERNThumbnail from "@/public/mern-ecommerce-thumbnail.png";
 import meme from "@/public/meme.png";
+import { ReactNode, useEffect, useRef, useState } from "react";
 
 const projects = [
   {
@@ -50,9 +51,10 @@ function ProjectsSlide({ setActive }: { setActive: React.Dispatch<React.SetState
               animate={{ y: inView ? 0 : 100 }}
               transition={{ duration: 0.8, ease: [0.2, 0.65, 0.3, 0.9] }}
             >
-              <h2 className="text-[clamp(2.5rem,8vw,3.5rem)] text-white font-bold block">
+              {/* <h2 className="text-[clamp(2.5rem,8vw,3.5rem)] text-white font-bold block font-firacode">
                 My side projects
-              </h2>
+              </h2> */}
+              <Headline>My side projects</Headline>
             </motion.span>
           </div>
           <div ref={ref} className="h-fit overflow-hidden flex justify-center">
@@ -77,5 +79,60 @@ function ProjectsSlide({ setActive }: { setActive: React.Dispatch<React.SetState
     </Slide>
   );
 }
+
+const Headline = ({ children }: { children: string }) => {
+  const comicFont = { class: "font-sigmar" };
+  const defaultFont = { class: "font-monasans" };
+  const [letterStyles, setLetterStyles] = useState(new Array(children.length).fill(defaultFont));
+  const [isHoverEnabled, setIsHoverEnabled] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsHoverEnabled(window.innerWidth > 768);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
+  const handleMouseEnter = (index: number) => {
+    if (!isHoverEnabled) return;
+    setLetterStyles((prev) => prev.map((font, i) => (i === index ? comicFont : font)));
+  };
+
+  const handleMouseLeave = (index: number) => {
+    if (!isHoverEnabled) return;
+    setTimeout(() => {
+      setLetterStyles((prev) => prev.map((font, i) => (i === index ? defaultFont : font)));
+    }, 1000);
+  };
+
+  return (
+    <div className="inline-block overflow-hidden">
+      <h2
+        className="flex mb-2 text-[clamp(2.5rem,8vw,3.5rem)] text-white leading-[1.1] 
+        transition-transform duration-1000 cursor-default ease-in-out origin-left scale-x-100"
+      >
+        {children.split("").map((char, index) =>
+          char === " " ? (
+            <span key={index} className="w-[0.2em] inline-block">
+              &nbsp;
+            </span>
+          ) : (
+            <span
+              key={index}
+              className={`${letterStyles[index].class} font-bold transition-all duration-600 leading-[1.1]`}
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={() => handleMouseLeave(index)}
+            >
+              {char}
+            </span>
+          ),
+        )}
+      </h2>
+    </div>
+  );
+};
 
 export default ProjectsSlide;
