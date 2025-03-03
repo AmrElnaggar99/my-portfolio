@@ -49,7 +49,7 @@ const MyTechStackArray: ItemsList[] = [
     category: "others",
     textColor: "text-black",
   },
-  { id: 15, proficiency: 75, color: "bg-[#1A1A1A]", text: "Expo", category: "mobile" },
+  { id: 15, proficiency: 30, color: "bg-[#1A1A1A]", text: "Expo", category: "others" },
   {
     id: 16,
     proficiency: 50,
@@ -58,7 +58,7 @@ const MyTechStackArray: ItemsList[] = [
     category: "others",
     textColor: "text-black",
   },
-  { id: 17, proficiency: 80, color: "bg-[#28A8F6]", text: "Photoshop", category: "others" },
+  { id: 17, proficiency: 40, color: "bg-[#28A8F6]", text: "Photoshop", category: "others" },
   { id: 18, proficiency: 85, color: "bg-[#15C213]", text: "Jest", category: "frontend" },
   { id: 19, proficiency: 85, color: "bg-[#93BD1D]", text: "Vitest", category: "frontend" },
   { id: 20, proficiency: 95, color: "bg-[#38bdf8]", text: "Tailwind CSS", category: "frontend" },
@@ -75,6 +75,16 @@ const MyTechStackArray: ItemsList[] = [
     color: "bg-[#E52655]",
     text: "NestJS",
     category: "backend",
+  },
+  { id: 30, proficiency: 50, color: "bg-[#DD0031]", text: "Angular", category: "frontend" },
+  { id: 31, proficiency: 70, color: "bg-[#FC6D26]", text: "GitLab", category: "others" },
+  {
+    id: 32,
+    proficiency: 50,
+    color: "bg-[#FFFFFF]",
+    text: "GitHub",
+    category: "others",
+    textColor: "text-black",
   },
 ];
 
