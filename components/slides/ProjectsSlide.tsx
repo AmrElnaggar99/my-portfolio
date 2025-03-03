@@ -122,7 +122,7 @@ const Headline = ({ children }: { children: string }) => {
           ) : (
             <span
               key={index}
-              className={`${letterStyles[index].class} font-bold transition-all duration-600 leading-[1.1]`}
+              className={`${letterStyles[index].class} font-black transition-all duration-600 leading-[1.1]`}
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={() => handleMouseLeave(index)}
             >
