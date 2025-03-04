@@ -226,6 +226,20 @@ function DesktopNavigationMenu({
     };
   }, [active]);
 
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    const updateWindowDimensions = () => {
+      const newWidth = window.innerWidth;
+      setWindowWidth(newWidth);
+    };
+
+    updateWindowDimensions();
+    window.addEventListener("resize", updateWindowDimensions);
+
+    return () => window.removeEventListener("resize", updateWindowDimensions);
+  }, []);
+
   const isHeroSlide = active === "HeroSlide";
 
   // Fixed width values for the two states
@@ -242,10 +256,10 @@ function DesktopNavigationMenu({
       initial={false}
       animate={{
         width: isHeroSlide
-          ? window.innerWidth > 1280
+          ? windowWidth > 1280
             ? XlCompactWidth
             : LgCompactWidth
-          : window.innerWidth > 1280
+          : windowWidth > 1280
             ? XlFullWidth
             : LgFullWidth,
       }}
@@ -281,7 +295,7 @@ function DesktopNavigationMenu({
             }}
             className={`text-nowrap relative z-10 rounded-full cursor-pointer md:px-6 transition duration-300 lg:px-6 xl:px-12 h-fit py-2 items-center w-fit ${
               isActive ? "text-black" : "text-white"
-            } ${active === "HeroSlide" && item.slide === "ContactSlide" ? "hidden" : "flex"}`}
+            } ${isHeroSlide && item.slide === "ContactSlide" ? "hidden" : "flex"}`}
           >
             {item.title}
           </a>
