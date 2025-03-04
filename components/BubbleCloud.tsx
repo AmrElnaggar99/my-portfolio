@@ -210,4 +210,4 @@ function BubbleCloud({ data }: { data: ItemsList[] }) {
   );
 }
 
-export default BubbleCloud;
+export default React.memo(BubbleCloud);

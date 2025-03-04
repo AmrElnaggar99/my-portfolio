@@ -165,4 +165,4 @@ function ArtistCardCloud({ data }: { data: ArtistProps[] }) {
   );
 }
 
-export default ArtistCardCloud;
+export default React.memo(ArtistCardCloud);

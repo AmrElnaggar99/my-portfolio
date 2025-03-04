@@ -28,10 +28,6 @@ const sections = [
     title: "Contact",
     slide: "ContactSlide",
   },
-  // {
-  //   title: "Bonus",
-  //   slide: "SpotifySlide",
-  // },
 ];
 
 function StickyHeader({ active }: { active: string }) {
@@ -206,20 +202,13 @@ function DesktopNavigationMenu({
   useEffect(() => {
     const updateActiveStyle = () => {
       const activeItem = document.querySelector(`[href='#${active}']`);
-      if (activeItem && !activeItem.classList.contains("hidden") && menuRef.current) {
+      if (activeItem && menuRef.current) {
         const rect = activeItem.getBoundingClientRect();
         const menuRect = menuRef.current.getBoundingClientRect();
         setActiveStyle({
           left: rect.left - menuRect.left,
           width: rect.width,
           opacity: 1,
-        });
-      } else if (activeItem?.classList.contains("hidden")) {
-        const rect = activeItem.getBoundingClientRect();
-        setActiveStyle({
-          left: 0,
-          width: rect.width,
-          opacity: 0,
         });
       } else {
         setActiveStyle({
