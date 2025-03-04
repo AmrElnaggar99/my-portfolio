@@ -28,10 +28,10 @@ const sections = [
     title: "Contact",
     slide: "ContactSlide",
   },
-  {
-    title: "Bonus",
-    slide: "SpotifySlide",
-  },
+  // {
+  //   title: "Bonus",
+  //   slide: "SpotifySlide",
+  // },
 ];
 
 function StickyHeader({ active }: { active: string }) {
@@ -189,7 +189,6 @@ function DesktopNavigationMenu({
   active: string;
   scrollTo: (id: string) => void;
 }) {
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [hoverStyle, setHoverStyle] = useState({ left: 0, width: 0, opacity: 0, immediate: false });
   const [activeStyle, setActiveStyle] = useState({ left: 0, width: 0, opacity: 1 });
   const hoverRef = useRef<HTMLDivElement>(null);
@@ -215,6 +214,11 @@ function DesktopNavigationMenu({
           left: rect.left - menuRect.left,
           width: rect.width,
           opacity: 1,
+        });
+      } else {
+        setActiveStyle({
+          ...activeStyle,
+          opacity: 0,
         });
       }
     };

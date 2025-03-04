@@ -41,7 +41,7 @@ function SpotifySlide({ setActive }: { setActive: React.Dispatch<React.SetStateA
           </p>
         </div>
       </div>
-      <div className="relative w-full py-8 md:px-8 overflow-x-hidden">
+      <div className="relative w-full py-8 md:px-8 overflow-hidden">
         <ArtistCardCloud data={artists} />
       </div>
     </Slide>
