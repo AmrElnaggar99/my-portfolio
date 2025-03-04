@@ -35,7 +35,7 @@ function Slide({
       setActive(id);
     } else {
       if (id === "ContactSlide") {
-        setActive(""); // since ContactSlide is the last section, we should reset active when it gets out of view
+        setActive((prev) => (prev === id ? "" : prev)); // since ContactSlide is the last section, we should reset active when ContactSlide gets out of view and no other slide changes the active state
       }
     }
   }, [inView, id, setActive]);
