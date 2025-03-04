@@ -32,7 +32,11 @@ function Slide({
 
   useEffect(() => {
     if (inView) {
-      setActive && setActive(id); // Set the active navigation item based on the id of the slide
+      setActive(id);
+    } else {
+      if (id === "ContactSlide") {
+        setActive(""); // since ContactSlide is the last section, we should reset active when it gets out of view
+      }
     }
   }, [inView, id, setActive]);
 

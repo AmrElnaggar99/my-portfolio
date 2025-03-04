@@ -15,95 +15,96 @@ function ProfessionalExperienceSlide({
   });
 
   return (
-    <div
-      ref={ref}
-      className={`z-10 w-full min-h-fit py-12 bg-gray-900 transition-all duration-[2s] ease-out ${
-        inView ? "opacity-100" : "opacity-0"
-      }`}
-    >
+    <div ref={ref} className={`z-10 w-full min-h-fit py-12 bg-gray-900`}>
       <Slide id="ProfessionalExperienceSlide" setActive={setActive}>
-        <MarqueeHeadline>Professional Experience</MarqueeHeadline>
-        <div className="md:px-12">
-          <section className="mx-auto py-12 px-6">
-            <div className="flex justify-between items-center mb-8">
-              <h2 className="text-3xl text-white font-monasans font-medium">My resume</h2>
+        <div
+          className={`transition-all duration-[2s] ease-out ${
+            inView ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <MarqueeHeadline>Professional Experience</MarqueeHeadline>
+          <div className="md:px-12">
+            <section className="mx-auto py-12 px-6">
+              <div className="flex justify-between items-center mb-8">
+                <h2 className="text-3xl text-white font-monasans font-medium">My resume</h2>
 
-              <motion.a
-                className="bg-[#796ef6] hover:bg-[#8080F4] text-white font-medium font-monasans py-2 px-4 rounded-full transition"
-                whileTap={{
-                  scale: 0.85,
-                }}
-                href="/Amr_Elnaggar_resume.pdf"
-                target="_blank"
-              >
-                View PDF Resume
-              </motion.a>
-            </div>
+                <motion.a
+                  className="bg-[#796ef6] hover:bg-[#8080F4] text-white font-medium font-monasans py-2 px-4 rounded-full transition"
+                  whileTap={{
+                    scale: 0.85,
+                  }}
+                  href="/Amr_Elnaggar_resume.pdf"
+                  target="_blank"
+                >
+                  View PDF Resume
+                </motion.a>
+              </div>
 
-            {/* Experience Section */}
-            <div className="space-y-8">
-              {experiences.map((exp, index) => {
-                const { ref, inView } = useInView({
-                  triggerOnce: true,
-                });
+              {/* Experience Section */}
+              <div className="space-y-8">
+                {experiences.map((exp, index) => {
+                  const { ref, inView } = useInView({
+                    triggerOnce: true,
+                  });
 
-                return (
-                  <motion.div
-                    ref={ref}
-                    key={index}
-                    className="border-b pb-6 font-merriweather text-white border-gray-700"
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{
-                      duration: 0.2,
-                      delay: index * 0.1,
-                      ease: "easeOut",
-                    }}
-                  >
-                    <h3 className="text-2xl font-bold text-white uppercase">{exp.title}</h3>
-                    <div className="flex gap-2 md:items-center justify-between flex-col md:flex-row">
-                      <div className="flex flex-col">
-                        <p className="flex gap-1 text-lg font-monasans text-gray-300 flex-col md:flex-row">
-                          <span>{exp.company}</span>
-                          <span className="text-white hidden md:inline-block"> — </span>
-                          <span>{exp.location}</span>
-                        </p>
-                        <p className="text-md font-monasans text-gray-500">{exp.duration}</p>
-                        <ul className="text-gray-50 mt-2 list-disc font-light pl-5">
-                          {exp.description.map((item, index) => (
-                            <motion.li
-                              ref={ref}
-                              key={index}
-                              className="my-1"
-                              dangerouslySetInnerHTML={{ __html: item }}
-                              initial={{ opacity: 0, y: 40 }}
-                              animate={inView ? { opacity: 1, y: 0 } : {}}
-                              transition={{
-                                duration: 0.2,
-                                delay: index * 0.1,
-                                ease: "easeOut",
-                              }}
-                            />
-                          ))}
-                        </ul>
+                  return (
+                    <motion.div
+                      ref={ref}
+                      key={index}
+                      className="border-b pb-6 font-merriweather text-white border-gray-700"
+                      initial={{ opacity: 0, y: 40 }}
+                      animate={inView ? { opacity: 1, y: 0 } : {}}
+                      transition={{
+                        duration: 0.2,
+                        delay: index * 0.1,
+                        ease: "easeOut",
+                      }}
+                    >
+                      <h3 className="text-2xl font-bold text-white uppercase">{exp.title}</h3>
+                      <div className="flex gap-2 md:items-center justify-between flex-col md:flex-row">
+                        <div className="flex flex-col">
+                          <p className="flex gap-1 text-lg font-monasans text-gray-300 flex-col md:flex-row">
+                            <span>{exp.company}</span>
+                            <span className="text-white hidden md:inline-block"> — </span>
+                            <span>{exp.location}</span>
+                          </p>
+                          <p className="text-md font-monasans text-gray-500">{exp.duration}</p>
+                          <ul className="text-gray-50 mt-2 list-disc font-light pl-5">
+                            {exp.description.map((item, index) => (
+                              <motion.li
+                                ref={ref}
+                                key={index}
+                                className="my-1"
+                                dangerouslySetInnerHTML={{ __html: item }}
+                                initial={{ opacity: 0, y: 40 }}
+                                animate={inView ? { opacity: 1, y: 0 } : {}}
+                                transition={{
+                                  duration: 0.2,
+                                  delay: index * 0.1,
+                                  ease: "easeOut",
+                                }}
+                              />
+                            ))}
+                          </ul>
+                        </div>
+                        <motion.a
+                          href={exp.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="min-w-[250px] text-center inline-block mt-4 border font-monasans border-gray-200 text-gray-200 py-2 px-4 rounded-full hover:bg-white hover:text-gray-900 transition"
+                          whileTap={{
+                            scale: 0.85,
+                          }}
+                        >
+                          Visit {exp.company}
+                        </motion.a>
                       </div>
-                      <motion.a
-                        href={exp.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="min-w-[250px] text-center inline-block mt-4 border font-monasans border-gray-200 text-gray-200 py-2 px-4 rounded-full hover:bg-white hover:text-gray-900 transition"
-                        whileTap={{
-                          scale: 0.85,
-                        }}
-                      >
-                        Visit {exp.company}
-                      </motion.a>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </section>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </section>
+          </div>
         </div>
       </Slide>
     </div>

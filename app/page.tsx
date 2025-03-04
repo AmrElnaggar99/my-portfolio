@@ -27,13 +27,17 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <StickyHeader active={active} />
-      <HeroSlide setActive={setActive} />
-      <TechStackSlide setActive={setActive} />
-      <ProfessionalExperienceSlide setActive={setActive} />
-      <ProjectsSlide setActive={setActive} />
-      <ContactSlide setActive={setActive} />
-      <SpotifySlide setActive={setActive} />
+      <div className="md:mb-[150vh] lg:mb-[100vh]">
+        <StickyHeader active={active} />
+        <HeroSlide setActive={setActive} />
+        <TechStackSlide setActive={setActive} />
+        <ProfessionalExperienceSlide setActive={setActive} />
+        <ProjectsSlide setActive={setActive} />
+        <ContactSlide setActive={setActive} />
+      </div>
+      <div className="md:fixed md:bottom-0 md:left-0 md:-z-10 md:right-0 md:top-0">
+        <SpotifySlide setActive={setActive} />
+      </div>
     </>
   );
 };

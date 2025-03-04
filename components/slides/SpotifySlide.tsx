@@ -18,11 +18,7 @@ function SpotifySlide({ setActive }: { setActive: React.Dispatch<React.SetStateA
   }, []);
 
   return (
-    <Slide
-      id="SpotifySlide"
-      className="w-full min-h-fit bg-gray-950 py-12 md:px-12"
-      setActive={setActive}
-    >
+    <div className="w-full min-h-fit bg-gray-950 py-12 md:px-12">
       <div className="p-6 font-monasans items-center text-center">
         <div className="relative z-0 flex items-center flex-col">
           <div className="mb-3">
@@ -44,7 +40,7 @@ function SpotifySlide({ setActive }: { setActive: React.Dispatch<React.SetStateA
       <div className="relative w-full py-8 md:px-8 overflow-hidden">
         <ArtistCardCloud data={artists} />
       </div>
-    </Slide>
+    </div>
   );
 }
 
