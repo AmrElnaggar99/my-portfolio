@@ -5,11 +5,11 @@ import {
   useTransform,
   useMotionValueEvent,
 } from "framer-motion";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 const sections = [
   {
-    title: "start",
+    title: "Home",
     slide: "HeroSlide",
   },
   {
@@ -194,7 +194,6 @@ function DesktopNavigationMenu({
   const hoverRef = useRef<HTMLDivElement>(null);
   const activeRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     if (hoverRef.current) {
       hoverRef.current.style.left = `${hoverStyle.left}px`;
@@ -207,13 +206,20 @@ function DesktopNavigationMenu({
   useEffect(() => {
     const updateActiveStyle = () => {
       const activeItem = document.querySelector(`[href='#${active}']`);
-      if (activeItem && menuRef.current) {
+      if (activeItem && !activeItem.classList.contains("hidden") && menuRef.current) {
         const rect = activeItem.getBoundingClientRect();
         const menuRect = menuRef.current.getBoundingClientRect();
         setActiveStyle({
           left: rect.left - menuRect.left,
           width: rect.width,
           opacity: 1,
+        });
+      } else if (activeItem?.classList.contains("hidden")) {
+        const rect = activeItem.getBoundingClientRect();
+        setActiveStyle({
+          left: 0,
+          width: rect.width,
+          opacity: 0,
         });
       } else {
         setActiveStyle({
@@ -231,11 +237,34 @@ function DesktopNavigationMenu({
     };
   }, [active]);
 
+  const isHeroSlide = active === "HeroSlide";
+
+  // Fixed width values for the two states
+  const LgCompactWidth = "503px";
+  const XlCompactWidth = "695px";
+  const LgFullWidth = "614.2px";
+  const XlFullWidth = "854px";
+
   return (
-    <div
+    <motion.div
       ref={menuRef}
       className="hidden lg:flex gap-2 relative"
       onMouseLeave={() => setHoverStyle((prev) => ({ ...prev, opacity: 0 }))}
+      initial={false}
+      animate={{
+        width: isHeroSlide
+          ? window.innerWidth > 1280
+            ? XlCompactWidth
+            : LgCompactWidth
+          : window.innerWidth > 1280
+            ? XlFullWidth
+            : LgFullWidth,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        damping: 30,
+      }}
     >
       <ActiveBackgroundEffect activeStyle={activeStyle} activeRef={activeRef} />
       <HoverBackgroundEffect hoverStyle={hoverStyle} hoverRef={hoverRef} />
@@ -261,15 +290,15 @@ function DesktopNavigationMenu({
                 immediate: isNewHover,
               });
             }}
-            className={`relative z-10 rounded-full cursor-pointer md:px-6 transition duration-300 lg:px-6 xl:px-12 h-fit py-2 flex items-center w-fit ${
+            className={`text-nowrap relative z-10 rounded-full cursor-pointer md:px-6 transition duration-300 lg:px-6 xl:px-12 h-fit py-2 items-center w-fit ${
               isActive ? "text-black" : "text-white"
-            }`}
+            } ${active === "HeroSlide" && item.slide === "ContactSlide" ? "hidden" : "flex"}`}
           >
             {item.title}
           </a>
         );
       })}
-    </div>
+    </motion.div>
   );
 }
 
