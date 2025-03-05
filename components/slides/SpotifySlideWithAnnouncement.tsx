@@ -53,7 +53,7 @@ function SpotifySlideWithAnnouncement({
         setShowSecretAnnouncement(false);
         setIsConfettiVisible(false);
         setSpotifyRevealed(true);
-      }, 3500);
+      }, 4250);
 
       return () => clearTimeout(secretTimer);
     }
