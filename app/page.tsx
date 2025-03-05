@@ -36,7 +36,7 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <div className="lg:mb-[150vh]">
+      <div className="mb-[150vh]">
         <StickyHeader active={active} />
         <HeroSlide setActive={setActive} />
         <TechStackSlide setActive={setActive} />
@@ -44,7 +44,7 @@ const HomePage: React.FC = () => {
         <ProjectsSlide setActive={setActive} />
         <ContactSlide setActive={setActive} />
       </div>
-      <div className="lg:fixed lg:inset-0 lg:-z-10">
+      <div className="fixed inset-0 -z-10 overflow-scroll lg:overflow-hidden">
         <SpotifySlideWithAnnouncement active={active} artists={artists} />
       </div>
     </>

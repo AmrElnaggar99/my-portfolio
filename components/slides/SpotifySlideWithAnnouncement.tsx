@@ -21,6 +21,7 @@ function SpotifySlideWithAnnouncement({
 
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0.8, 1], ["95vh", "50vh"]);
+
   useEffect(() => {
     const handleResize = () => {
       const newWidth = window.innerWidth;
@@ -37,21 +38,19 @@ function SpotifySlideWithAnnouncement({
   }, []);
 
   useEffect(() => {
-    !spotifyRevealed && setShowSecretAnnouncement(windowWidth >= 1024);
+    setShowSecretAnnouncement(true);
   }, [windowWidth]);
 
   useEffect(() => {
     if (showSecretAnnouncement) {
       setIsAnnouncementVisible(true);
     } else {
-      // Delay unmounting until the fade-out animation completes
       const timer = setTimeout(() => setIsAnnouncementVisible(false), 1000);
-      return () => clearTimeout(timer); // Cleanup timeout
+      return () => clearTimeout(timer);
     }
   }, [showSecretAnnouncement]);
 
   useEffect(() => {
-    if (windowWidth < 1024) return;
     if (active === "SpotifySlide" && !spotifyRevealed) {
       setIsConfettiVisible(true);
 
@@ -69,7 +68,7 @@ function SpotifySlideWithAnnouncement({
     <>
       {isAnnouncementVisible && (
         <div
-          className={`lg:fixed lg:inset-0 z-50 flex items-center transition duration-1000 ${showSecretAnnouncement ? "opacity-100" : "opacity-0"}`}
+          className={`fixed inset-0 z-50 flex items-center transition duration-1000 ${showSecretAnnouncement ? "opacity-100" : "opacity-0"}`}
         >
           <div
             className={`-mt-[80px] absolute inset-0 flex flex-col items-center text-white text-center p-6 z-50`}
@@ -84,12 +83,13 @@ function SpotifySlideWithAnnouncement({
               />
             )}
             <motion.h2
-              className="text-4xl font-bold mb-4"
+              className="text-[clamp(1rem,8vw,2rem)] font-bold mb-4"
               style={{
                 y: y,
               }}
             >
-              🎉 You unlocked a secret section! 🎉
+              <span className="block md:inline">🎉</span> You unlocked a secret section!{" "}
+              <span className="block md:inline">🎉</span>
             </motion.h2>
             <motion.p
               className="text-lg font-merriweather"
@@ -97,7 +97,7 @@ function SpotifySlideWithAnnouncement({
                 y: y,
               }}
             >
-              Get ready to see my most played artists from Spotify!
+              Scroll to the end to see my most played artists from Spotify!
             </motion.p>
           </div>
         </div>
