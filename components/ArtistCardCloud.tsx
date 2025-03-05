@@ -140,6 +140,37 @@ function ArtistCardCloud({ data }: { data: ArtistProps[] }) {
 
   const maxBottom = Math.max(0, ...artists.map((artist) => parseFloat(artist.top) + 250));
 
+  const constrainMovement = (e: any, containerRef: React.RefObject<HTMLDivElement | null>) => {
+    if (!containerRef.current) return;
+
+    const containerRect = containerRef.current.getBoundingClientRect();
+    const cardRect = e.target.getBoundingClientRect();
+
+    // Extract existing rotation
+    const computedStyle = window.getComputedStyle(e.target);
+    const matrix = new DOMMatrix(computedStyle.transform);
+    const rotationAngle = Math.atan2(matrix.b, matrix.a) * (180 / Math.PI); // Extract rotation in degrees
+
+    // Get initial top/left values
+    const initialLeft = parseFloat(e.target.style.left) || 0;
+    const initialTop = parseFloat(e.target.style.top) || 0;
+
+    // Calculate next position
+    let nextX = matrix.m41 + e.delta[0]; // TranslateX
+    let nextY = matrix.m42 + e.delta[1]; // TranslateY
+
+    // Constrain movement within container
+    const minX = -initialLeft;
+    const maxX = containerRect.width - cardRect.width - initialLeft;
+    const minY = -initialTop;
+    const maxY = containerRect.height - cardRect.height - initialTop;
+
+    nextX = Math.max(minX, Math.min(nextX, maxX));
+    nextY = Math.max(minY, Math.min(nextY, maxY));
+
+    // Apply new transform while preserving rotation
+    e.target.style.transform = `translate(${nextX}px, ${nextY}px) rotate(${rotationAngle}deg)`;
+  };
   return (
     <div ref={containerRef} className="relative w-full" style={{ minHeight: `${maxBottom}px` }}>
       {artists.map((artist) => (
@@ -155,9 +186,7 @@ function ArtistCardCloud({ data }: { data: ArtistProps[] }) {
             target={moveableTargets[artist.id]}
             draggable
             edgeDraggable={true}
-            onDrag={(e) => {
-              e.target.style.transform = e.transform;
-            }}
+            onDrag={(e) => constrainMovement(e, containerRef)}
           />
         </div>
       ))}

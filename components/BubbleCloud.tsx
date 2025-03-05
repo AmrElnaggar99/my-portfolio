@@ -178,6 +178,39 @@ function BubbleCloud({ data }: { data: ItemsList[] }) {
     setMoveableTargets(updatedTargets);
   }, [bubbles]);
 
+  const constrainMovement = (e: any, containerRef: React.RefObject<HTMLDivElement | null>) => {
+    if (!containerRef.current) return;
+
+    const containerRect = containerRef.current.getBoundingClientRect();
+    const bubbleRect = e.target.getBoundingClientRect();
+
+    // Get the bubble's initial `left` and `top` values
+    const initialLeft = parseFloat(e.target.style.left) || 0;
+    const initialTop = parseFloat(e.target.style.top) || 0;
+
+    // Extract current translation from transform
+    const computedStyle = window.getComputedStyle(e.target);
+    const matrix = new DOMMatrix(computedStyle.transform);
+    const currentX = matrix.m41; // TranslateX
+    const currentY = matrix.m42; // TranslateY
+
+    // Calculate next position
+    let nextX = currentX + e.delta[0];
+    let nextY = currentY + e.delta[1];
+
+    // Constrain within container
+    const minX = -initialLeft;
+    const maxX = containerRect.width - bubbleRect.width - initialLeft;
+    const minY = -initialTop;
+    const maxY = containerRect.height - bubbleRect.height - initialTop;
+
+    nextX = Math.max(minX, Math.min(nextX, maxX));
+    nextY = Math.max(minY, Math.min(nextY, maxY));
+
+    // Apply constrained translation
+    e.target.style.transform = `translate(${nextX}px, ${nextY}px)`;
+  };
+
   return (
     <div
       ref={containerRef}
@@ -200,9 +233,7 @@ function BubbleCloud({ data }: { data: ItemsList[] }) {
             target={moveableTargets[bubble.id]}
             draggable
             edgeDraggable={true}
-            onDrag={(e) => {
-              e.target.style.transform = e.transform;
-            }}
+            onDrag={(e) => constrainMovement(e, containerRef)}
           />
         </div>
       ))}
