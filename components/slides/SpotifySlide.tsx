@@ -1,24 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import ArtistCardCloud from "../ArtistCardCloud";
-import AnimatedHead from "../animations/AnimatedHead";
-import TypingText from "../animations/TypingText";
-import Slide from "./Slide";
+import ArtistCardCloud, { ArtistProps } from "../ArtistCardCloud";
+import AnimatedHead from "@/components/animations/AnimatedHead";
+import TypingText from "@/components/animations/TypingText";
+import { motion } from "framer-motion";
 
-function SpotifySlide({ setActive }: { setActive: React.Dispatch<React.SetStateAction<string>> }) {
-  const [artists, setArtists] = useState([]);
-
-  useEffect(() => {
-    fetch("/api/spotify")
-      .then((res) => res.json())
-      .then((data) => {
-        setArtists(data.items || []);
-      });
-  }, []);
-
+function SpotifySlide({ artists }: { artists: ArtistProps[] }) {
   return (
-    <div className="w-full min-h-fit bg-gray-950 py-12 md:px-12">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1.5, delay: 1 }}
+      className="w-full min-h-fit bg-gray-950 py-[80px] md:px-12"
+    >
       <div className="p-6 font-monasans items-center text-center">
         <div className="relative z-0 flex items-center flex-col">
           <div className="mb-3">
@@ -37,10 +31,15 @@ function SpotifySlide({ setActive }: { setActive: React.Dispatch<React.SetStateA
           </p>
         </div>
       </div>
-      <div className="relative w-full py-8 md:px-8 overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
+        className="relative w-full py-8 md:px-8 overflow-hidden"
+      >
         <ArtistCardCloud data={artists} />
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 

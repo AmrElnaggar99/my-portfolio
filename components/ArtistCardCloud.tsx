@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 
 const Moveable = dynamic(() => import("react-moveable"), { ssr: false });
 
-type ArtistProps = {
+export type ArtistProps = {
   id: number;
   images: { url: string; height: number; width: number }[];
   name: string;
