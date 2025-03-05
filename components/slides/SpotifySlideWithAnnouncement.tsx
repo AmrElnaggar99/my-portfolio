@@ -53,7 +53,7 @@ function SpotifySlideWithAnnouncement({
         setShowSecretAnnouncement(false);
         setIsConfettiVisible(false);
         setSpotifyRevealed(true);
-      }, 5000);
+      }, 3500);
 
       return () => clearTimeout(secretTimer);
     }
@@ -72,7 +72,7 @@ function SpotifySlideWithAnnouncement({
               <Confetti
                 numberOfPieces={500}
                 recycle={false}
-                tweenDuration={2500}
+                tweenDuration={1500}
                 width={windowWidth}
                 height={windowHeight + 100}
               />
