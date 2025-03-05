@@ -8,12 +8,16 @@ import SpotifySlide from "./SpotifySlide";
 function SpotifySlideWithAnnouncement({
   active,
   artists,
+  isAnnouncementVisible,
+  setShowSecretAnnouncement,
+  showSecretAnnouncement,
 }: {
   active: string;
   artists: ArtistProps[];
+  isAnnouncementVisible: boolean;
+  showSecretAnnouncement: boolean;
+  setShowSecretAnnouncement: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const [isAnnouncementVisible, setIsAnnouncementVisible] = useState(false);
-  const [showSecretAnnouncement, setShowSecretAnnouncement] = useState(true);
   const [spotifyRevealed, setSpotifyRevealed] = useState(false);
   const [isConfettiVisible, setIsConfettiVisible] = useState(false);
   const [windowWidth, setWindowWidth] = useState(0);
@@ -42,15 +46,6 @@ function SpotifySlideWithAnnouncement({
   }, [windowWidth]);
 
   useEffect(() => {
-    if (showSecretAnnouncement) {
-      setIsAnnouncementVisible(true);
-    } else {
-      const timer = setTimeout(() => setIsAnnouncementVisible(false), 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [showSecretAnnouncement]);
-
-  useEffect(() => {
     if (active === "SpotifySlide" && !spotifyRevealed) {
       setIsConfettiVisible(true);
 
@@ -71,7 +66,7 @@ function SpotifySlideWithAnnouncement({
           className={`fixed inset-0 z-50 flex items-center transition duration-1000 ${showSecretAnnouncement ? "opacity-100" : "opacity-0"}`}
         >
           <div
-            className={`-mt-[80px] absolute inset-0 flex flex-col items-center text-white text-center p-6 z-50`}
+            className={`-mt-[192px] md:-mt-[80px] absolute inset-0 flex flex-col items-center text-white text-center p-6 z-50`}
           >
             {isConfettiVisible && (
               <Confetti

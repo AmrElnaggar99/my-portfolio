@@ -16,6 +16,17 @@ const ContactSlide = dynamic(() => import("@/components/slides/ContactSlide"));
 const HomePage: React.FC = () => {
   const [active, setActive] = useState("");
   const [artists, setArtists] = useState([]);
+  const [isAnnouncementVisible, setIsAnnouncementVisible] = useState(false);
+  const [showSecretAnnouncement, setShowSecretAnnouncement] = useState(true);
+
+  useEffect(() => {
+    if (showSecretAnnouncement) {
+      setIsAnnouncementVisible(true);
+    } else {
+      const timer = setTimeout(() => setIsAnnouncementVisible(false), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [showSecretAnnouncement]);
 
   useEffect(() => {
     function isOldBrowser() {
@@ -36,7 +47,7 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <div className="mb-[150vh]">
+      <div className={`relative z-50 ${isAnnouncementVisible ? "mb-[100vh]" : ""}`}>
         <StickyHeader active={active} />
         <HeroSlide setActive={setActive} />
         <TechStackSlide setActive={setActive} />
@@ -44,8 +55,14 @@ const HomePage: React.FC = () => {
         <ProjectsSlide setActive={setActive} />
         <ContactSlide setActive={setActive} />
       </div>
-      <div className="fixed inset-0 -z-10 overflow-scroll lg:overflow-hidden">
-        <SpotifySlideWithAnnouncement active={active} artists={artists} />
+      <div className="relative z-10">
+        <SpotifySlideWithAnnouncement
+          setShowSecretAnnouncement={setShowSecretAnnouncement}
+          showSecretAnnouncement={showSecretAnnouncement}
+          isAnnouncementVisible={isAnnouncementVisible}
+          active={active}
+          artists={artists}
+        />
       </div>
     </>
   );
