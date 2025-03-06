@@ -28,7 +28,7 @@ function ContactSlide({ setActive }: { setActive: React.Dispatch<React.SetStateA
             <GradientSlide />
           </div>
           <div className="relative items-center gap-10 justify-center z-20 flex w-full px-5 lg:flex-row flex-col md:px-24 lg:px-12 xl:px-24 h-full">
-            <div className="w-full md:w-1/2 flex flex-col gap-6">
+            <div className="w-full lg:w-1/2 flex flex-col gap-6">
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -41,7 +41,7 @@ function ContactSlide({ setActive }: { setActive: React.Dispatch<React.SetStateA
                 <TypingText>Do you have a project for me? I would love to help!</TypingText>
               </p>
             </div>
-            <div className="w-full md:w-1/2 bg-gray-900 rounded-xl p-10 min-h-[500px] flex flex-col">
+            <div className="w-full lg:w-1/2 bg-gray-900 rounded-xl p-10 min-h-[500px] flex flex-col">
               <motion.h2
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
