@@ -63,7 +63,7 @@ function SpotifySlideWithAnnouncement({
     <>
       {isAnnouncementVisible && (
         <div
-          className={`fixed inset-0 z-50 flex items-center transition duration-1000 ${showSecretAnnouncement ? "opacity-100" : "opacity-0"}`}
+          className={`fixed bg-black inset-0 z-50 flex items-center transition duration-1000 ${showSecretAnnouncement ? "opacity-100" : "opacity-0"}`}
         >
           <div
             className={`-mt-[192px] md:-mt-[80px] absolute inset-0 flex flex-col items-center text-white text-center p-6 z-50`}
