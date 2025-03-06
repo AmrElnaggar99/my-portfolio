@@ -3,7 +3,9 @@ import Confetti from "react-confetti";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArtistProps } from "@/components/ArtistCardCloud";
 import { useEffect, useState } from "react";
-import SpotifySlide from "./SpotifySlide";
+import dynamic from "next/dynamic";
+
+const SpotifySlide = dynamic(() => import("@/components/slides/SpotifySlide"), { ssr: false });
 
 function SpotifySlideWithAnnouncement({
   active,

@@ -1,8 +1,6 @@
 "use client";
 
 import ArtistCardCloud, { ArtistProps } from "../ArtistCardCloud";
-import AnimatedHead from "@/components/animations/AnimatedHead";
-import TypingText from "@/components/animations/TypingText";
 import { motion } from "framer-motion";
 
 function SpotifySlide({ artists }: { artists: ArtistProps[] }) {
