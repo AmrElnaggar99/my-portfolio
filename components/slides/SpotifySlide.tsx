@@ -9,7 +9,7 @@ function SpotifySlide({ artists }: { artists: ArtistProps[] }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5, delay: 1 }}
-      className="w-full min-h-fit bg-gray-950 py-[40px] px-6 md:px-12"
+      className="w-full min-h-screen bg-gray-950 py-[40px] px-6 md:px-12"
     >
       <div className="p-6 font-monasans items-center text-center">
         <div className="relative z-0 flex items-center flex-col">
