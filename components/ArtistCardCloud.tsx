@@ -172,7 +172,11 @@ function ArtistCardCloud({ data }: { data: ArtistProps[] }) {
     e.target.style.transform = `translate(${nextX}px, ${nextY}px) rotate(${rotationAngle}deg)`;
   };
   return (
-    <div ref={containerRef} className="relative w-full" style={{ minHeight: `${maxBottom}px` }}>
+    <div
+      ref={containerRef}
+      className="relative w-full pt-8 pb-[40px]"
+      style={{ minHeight: `${maxBottom}px` }}
+    >
       {artists.map((artist) => (
         <div key={artist.id} className="relative">
           <ArtistCard

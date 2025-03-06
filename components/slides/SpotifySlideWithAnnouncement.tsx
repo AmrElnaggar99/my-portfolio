@@ -44,10 +44,6 @@ function SpotifySlideWithAnnouncement({
   }, []);
 
   useEffect(() => {
-    setShowSecretAnnouncement(true);
-  }, [windowWidth]);
-
-  useEffect(() => {
     if (active === "SpotifySlide" && !spotifyRevealed) {
       setIsConfettiVisible(true);
 
@@ -59,7 +55,7 @@ function SpotifySlideWithAnnouncement({
 
       return () => clearTimeout(secretTimer);
     }
-  }, [active]);
+  }, [active, windowWidth]);
 
   return (
     <>
