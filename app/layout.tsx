@@ -57,7 +57,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${merriweather.variable} ${monasans.variable} ${sigmar.variable} antialiased`}
+        className={`bg-black ${merriweather.variable} ${monasans.variable} ${sigmar.variable} antialiased`}
       >
         {children}
       </body>
