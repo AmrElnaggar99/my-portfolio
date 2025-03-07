@@ -27,20 +27,38 @@ function ProfessionalExperienceSlide({
             <section className="mx-auto py-12 px-6">
               <div className="flex justify-between items-center mb-8">
                 <h2 className="text-3xl text-white font-monasans font-medium">My resume</h2>
-                <motion.a
-                  className="relative inline-block group background-gradient-purple"
-                  whileTap={{
-                    scale: 0.95,
-                  }}
-                  href="/Amr_Elnaggar_resume.pdf"
-                  target="_blank"
-                >
-                  <div className="hidden md:inline-block blur-effect absolute -inset-1 rounded-full opacity-100 z-0 animate-glowingBackground blur bg-[length:400%] bg-[linear-gradient(90deg,#272cdb,#1c98e0,#c70bef,#272cdb)] group-hover:blur-md" />
-                  <div className="hidden md:inline-block blur-effect absolute -inset-[2px] z-10 animate-glowingBackground bg-[length:400%] bg-[linear-gradient(90deg,#272cdb,#1c98e0,#c70bef,#272cdb)] rounded-full" />
-                  <span className="bg-[#796ef6] group-hover:bg-[#8080f4] background-gradient-purple-text text-white relative font-normal font-monasans py-2 px-4 rounded-full transition z-20 md:bg-black/70 md:backdrop-blur-lg inline-block md:group-hover:bg-black/60">
-                    View PDF Resume
-                  </span>
-                </motion.a>
+
+                <div className="relative">
+                  <div className="hidden md:inline-block blur-effect absolute -inset-1 rounded-full opacity-40 z-0 animate-glowingBackground blur-lg bg-[length:400%] bg-[linear-gradient(90deg,#1c98e0,#c70bef,transparent,#c70bef,#1c98e0)]" />
+                  <motion.a
+                    className="relative p-[2px] overflow-hidden rounded-full inline-block group"
+                    whileTap={{
+                      scale: 0.95,
+                    }}
+                    href="/Amr_Elnaggar_resume.pdf"
+                    target="_blank"
+                  >
+                    <div
+                      className="hidden md:inline-block absolute top-1/2 left-1/2 w-[300%] h-[300%] animate-spinSlow z-0 blur"
+                      style={{
+                        background:
+                          "conic-gradient(#1c98e0 0deg, #1c98e0 60deg, transparent 150deg)",
+                      }}
+                    />
+                    <div
+                      className="hidden md:inline-block absolute top-1/2 left-1/2 w-[300%] h-[300%] animate-spinSlow z-10 blur"
+                      style={{
+                        background:
+                          "conic-gradient(#c70bef 0deg, #c70bef 60deg, transparent 150deg)",
+                        transform: "translate(-50%, -50%) scale(0.98)",
+                      }}
+                    />
+
+                    <span className="flex items-center justify-center bg-[#796ef6] group-hover:bg-[#8080f4] background-gradient-purple-text text-white relative font-normal font-monasans py-2 px-4 rounded-full transition z-20 md:bg-gray-950/70 md:backdrop-blur-lg md:group-hover:bg-gray-950/50">
+                      View PDF Resume
+                    </span>
+                  </motion.a>
+                </div>
               </div>
               {/* Experience Section */}
               <div className="space-y-8">

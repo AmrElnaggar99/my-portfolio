@@ -33,7 +33,8 @@ export default {
       },
       animation: {
         loopText: "loopText 10s linear infinite",
-        glowingBackground: "glowingBackground 8s linear infinite",
+        glowingBackground: "glowingBackground 5s linear infinite",
+        spinSlow: "spinSlow 5s linear infinite",
       },
       keyframes: {
         loopText: {
@@ -41,8 +42,13 @@ export default {
           to: { transform: "translateX(-100%)" },
         },
         glowingBackground: {
-          from: { backgroundPosition: "0%" },
-          to: { backgroundPosition: "400%" },
+          "0%": { backgroundPosition: "100%" },
+          "50%": { backgroundPosition: "0%" },
+          "100%": { backgroundPosition: "100%" },
+        },
+        spinSlow: {
+          from: { transform: "translate(-50%, -50%) rotate(0deg)" },
+          to: { transform: "translate(-50%, -50%) rotate(360deg);" },
         },
       },
     },
