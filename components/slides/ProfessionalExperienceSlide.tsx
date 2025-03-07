@@ -39,7 +39,7 @@ function ProfessionalExperienceSlide({
                     target="_blank"
                   >
                     <div
-                      className="hidden md:inline-block absolute top-1/2 left-1/2 w-[300%] h-[300%] animate-spinSlow z-10 blur"
+                      className="blur-effect absolute top-1/2 left-1/2 w-[300%] h-[300%] animate-spinSlow z-10 blur"
                       style={{
                         background:
                           "conic-gradient(#796ef6 0deg, #796ef6 60deg, transparent 150deg)",
@@ -47,7 +47,7 @@ function ProfessionalExperienceSlide({
                       }}
                     />
 
-                    <span className="flex items-center justify-center bg-[#796ef6] group-hover:bg-[#8080f4] background-gradient-purple-text text-white relative font-normal font-monasans py-2 px-4 rounded-full transition z-20 md:bg-gray-950/70 md:backdrop-blur-lg md:group-hover:bg-gray-950/50">
+                    <span className="flex items-center justify-center background-gradient-purple-text text-white relative font-normal font-monasans py-2 px-4 rounded-full transition z-20 bg-gray-950/70 backdrop-blur-lg group-hover:bg-gray-950/50">
                       View PDF Resume
                     </span>
                   </motion.a>
