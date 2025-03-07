@@ -27,7 +27,6 @@ function ProfessionalExperienceSlide({
             <section className="mx-auto py-12 px-6">
               <div className="flex justify-between items-center mb-8">
                 <h2 className="text-3xl text-white font-monasans font-medium">My resume</h2>
-
                 <motion.a
                   className="relative inline-block group"
                   whileTap={{
@@ -96,7 +95,7 @@ function ProfessionalExperienceSlide({
                           rel="noopener noreferrer"
                           className="min-w-[250px] text-center inline-block mt-4 border font-monasans border-gray-200 text-gray-200 py-2 px-4 rounded-full hover:bg-white hover:text-gray-900 transition"
                           whileTap={{
-                            scale: 0.85,
+                            scale: 0.95,
                           }}
                         >
                           Visit {exp.company}
