@@ -33,11 +33,16 @@ export default {
       },
       animation: {
         loopText: "loopText 10s linear infinite",
+        glowingBackground: "glowingBackground 8s linear infinite",
       },
       keyframes: {
         loopText: {
           from: { transform: "translateX(0)" },
           to: { transform: "translateX(-100%)" },
+        },
+        glowingBackground: {
+          from: { backgroundPosition: "0%" },
+          to: { backgroundPosition: "400%" },
         },
       },
     },

@@ -29,17 +29,20 @@ function ProfessionalExperienceSlide({
                 <h2 className="text-3xl text-white font-monasans font-medium">My resume</h2>
 
                 <motion.a
-                  className="bg-[#796ef6] hover:bg-[#8080F4] text-white font-medium font-monasans py-2 px-4 rounded-full transition"
+                  className="relative inline-block group"
                   whileTap={{
-                    scale: 0.85,
+                    scale: 0.95,
                   }}
                   href="/Amr_Elnaggar_resume.pdf"
                   target="_blank"
                 >
-                  View PDF Resume
+                  <div className="absolute -inset-1 rounded-full opacity-100 z-0 animate-glowingBackground blur bg-[length:400%] bg-[linear-gradient(90deg,#272cdb,#1c98e0,#c70bef,#272cdb)] group-hover:blur-md" />
+                  <div className="absolute -inset-[2px] z-10 bg-[length:400%] bg-[linear-gradient(90deg,#272cdb,#1c98e0,#c70bef,#272cdb)] rounded-full" />
+                  <span className="text-white relative font-normal font-monasans py-2 px-4 rounded-full transition z-20 bg-black/70 backdrop-blur-lg inline-block group-hover:bg-black/60">
+                    View PDF Resume
+                  </span>
                 </motion.a>
               </div>
-
               {/* Experience Section */}
               <div className="space-y-8">
                 {experiences.map((exp, index) => {

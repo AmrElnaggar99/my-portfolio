@@ -219,7 +219,7 @@ function CallToActionButtons() {
       <motion.a
         className="border-2 text-center max-w-[500px] lg:w-full  w-[280px] border-white font-monasans text-white text-base md:text-xl px-8 py-4 rounded-full hover:bg-white hover:text-black transition"
         whileTap={{
-          scale: 0.85,
+          scale: 0.95,
         }}
         href="/Amr_Elnaggar_resume.pdf"
         target="_blank"
@@ -229,7 +229,7 @@ function CallToActionButtons() {
       <motion.button
         className="bg-yellow-400 max-w-[500px] lg:w-full w-[280px] font-monasans text-black text-base md:text-xl px-8 py-4 rounded-full font-bold hover:bg-yellow-300 transition"
         whileTap={{
-          scale: 0.85,
+          scale: 0.95,
         }}
         onClick={() =>
           window.scrollTo({

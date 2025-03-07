@@ -51,9 +51,6 @@ function ProjectsSlide({ setActive }: { setActive: React.Dispatch<React.SetState
               animate={{ y: inView ? 0 : 100 }}
               transition={{ duration: 0.8, ease: [0.2, 0.65, 0.3, 0.9] }}
             >
-              {/* <h2 className="text-[clamp(2.5rem,8vw,3.5rem)] text-white font-bold block font-firacode">
-                My side projects
-              </h2> */}
               <Headline>My side projects</Headline>
             </motion.span>
           </div>
