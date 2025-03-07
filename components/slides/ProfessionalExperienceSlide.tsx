@@ -28,16 +28,16 @@ function ProfessionalExperienceSlide({
               <div className="flex justify-between items-center mb-8">
                 <h2 className="text-3xl text-white font-monasans font-medium">My resume</h2>
                 <motion.a
-                  className="relative inline-block group"
+                  className="relative inline-block group background-gradient-purple"
                   whileTap={{
                     scale: 0.95,
                   }}
                   href="/Amr_Elnaggar_resume.pdf"
                   target="_blank"
                 >
-                  <div className="absolute -inset-1 rounded-full opacity-100 z-0 animate-glowingBackground blur bg-[length:400%] bg-[linear-gradient(90deg,#272cdb,#1c98e0,#c70bef,#272cdb)] group-hover:blur-md" />
-                  <div className="absolute -inset-[2px] z-10 bg-[length:400%] bg-[linear-gradient(90deg,#272cdb,#1c98e0,#c70bef,#272cdb)] rounded-full" />
-                  <span className="text-white relative font-normal font-monasans py-2 px-4 rounded-full transition z-20 bg-black/70 backdrop-blur-lg inline-block group-hover:bg-black/60">
+                  <div className="hidden md:inline-block blur-effect absolute -inset-1 rounded-full opacity-100 z-0 animate-glowingBackground blur bg-[length:400%] bg-[linear-gradient(90deg,#272cdb,#1c98e0,#c70bef,#272cdb)] group-hover:blur-md" />
+                  <div className="hidden md:inline-block blur-effect absolute -inset-[2px] z-10 bg-[length:400%] bg-[linear-gradient(90deg,#272cdb,#1c98e0,#c70bef,#272cdb)] rounded-full" />
+                  <span className="bg-[#796ef6] group-hover:bg-[#8080f4] background-gradient-purple-text text-white relative font-normal font-monasans py-2 px-4 rounded-full transition z-20 md:bg-black/70 md:backdrop-blur-lg inline-block md:group-hover:bg-black/60">
                     View PDF Resume
                   </span>
                 </motion.a>

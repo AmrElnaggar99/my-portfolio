@@ -47,3 +47,15 @@ body {
   background-image: none !important;
   color: white !important;
 }
+
+.old-browser .background-gradient-purple-text {
+  background-color: #796ef6 !important;
+}
+
+.old-browser .background-gradient-purple:hover .background-gradient-purple-text {
+  background-color: #8080f4 !important;
+}
+
+.old-browser .blur-effect {
+  display: none;
+}
