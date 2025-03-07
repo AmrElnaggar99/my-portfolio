@@ -29,7 +29,7 @@ function ProfessionalExperienceSlide({
                 <h2 className="text-3xl text-white font-monasans font-medium">My resume</h2>
 
                 <div className="relative">
-                  <div className="hidden md:inline-block blur-effect absolute -inset-1 rounded-full opacity-40 z-0 animate-glowingBackground blur-lg bg-[length:400%] bg-[linear-gradient(90deg,#1c98e0,#c70bef,transparent,#c70bef,#1c98e0)]" />
+                  <div className="hidden md:inline-block blur-effect absolute -inset-1 rounded-full opacity-40 z-0 animate-glowingBackground blur-lg bg-[length:400%] bg-[linear-gradient(90deg,#796ef6,transparent,transparent,#796ef6)]" />
                   <motion.a
                     className="relative p-[2px] overflow-hidden rounded-full inline-block group"
                     whileTap={{
@@ -39,17 +39,10 @@ function ProfessionalExperienceSlide({
                     target="_blank"
                   >
                     <div
-                      className="hidden md:inline-block absolute top-1/2 left-1/2 w-[300%] h-[300%] animate-spinSlow z-0 blur"
-                      style={{
-                        background:
-                          "conic-gradient(#1c98e0 0deg, #1c98e0 60deg, transparent 150deg)",
-                      }}
-                    />
-                    <div
                       className="hidden md:inline-block absolute top-1/2 left-1/2 w-[300%] h-[300%] animate-spinSlow z-10 blur"
                       style={{
                         background:
-                          "conic-gradient(#c70bef 0deg, #c70bef 60deg, transparent 150deg)",
+                          "conic-gradient(#796ef6 0deg, #796ef6 60deg, transparent 150deg)",
                         transform: "translate(-50%, -50%) scale(0.98)",
                       }}
                     />
