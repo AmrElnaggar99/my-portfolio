@@ -49,7 +49,6 @@ const MyTechStackArray: ItemsList[] = [
     category: "others",
     textColor: "text-black",
   },
-  { id: 15, proficiency: 30, color: "bg-[#1A1A1A]", text: "Expo", category: "others" },
   {
     id: 16,
     proficiency: 50,
