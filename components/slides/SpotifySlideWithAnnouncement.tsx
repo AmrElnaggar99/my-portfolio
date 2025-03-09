@@ -63,18 +63,18 @@ function SpotifySlideWithAnnouncement({
         <div
           className={`fixed bg-black inset-0 z-50 flex items-center transition duration-1000 ${showSecretAnnouncement ? "opacity-100" : "opacity-0"}`}
         >
+          {isConfettiVisible && (
+            <Confetti
+              numberOfPieces={500}
+              recycle={false}
+              tweenDuration={1500}
+              width={windowWidth}
+              height={windowHeight}
+            />
+          )}
           <div
             className={`-mt-[192px] md:-mt-[80px] absolute inset-0 flex flex-col items-center text-white text-center p-6 z-50`}
           >
-            {isConfettiVisible && (
-              <Confetti
-                numberOfPieces={500}
-                recycle={false}
-                tweenDuration={1500}
-                width={windowWidth}
-                height={windowHeight + 100}
-              />
-            )}
             <motion.h2
               className="text-[clamp(1rem,8vw,2rem)] font-bold mb-4"
               style={{
