@@ -60,26 +60,6 @@ function StickyHeader({ active }: { active: string }) {
 
   const menuRef = useRef<HTMLDivElement | null>(null);
 
-  const handleClickOutside: EventListener = (event: Event) => {
-    if (
-      menuRef.current &&
-      !menuRef.current.contains(event.target as Node) &&
-      (event.target as HTMLDivElement).classList.contains("hamburgermenu") === false
-    ) {
-      setIsMenuOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("touchstart", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("touchstart", handleClickOutside);
-    };
-  }, []);
-
   return (
     <>
       <motion.header
@@ -98,6 +78,7 @@ function StickyHeader({ active }: { active: string }) {
       </motion.header>
 
       <MobileNavigationMenu
+        setIsMenuOpen={setIsMenuOpen}
         active={active}
         isMenuOpen={isMenuOpen}
         menuRef={menuRef}
@@ -306,6 +287,7 @@ function DesktopNavigationMenu({
 }
 
 function MobileNavigationMenu({
+  setIsMenuOpen,
   scrollTo,
   isMenuOpen,
   menuRef,
@@ -315,44 +297,59 @@ function MobileNavigationMenu({
   isMenuOpen: boolean;
   menuRef: React.RefObject<HTMLDivElement | null>;
   active: string;
+  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   return (
-    <AnimatePresence>
-      {isMenuOpen && (
-        <motion.div
-          ref={menuRef}
-          className="lg:hidden z-50 fixed top-0 bottom-0 h-full right-0 w-64 backdrop-filter bg-white bg-opacity-5 backdrop-blur-lg shadow-lg p-6"
-          initial={{
-            x: "100%",
-          }} // Start off the screen to the right
-          animate={{
-            x: 0,
-          }} // Animate to position 0 (visible)
-          exit={{
-            x: "100%",
-          }} // When exiting, slide back to the right
-          transition={{
-            type: "spring",
-            stiffness: 200,
-            damping: 30,
-          }}
-        >
-          {sections.map((item) => (
-            <a
-              key={item.title}
-              href={`#${item.slide}`}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollTo(item.slide);
-              }}
-              className={`${active === item.slide ? "bg-white text-black" : "text-white"} block rounded-full cursor-pointer px-4 py-2 mb-2 transition duration-300`}
-            >
-              {item.title}
-            </a>
-          ))}
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <>
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            ref={menuRef}
+            className="lg:hidden z-[70] fixed top-0 bottom-0 h-full right-0 w-64 backdrop-blur-3xl shadow-lg p-6"
+            initial={{
+              x: "100%",
+            }} // Start off the screen to the right
+            animate={{
+              x: 0,
+            }} // Animate to position 0 (visible)
+            exit={{
+              x: "100%",
+            }} // When exiting, slide back to the right
+            transition={{
+              type: "spring",
+              stiffness: 200,
+              damping: 30,
+            }}
+          >
+            {sections.map((item) => (
+              <a
+                key={item.title}
+                href={`#${item.slide}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollTo(item.slide);
+                }}
+                className={`${active === item.slide ? "bg-white text-gray-800" : "font-normal text-white"} rounded-full block cursor-pointer px-4 py-2 mb-2 transition duration-300`}
+              >
+                {item.title}
+              </a>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed z-[60] inset-0"
+            onClick={() => setIsMenuOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
