@@ -5,16 +5,13 @@ import Slide from "./Slide";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import ProjectCard from "../ProjectCard";
-import MERNThumbnail from "@/public/mern-ecommerce-thumbnail.png";
-import meme from "@/public/meme.png";
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const projects = [
   {
     title: "This website",
     description: ["Built with Next.js, TypeScript, and Tailwind CSS"],
     date: "February 2025",
-    image: meme,
     learnMoreURL:
       "https://github.com/AmrElnaggar99/my-portfolio/?tab=readme-ov-file#amr-elnaggar---personal-website-documentation",
   },
@@ -24,7 +21,6 @@ const projects = [
       "Built with Node.js, Express, React, Redux, MongoDB.",
       "Offers PayPal integration.",
     ],
-    image: MERNThumbnail,
     date: "December 2020",
     demoURL: "https://mern-ecommerce-yuvr.onrender.com/",
     learnMoreURL:

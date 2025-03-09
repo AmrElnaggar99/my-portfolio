@@ -1,6 +1,4 @@
 "use client";
-
-import Image, { StaticImageData } from "next/image";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
@@ -31,14 +29,12 @@ function ProjectCard({
   description,
   demoURL,
   learnMoreURL,
-  image,
   date,
 }: {
   title: string;
   description: string[];
   demoURL?: string;
   learnMoreURL: string;
-  image: StaticImageData;
   date: string;
 }) {
   const controls = useAnimation();
@@ -54,55 +50,59 @@ function ProjectCard({
   }, [controls, inView]);
 
   return (
-    <motion.div
+    <motion.article
       ref={ref}
-      className="w-[320px] rounded-[40px] overflow-hidden bg-white"
+      className="w-[330px] rounded-3xl h-[366px] overflow-hidden bg-gray-950 hover:bg-gray-900 transition duration-300 border border-gray-800 flex flex-col gap-4 p-6 justify-between"
       variants={cardVariants}
       initial="hidden"
       animate={controls}
     >
-      <motion.div className="relative w-full" variants={itemVariants}>
-        <Image src={image} alt={title} width={320} height={320} className="rounded-t-3xl" />
-      </motion.div>
-      <motion.div className="px-6 py-4" variants={itemVariants}>
-        <motion.h2 className="font-bold text-left text-xl text-gray-800" variants={itemVariants}>
+      <header>
+        <motion.h2 className="font-bold text-left text-xl text-white" variants={itemVariants}>
           {title}
         </motion.h2>
-        <div className="text-gray-600 text-left text-sm font-monasans font-light">{date}</div>
+        <motion.div
+          className="text-gray-400 text-left text-sm font-monasans font-light"
+          variants={itemVariants}
+        >
+          {date}
+        </motion.div>
+      </header>
+      <section>
         <motion.ul
-          className="text-gray-700 min-h-[72px] text-left text-base my-4"
+          className="text-gray-100 min-h-[72px] text-left text-base my-4 flex flex-col gap-2"
           variants={itemVariants}
         >
           {description.map((item) => (
             <li key={item}>{item}</li>
           ))}
         </motion.ul>
-        <motion.div className="flex space-x-4" variants={itemVariants}>
-          {demoURL && (
-            <motion.a
-              whileTap={{
-                scale: 0.85,
-              }}
-              href={demoURL}
-              target="_blank"
-              className="bg-gray-900 items-center flex justify-center text-sm text-white px-4 py-3 rounded-full w-full hover:bg-gray-800 transition font-medium"
-            >
-              View Demo
-            </motion.a>
-          )}
+      </section>
+      <motion.div className="flex space-x-4" variants={itemVariants}>
+        {demoURL && (
           <motion.a
             whileTap={{
               scale: 0.85,
             }}
-            href={learnMoreURL}
+            href={demoURL}
             target="_blank"
-            className="border-gray-100 items-center justify-centerflex border-2 text-sm text-gray-950 px-4 py-3 rounded-full w-full hover:bg-gray-100 duration-300 font-medium transition"
+            className="items-center border h-[44px] leading-6 border-gray-800 flex justify-center text-sm text-white px-4 rounded-full w-full hover:bg-gray-950 transition font-medium"
           >
-            Check Github
+            View Demo
           </motion.a>
-        </motion.div>
+        )}
+        <motion.a
+          whileTap={{
+            scale: 0.85,
+          }}
+          href={learnMoreURL}
+          target="_blank"
+          className="bg-gray-50 items-center justify-center flex border h-[44px] leading-6 border-transparent text-sm text-gray-800 px-4 py-3 rounded-full w-full hover:bg-gray-200 duration-300 font-semibold transition"
+        >
+          Check Github
+        </motion.a>
       </motion.div>
-    </motion.div>
+    </motion.article>
   );
 }
 
