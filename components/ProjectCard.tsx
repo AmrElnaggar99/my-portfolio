@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 
 const cardVariants = {
-  hidden: { scale: 0.8, opacity: 0, y: 50 },
+  hidden: { scale: 0, opacity: 0, y: 50 },
   visible: {
     scale: 1,
     opacity: 1,
