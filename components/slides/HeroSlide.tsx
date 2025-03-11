@@ -9,6 +9,7 @@ import Image from "next/image";
 import AnimatedHead from "@/components/animations/AnimatedHead";
 import { Gradient } from "@/utils/gradient.js";
 import amrWebp from "@/public/amr.webp";
+import textMask from "@/public/masking-text.webp";
 
 function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateAction<string>> }) {
   const [_, setMousePosition] = useState({ x: 0, y: 0 });
@@ -163,7 +164,7 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
             ↓
           </span>
         </motion.div>
-        <div className="absolute md:-right-[300px] md:-bottom-10 lg:-bottom-32 xl:-bottom-48 lg:right-1/2 lg:-mr-[200px] xl:-mr-[240px] z-10 hidden md:block">
+        <div className="absolute md:-right-[300px] md:-bottom-10 lg:-bottom-32 xl:-bottom-48 lg:right-1/2 lg:-mr-[200px] xl:-mr-[240px] hidden md:block">
           <motion.div
             aria-hidden
             id="heroImage"
@@ -176,12 +177,20 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
               element?.classList.replace("will-change-opacity", "will-change-auto");
             }}
           >
+            <div className="w-[calc(251px*0.625)] h-[calc(287px*0.625)] xl:w-[calc(251px*0.704)] xl:h-[calc(287px*0.704)] absolute top-[426px] xl:top-[480px] left-[-6px] z-[999] hidden lg:block">
+              <Image
+                src={textMask}
+                alt=""
+                fill
+                sizes="(max-width: 768px) 251px, (max-width: 287px) 244px"
+              />
+            </div>
             <Image
               src={amrWebp}
               alt=""
               fill
               priority
-              className="-scale-x-100 lg:scale-x-100"
+              className="-scale-x-100 lg:scale-x-100 relative z-10"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </motion.div>

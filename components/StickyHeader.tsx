@@ -1,11 +1,5 @@
-import {
-  motion,
-  AnimatePresence,
-  useScroll,
-  useTransform,
-  useMotionValueEvent,
-} from "framer-motion";
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
 
 const sections = [
   {
