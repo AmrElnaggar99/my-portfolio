@@ -109,26 +109,6 @@ function ContactSlide({ setActive }: { setActive: React.Dispatch<React.SetStateA
                       </div>
                     </motion.div>
                   </a>
-
-                  <a
-                    href="https://instagram.com/amrelnaaggaar/"
-                    className="text-gray-300 hover:text-white"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, ease: "easeIn" }}
-                      className="flex items-start justify-between border-b border-gray-800 py-5 flex-col lg:flex-row"
-                    >
-                      <span>Instagram</span>
-
-                      <div className="w-auto md:w-[265px] text-left">
-                        <TypingText>instagram.com/amrelnaaggaar</TypingText>
-                      </div>
-                    </motion.div>
-                  </a>
                 </div>
               </div>
             </div>
