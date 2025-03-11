@@ -177,7 +177,7 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
               element?.classList.replace("will-change-opacity", "will-change-auto");
             }}
           >
-            <div className="w-[calc(251px*0.625)] h-[calc(287px*0.625)] xl:w-[calc(251px*0.704)] xl:h-[calc(287px*0.704)] absolute top-[426px] xl:top-[480px] left-[-6px] z-[999] hidden lg:block">
+            <div className="[@media(min-width:1024px)_and_(min-height:720px)]:block w-[calc(251px*0.625)] h-[calc(287px*0.625)] xl:w-[calc(251px*0.704)] xl:h-[calc(287px*0.704)] absolute top-[426px] xl:top-[480px] left-[-6px] z-[999] hidden">
               <Image
                 src={textMask}
                 alt=""
