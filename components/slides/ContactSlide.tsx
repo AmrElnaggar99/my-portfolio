@@ -34,22 +34,26 @@ function ContactSlide({ setActive }: { setActive: React.Dispatch<React.SetStateA
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeIn" }}
                 className="text-[clamp(2.5rem,8vw,4rem)] leading-none font-monasans font-bold text-white"
+                tabIndex={0}
               >
                 Let's work together!
               </motion.h2>
               <p className="text-xl text-white font-merriweather opacity-80">
-                <TypingText>Do you have a project for me? I would love to help!</TypingText>
+                <TypingText tabIndex={0}>
+                  Do you have a project for me? I would love to help!
+                </TypingText>
               </p>
             </div>
             <div className="w-full lg:w-1/2 bg-gray-900 rounded-xl p-10 min-h-[500px] flex flex-col">
-              <motion.h2
+              <motion.h3
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, ease: "easeIn" }}
                 className="text-3xl font-medium font-monasans mb-4 text-white"
+                tabIndex={0}
               >
                 Get in touch
-              </motion.h2>
+              </motion.h3>
               <div className="flex-1 flex items-center">
                 <div className="w-full space-y-4 font-merriweather">
                   <a href="mailto:a.naggar99@gmail.com" className="text-gray-300 hover:text-white">

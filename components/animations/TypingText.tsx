@@ -1,9 +1,13 @@
 "use client";
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion, useMotionValue, useTransform, animate, HTMLMotionProps } from "framer-motion";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
-function TypingText({ children }: { children: string }) {
+interface Props extends HTMLMotionProps<"span"> {
+  children: string;
+}
+
+function TypingText({ children, ...props }: Props) {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
   const count = useMotionValue(0);
   const rounded = useTransform(count, (latest) => Math.round(latest));
@@ -21,7 +25,7 @@ function TypingText({ children }: { children: string }) {
   }, [inView]);
 
   return (
-    <motion.span ref={ref} className="inline-block">
+    <motion.span ref={ref} className="inline-block" {...props}>
       {displayText}
     </motion.span>
   );

@@ -35,6 +35,7 @@ const Bubble = ({ size, color, top, left, text, bubbleRef, textColor }: BubblePr
 
   return (
     <motion.div
+      tabIndex={0}
       animate={{
         y: [0, -10, 0], // Float up and down with a slight movement
       }}

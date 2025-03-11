@@ -46,6 +46,8 @@ function ProjectsSlide({ setActive }: { setActive: React.Dispatch<React.SetState
               initial={{ y: 100 }}
               animate={{ y: inView ? 0 : 100 }}
               transition={{ duration: 0.8, ease: [0.2, 0.65, 0.3, 0.9] }}
+              tabIndex={0}
+              aria-label="My side projects"
             >
               <Headline>My side projects</Headline>
             </motion.span>
@@ -56,7 +58,7 @@ function ProjectsSlide({ setActive }: { setActive: React.Dispatch<React.SetState
               animate={{ y: inView ? 0 : 100 }}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.2, 0.65, 0.3, 0.9] }}
             >
-              <span className="text-sm text-gray-400 font-normal block">
+              <span className="text-sm text-gray-400 font-normal block" tabIndex={0}>
                 Projects showcasing my full-stack expertise across diverse technologies
               </span>
             </motion.span>

@@ -56,20 +56,27 @@ function ProjectCard({
       variants={cardVariants}
       initial="hidden"
       animate={controls}
+      tabIndex={0}
     >
       <header>
-        <motion.h2 className="font-bold text-left text-xl text-white" variants={itemVariants}>
+        <motion.h2
+          className="font-bold text-left text-xl text-white"
+          variants={itemVariants}
+          tabIndex={0}
+        >
           {title}
         </motion.h2>
-        <motion.div
+        <motion.p
           className="text-gray-400 text-left text-sm font-monasans font-light"
+          tabIndex={0}
           variants={itemVariants}
         >
           {date}
-        </motion.div>
+        </motion.p>
       </header>
       <section>
         <motion.ul
+          tabIndex={0}
           className="text-gray-100 min-h-[72px] text-left text-base my-4 flex flex-col gap-2"
           variants={itemVariants}
         >

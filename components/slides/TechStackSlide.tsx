@@ -41,17 +41,20 @@ function TechStackSlide({
       className="z-10 w-full min-h-fit bg-gray-950 py-12 md:px-12"
     >
       <div className="w-full h-fit items-center px-12 md:px-0">
-        <h2 className="text-[clamp(2.5rem,8vw,3.5rem)] block w-full font-monasans text-center font-bold">
+        <h2
+          className="text-[clamp(2.5rem,8vw,3.5rem)] block w-full font-monasans text-center font-bold"
+          tabIndex={0}
+        >
           <AnimatedHead
             className="text-gradient from-[#605E66] via-[#C5C4C6] to-[#605E66] text-transparent bg-clip-text [background-size:100%_100%] [background-position:0%] 
       [background-image:linear-gradient(to_right,#605E66_0%,#C5C4C6_22%,#C5C4C6_76%,#605E66_100%)]"
           >
             My Tech Stack
           </AnimatedHead>
-          <div className="text-white text-sm text-center font-light py-4">
-            <SlidingText>Larger bubbles represent greater expertise in a skill.</SlidingText>
-          </div>
         </h2>
+        <div className="text-white text-sm text-center font-light py-4" tabIndex={0}>
+          <SlidingText>Larger bubbles represent greater expertise in a skill.</SlidingText>
+        </div>
       </div>
       <div className="mt-5 flex max-w-[800px] mx-auto items-center justify-center gap-4 lg:gap-6 flex-wrap p-3">
         <FilterButtons selectedFilter={selectedFilter} handleFilterChange={handleFilterChange} />

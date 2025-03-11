@@ -53,6 +53,7 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
     <motion.div
       id="HeroSlideContainer"
       className="relative z-0"
+      tabIndex={0}
       style={{
         y: windowWidth < 1024 ? 0 : y1,
         x: 0,
@@ -65,23 +66,32 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
       >
         <div
           className="absolute top-0 left-0 w-full h-full z-10"
+          aria-hidden
           style={{
             background: "linear-gradient(to bottom right, #171717 30%, transparent 100%)",
           }}
-        ></div>
-        <div className="absolute top-0 right-0 bottom-0 left-0 z-0">
+        />
+        <div aria-hidden className="absolute top-0 right-0 bottom-0 left-0 z-0">
           <GradientSlide />
         </div>
         <div className="relative z-20 flex w-full px-5 lg:flex-row flex-col md:px-24 lg:px-12 xl:px-24 h-full">
-          <div className="w-full lg:w-[68%] md:min-h-80">
-            <div className="relative flex h-full items-center">
-              <div className="flex flex-col lg:absolute">
-                <span className="font-merriweather text-yellow-400 font-light text-2xl mb-2">
+          <div
+            className="w-full lg:w-[68%] md:min-h-80"
+            tabIndex={0}
+            aria-label="Hey, I'm Amr Elnaggar"
+          >
+            <div className="relative flex h-full items-center" aria-hidden>
+              <div className="flex flex-col lg:absolute" aria-hidden>
+                <span
+                  className="font-merriweather text-yellow-400 font-light text-2xl mb-2"
+                  aria-hidden
+                >
                   <WavyText text="👋 Hey, I'm" />
                 </span>
-                <div className="relative z-30">
+                <div className="relative z-30" aria-hidden>
                   <motion.div
                     className="hidden md:block will-change-transform"
+                    aria-hidden
                     style={{
                       x: x,
                       y: y,
@@ -102,7 +112,11 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
             </div>
           </div>
           <div className="w-full lg:w-[33%] pt-5 flex justify-center flex-col relative z-30 pb-32 lg:pb-5">
-            <h2 className="mt-6 text-3xl md:text-4xl font-light font-merriweather leading-10 md:leading-snug max-w-3xl text-white">
+            <h2
+              className="mt-6 text-3xl md:text-4xl font-light font-merriweather leading-10 md:leading-snug max-w-3xl text-white"
+              tabIndex={0}
+              aria-label="I design and build fast, beautiful, user-friendly Full-Stack applications"
+            >
               <div>
                 <TypingText>I design and build </TypingText>
               </div>
@@ -121,7 +135,7 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
               <div className="font-bold text-yellow-400">
                 <TypingText>user-friendly</TypingText>
               </div>
-              <div className="flex flex-wrap ">
+              <div className="flex flex-wrap" aria-hidden>
                 <div className="w-fit">
                   <WavyText text="Full-Stack " />
                 </div>
@@ -151,6 +165,7 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
         </motion.div>
         <div className="absolute md:-right-[300px] md:-bottom-10 lg:-bottom-32 xl:-bottom-48 lg:right-1/2 lg:-mr-[200px] xl:-mr-[240px] z-10 hidden md:block">
           <motion.div
+            aria-hidden
             id="heroImage"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

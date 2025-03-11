@@ -26,7 +26,9 @@ function ProfessionalExperienceSlide({
           <div className="md:px-12">
             <section className="mx-auto py-12 px-6">
               <div className="flex justify-between items-center mb-8">
-                <h2 className="text-3xl text-white font-monasans font-medium">My resume</h2>
+                <h3 className="text-3xl text-white font-monasans font-medium" tabIndex={0}>
+                  My resume
+                </h3>
 
                 <div className="relative">
                   <div className="hidden md:inline-block blur-effect absolute -inset-1 rounded-full opacity-40 z-0 animate-glowingBackground blur-lg bg-[length:400%] bg-[linear-gradient(90deg,#796ef6,transparent,transparent,#796ef6)]" />
@@ -73,16 +75,20 @@ function ProfessionalExperienceSlide({
                         ease: "easeOut",
                       }}
                     >
-                      <h3 className="text-2xl font-bold text-white uppercase">{exp.title}</h3>
                       <div className="flex gap-2 md:items-center justify-between flex-col md:flex-row">
-                        <div className="flex flex-col">
-                          <p className="flex gap-1 text-lg font-monasans text-gray-300 flex-col md:flex-row">
-                            <span>{exp.company}</span>
-                            <span className="text-white hidden md:inline-block"> — </span>
-                            <span>{exp.location}</span>
-                          </p>
-                          <p className="text-md font-monasans text-gray-500">{exp.duration}</p>
-                          <ul className="text-gray-50 mt-2 list-disc font-light pl-5">
+                        <div className="flex flex-col" tabIndex={0}>
+                          <span
+                            aria-label={`${exp.title}, at ${exp.company}, in ${exp.location}, from ${exp.duration}`}
+                          >
+                            <h3 className="text-2xl font-bold text-white uppercase">{exp.title}</h3>
+                            <p className="flex gap-1 text-lg font-monasans text-gray-300 flex-col md:flex-row">
+                              <span>{exp.company}</span>
+                              <span className="text-white hidden md:inline-block"> — </span>
+                              <span>{exp.location}</span>
+                            </p>
+                            <p className="text-md font-monasans text-gray-500">{exp.duration}</p>
+                          </span>
+                          <ul className="text-gray-50 mt-2 list-disc font-light pl-5" tabIndex={0}>
                             {exp.description.map((item, index) => (
                               <motion.li
                                 ref={ref}
@@ -131,7 +137,7 @@ function MarqueeHeadline({ children }: { children: string }) {
 
   return (
     <>
-      <div className="flex whitespace-nowrap w-full overflow-hidden" ref={ref}>
+      <div className="flex whitespace-nowrap w-full overflow-hidden" ref={ref} tabIndex={0}>
         <h2
           className={`text-[clamp(2.5rem,8vw,5.5rem)] uppercase font-monasans ${inView ? "animate-loopText" : ""} text-white`}
         >
@@ -156,7 +162,7 @@ function MarqueeHeadline({ children }: { children: string }) {
 const experiences = [
   {
     title: "Full Stack Engineer",
-    company: "Infrasoft Software House",
+    company: "Infrasoft",
     location: "Kuwait City, Kuwait (Remote)",
     duration: "April 2023 - Present",
     description: [
