@@ -5,7 +5,7 @@ import Slide from "./Slide";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import ProjectCard from "../ProjectCard";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const projects = [
   {
@@ -22,6 +22,7 @@ const projects = [
       "Offers PayPal integration.",
     ],
     date: "December 2020",
+    demoAlert: true,
     demoURL: "https://mern-ecommerce-yuvr.onrender.com/",
     learnMoreURL:
       "https://github.com/AmrElnaggar99/MERN_ecommerce?tab=readme-ov-file#mern-e-commerce",
@@ -106,7 +107,7 @@ const Headline = ({ children }: { children: string }) => {
   return (
     <div className="inline-block overflow-hidden">
       <h2
-        className="flex mb-2 text-[clamp(2.5rem,8vw,3.5rem)] text-white leading-[1.1] 
+        className="flex mb-2 text-[clamp(2.2rem,8vw,3.5rem)] text-white leading-[1.1] 
         transition-transform duration-1000 cursor-default ease-in-out origin-left scale-x-100"
       >
         {children.split("").map((char, index) =>
