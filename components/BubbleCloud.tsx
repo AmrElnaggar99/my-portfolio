@@ -213,12 +213,12 @@ function BubbleCloud({ data }: { data: ItemsList[] }) {
     // Apply constrained translation
     e.target.style.transform = `translate(${nextX}px, ${nextY}px)`;
   };
-
+  const MINIMUM_CLOUD_HEIGHT = 350;
   return (
     <div
       ref={containerRef}
       className="relative w-full overflow-hidden"
-      style={{ minHeight: `${height}px` }}
+      style={{ minHeight: `${Math.max(height, MINIMUM_CLOUD_HEIGHT)}px` }}
     >
       {bubbles.map((bubble) => (
         <div key={bubble.id} className="relative">
