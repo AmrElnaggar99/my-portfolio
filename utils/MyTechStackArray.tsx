@@ -62,6 +62,14 @@ const MyTechStackArray: ItemsList[] = [
   { id: 21, proficiency: 40, color: "bg-[#232f3e]", text: "AWS", category: "others" },
   { id: 22, proficiency: 50, color: "bg-[#f1502f]", text: "Git", category: "others" },
   { id: 23, proficiency: 50, color: "bg-[#764abc]", text: "Redux", category: "frontend" },
+  {
+    id: 24,
+    proficiency: 50,
+    color: "bg-[#E10098]",
+    text: "GraphQL",
+    category: "frontend",
+  },
+
   { id: 26, proficiency: 80, color: "bg-[#ff4154]", text: "React Query", category: "frontend" },
   { id: 27, proficiency: 80, color: "bg-[#ff4785]", text: "Storybook", category: "frontend" },
   { id: 28, proficiency: 60, color: "bg-[#1c1e26]", text: "Express.js", category: "backend" },
