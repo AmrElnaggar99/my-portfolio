@@ -13,6 +13,7 @@ type BubbleProps = {
   text: string;
   bubbleRef?: React.RefObject<HTMLDivElement | null>;
   textColor?: string;
+  textSize?: string;
 };
 
 export type ItemsList = {
@@ -22,6 +23,7 @@ export type ItemsList = {
   text: string;
   category: string;
   textColor?: string;
+  textSize?: string;
 };
 
 const proficiencyToSize = (proficiency: number) => {
@@ -30,7 +32,7 @@ const proficiencyToSize = (proficiency: number) => {
   return minSize + (proficiency / 100) * (maxSize - minSize);
 };
 
-const Bubble = ({ size, color, top, left, text, bubbleRef, textColor }: BubbleProps) => {
+const Bubble = ({ size, color, top, left, text, bubbleRef, textColor, textSize }: BubbleProps) => {
   const randomDuration = Math.random() * (4 - 2) + 2; // Random duration between 2 and 4 seconds
 
   return (
@@ -47,7 +49,7 @@ const Bubble = ({ size, color, top, left, text, bubbleRef, textColor }: BubblePr
     >
       <div
         ref={bubbleRef}
-        className={`cursor-move absolute rounded-full font-merriweather ${color} hover:scale-105 shadow-lg flex items-center justify-center ${textColor ?? "text-white"}`}
+        className={`cursor-move text-center absolute rounded-full font-merriweather ${color} hover:scale-105 shadow-lg flex items-center justify-center ${textColor ?? "text-white"} ${textSize ?? "text-base"}`}
         style={{
           width: size,
           height: size,
@@ -121,7 +123,7 @@ function BubbleCloud({ data }: { data: ItemsList[] }) {
   const [moveableTargets, setMoveableTargets] = useState<Record<number, HTMLDivElement | null>>({});
   const [height, setHeight] = useState(200);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!containerRef.current) return;
     const containerWidth = containerRef.current.offsetWidth;
 
@@ -147,7 +149,7 @@ function BubbleCloud({ data }: { data: ItemsList[] }) {
     setBubbles(newBubbles);
   }, [data, height]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const bubbleSize = proficiencyToSize(data[0]?.proficiency || 0);
     const maxBubblesPerRow = Math.max(
       1,
@@ -164,7 +166,7 @@ function BubbleCloud({ data }: { data: ItemsList[] }) {
     setHeight(containerHeight);
   }, [data]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const updatedTargets = Object.keys(bubbleRefs.current).reduce(
       (acc, id) => {
         const ref = bubbleRefs.current[parseInt(id)];
@@ -225,6 +227,7 @@ function BubbleCloud({ data }: { data: ItemsList[] }) {
             size={bubble.size}
             color={bubble.color}
             textColor={bubble.textColor}
+            textSize={bubble.textSize}
             top={bubble.top}
             left={bubble.left}
             text={bubble.text}

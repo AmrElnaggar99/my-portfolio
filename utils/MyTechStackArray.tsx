@@ -48,6 +48,7 @@ const MyTechStackArray: ItemsList[] = [
     text: "React Native",
     category: "others",
     textColor: "text-black",
+    textSize: "text-sm",
   },
   {
     id: 16,
@@ -58,6 +59,14 @@ const MyTechStackArray: ItemsList[] = [
     textColor: "text-black",
   },
   { id: 18, proficiency: 85, color: "bg-[#15C213]", text: "Jest", category: "frontend" },
+  {
+    id: 19,
+    proficiency: 80,
+    color: "bg-[#E33332]",
+    text: "React Testing Library",
+    category: "frontend",
+    textSize: "text-sm",
+  },
   { id: 20, proficiency: 95, color: "bg-[#38bdf8]", text: "Tailwind CSS", category: "frontend" },
   { id: 21, proficiency: 40, color: "bg-[#232f3e]", text: "AWS", category: "others" },
   { id: 22, proficiency: 50, color: "bg-[#f1502f]", text: "Git", category: "others" },
