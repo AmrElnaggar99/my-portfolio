@@ -76,23 +76,18 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
           <GradientSlide />
         </div>
         <div className="relative z-20 flex w-full px-5 lg:flex-row flex-col md:px-24 lg:px-12 xl:px-24 h-full">
-          <div
-            className="w-full lg:w-[68%] md:min-h-80"
-            tabIndex={0}
-            aria-label="Hey, I'm Amr Elnaggar"
-          >
-            <div className="relative flex h-full items-center" aria-hidden>
-              <div className="flex flex-col lg:absolute" aria-hidden>
-                <span
+          <div className="w-full lg:w-[68%] md:min-h-80">
+            <div className="relative flex h-full items-center">
+              <div className="flex flex-col lg:absolute">
+                <span 
                   className="font-merriweather text-yellow-400 font-light text-2xl mb-2"
-                  aria-hidden
+                  aria-label="Hey, I'm Amr Elnaggar"
                 >
                   <WavyText text="👋 Hey, I'm" />
                 </span>
-                <div className="relative z-30" aria-hidden>
+                <div className="relative z-30">
                   <motion.div
                     className="hidden md:block will-change-transform"
-                    aria-hidden
                     style={{
                       x: x,
                       y: y,
@@ -102,10 +97,14 @@ function HeroSlide({ setActive }: { setActive: React.Dispatch<React.SetStateActi
                       stiffness: 50,
                       damping: 10,
                     }}
+                    aria-hidden="true"
                   >
                     <MyNameHeading />
                   </motion.div>
-                  <div className="block md:hidden">
+                  <div 
+                    className="block md:hidden"
+                    aria-hidden="true"
+                  >
                     <MyNameHeading />
                   </div>
                 </div>
