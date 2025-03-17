@@ -4,18 +4,31 @@ import StickyHeader from "@/components/StickyHeader";
 import HeroSlide from "@/components/slides/HeroSlide";
 import ProfessionalExperienceSlide from "@/components/slides/ProfessionalExperienceSlide";
 import dynamic from "next/dynamic";
-import ProjectsSlide from "@/components/slides/ProjectsSlide";
+import TechStackSlide from "@/components/slides/TechStackSlide";
+import ContactSlide from "@/components/slides/ContactSlide";
+import { useInView } from "react-intersection-observer";
 
-const TechStackSlide = dynamic(() => import("@/components/slides/TechStackSlide"), { ssr: false });
-const SpotifySlideWithAnnouncement = dynamic(
-  () => import("@/components/slides/SpotifySlideWithAnnouncement"),
-  { ssr: false },
-);
-const ContactSlide = dynamic(() => import("@/components/slides/ContactSlide"));
+const DynamicProjectsSlide = dynamic(() => import("@/components/slides/ProjectsSlide"), {
+  ssr: false,
+  loading: () => <LoadingSlide />,
+});
+
+const DynamicSpotifySlide = dynamic(() => import("@/components/slides/SpotifySlideWithAnnouncement"), {
+  ssr: false,
+  loading: () => <LoadingSlide />,
+});
 
 const HomePage: React.FC = () => {
   const [active, setActive] = useState("");
   const [artists, setArtists] = useState([]);
+  const { ref: projectsRef, inView: projectsInView } = useInView({
+    threshold: 0,
+    triggerOnce: true,
+  });
+  const { ref: contactRef, inView: contactInView } = useInView({
+    threshold: 0,
+    triggerOnce: true,
+  });
   const [isAnnouncementVisible, setIsAnnouncementVisible] = useState(false);
   const [showSecretAnnouncement, setShowSecretAnnouncement] = useState(true);
 
@@ -38,12 +51,19 @@ const HomePage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    fetch("/api/spotify")
-      .then((res) => res.json())
-      .then((data) => {
-        setArtists(data.items || []);
-      });
-  }, []);
+    if (contactInView) {
+      const link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.href = '/api/spotify';
+      document.head.appendChild(link);
+
+      fetch("/api/spotify")
+        .then((res) => res.json())
+        .then((data) => {
+          setArtists(data.items || []);
+        });
+    }
+  }, [contactInView]);
 
   return (
     <>
@@ -52,11 +72,13 @@ const HomePage: React.FC = () => {
         <HeroSlide setActive={setActive} />
         <TechStackSlide setActive={setActive} />
         <ProfessionalExperienceSlide setActive={setActive} />
-        <ProjectsSlide setActive={setActive} />
-        <ContactSlide setActive={setActive} />
+        <div ref={projectsRef}>{projectsInView && <DynamicProjectsSlide setActive={setActive} />}</div>
+        <div ref={contactRef}>
+          <ContactSlide setActive={setActive} />
+        </div>
       </div>
       <div className="relative z-10">
-        <SpotifySlideWithAnnouncement
+        <DynamicSpotifySlide
           setShowSecretAnnouncement={setShowSecretAnnouncement}
           showSecretAnnouncement={showSecretAnnouncement}
           isAnnouncementVisible={isAnnouncementVisible}
@@ -67,5 +89,13 @@ const HomePage: React.FC = () => {
     </>
   );
 };
+
+function LoadingSlide() {
+  return (
+    <div className="relative w-full min-h-screen bg-gray-950 flex items-center justify-center">
+      <div className="w-12 h-12 border-4 border-gray-800 border-t-white rounded-full animate-spin" />
+    </div>
+  );
+}
 
 export default HomePage;
