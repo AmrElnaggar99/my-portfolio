@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
 import dynamic from "next/dynamic";
+import { isEqual } from "lodash";
 
 const Moveable = dynamic(() => import("react-moveable"), { ssr: false });
 type BubbleProps = {
@@ -122,11 +123,31 @@ function BubbleCloud({ data }: { data: ItemsList[] }) {
   const bubbleRefs = useRef<Record<number, React.RefObject<HTMLDivElement | null>>>({});
   const [moveableTargets, setMoveableTargets] = useState<Record<number, HTMLDivElement | null>>({});
   const [height, setHeight] = useState(200);
+  const prevDataRef = useRef<ItemsList[]>([]);
 
+  // Calculate height based on data
+  useLayoutEffect(() => {
+    if (isEqual(prevDataRef.current, data)) return;
+    
+    const bubbleSize = proficiencyToSize(data[0]?.proficiency || 0);
+    const maxBubblesPerRow = Math.max(
+      1,
+      Math.floor(window.innerWidth / (bubbleSize * overlappingFactor)),
+    );
+
+    const totalRequiredRows = Math.ceil(data.length / maxBubblesPerRow);
+    const containerHeight = data.length > 0
+      ? totalRequiredRows * bubbleSize * overlappingFactor
+      : 500;
+
+    setHeight(containerHeight);
+    prevDataRef.current = data;
+  }, [data]);
+
+  // Create and position bubbles
   useLayoutEffect(() => {
     if (!containerRef.current) return;
     const containerWidth = containerRef.current.offsetWidth;
-
     let placedBubbles: { top: number; left: number; size: number }[] = [];
     const newBubbles = data.map((bubble) => {
       const size = proficiencyToSize(bubble.proficiency);
@@ -147,25 +168,9 @@ function BubbleCloud({ data }: { data: ItemsList[] }) {
     });
 
     setBubbles(newBubbles);
-  }, [data, height]);
+  }, [height]);
 
-  useLayoutEffect(() => {
-    const bubbleSize = proficiencyToSize(data[0]?.proficiency || 0);
-    const maxBubblesPerRow = Math.max(
-      1,
-      Math.floor(window.innerWidth / (bubbleSize * overlappingFactor)),
-    );
-
-    const totalRequiredRows = Math.ceil(data.length / maxBubblesPerRow);
-
-    const containerHeight =
-      data.length > 0
-        ? totalRequiredRows * bubbleSize * overlappingFactor // Adjust initial height dynamically based on data size
-        : 500;
-
-    setHeight(containerHeight);
-  }, [data]);
-
+  // Update moveable targets
   useLayoutEffect(() => {
     const updatedTargets = Object.keys(bubbleRefs.current).reduce(
       (acc, id) => {
