@@ -4,20 +4,22 @@ import StickyHeader from "@/components/StickyHeader";
 import HeroSlide from "@/components/slides/HeroSlide";
 import ProfessionalExperienceSlide from "@/components/slides/ProfessionalExperienceSlide";
 import dynamic from "next/dynamic";
-import TechStackSlide from "@/components/slides/TechStackSlide";
 import ContactSlide from "@/components/slides/ContactSlide";
 import { useInView } from "react-intersection-observer";
+import TechStackSlide from "@/components/slides/TechStackSlide";
 
 const DynamicProjectsSlide = dynamic(() => import("@/components/slides/ProjectsSlide"), {
   ssr: false,
   loading: () => <LoadingSlide />,
 });
 
-const DynamicSpotifySlide = dynamic(() => import("@/components/slides/SpotifySlideWithAnnouncement"), {
-  ssr: false,
-  loading: () => <LoadingSlide />,
-});
-
+const DynamicSpotifySlide = dynamic(
+  () => import("@/components/slides/SpotifySlideWithAnnouncement"),
+  {
+    ssr: false,
+    loading: () => <LoadingSlide />,
+  },
+);
 const HomePage: React.FC = () => {
   const [active, setActive] = useState("");
   const [artists, setArtists] = useState([]);
@@ -26,6 +28,10 @@ const HomePage: React.FC = () => {
     triggerOnce: true,
   });
   const { ref: contactRef, inView: contactInView } = useInView({
+    threshold: 0,
+    triggerOnce: true,
+  });
+  const { ref: techStackRef, inView: techStackInView } = useInView({
     threshold: 0,
     triggerOnce: true,
   });
@@ -52,9 +58,9 @@ const HomePage: React.FC = () => {
 
   useEffect(() => {
     if (contactInView) {
-      const link = document.createElement('link');
-      link.rel = 'prefetch';
-      link.href = '/api/spotify';
+      const link = document.createElement("link");
+      link.rel = "prefetch";
+      link.href = "/api/spotify";
       document.head.appendChild(link);
 
       fetch("/api/spotify")
@@ -72,7 +78,9 @@ const HomePage: React.FC = () => {
         <HeroSlide setActive={setActive} />
         <TechStackSlide setActive={setActive} />
         <ProfessionalExperienceSlide setActive={setActive} />
-        <div ref={projectsRef}>{projectsInView && <DynamicProjectsSlide setActive={setActive} />}</div>
+        <div ref={projectsRef}>
+          {projectsInView && <DynamicProjectsSlide setActive={setActive} />}
+        </div>
         <div ref={contactRef}>
           <ContactSlide setActive={setActive} />
         </div>
