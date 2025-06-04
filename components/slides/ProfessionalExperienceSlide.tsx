@@ -49,7 +49,7 @@ function ProfessionalExperienceSlide({
                       }}
                     />
 
-                    <span className="flex items-center justify-center background-gradient-purple-text text-white relative font-normal font-monasans py-2 px-4 rounded-full transition z-20 bg-gray-950/70 backdrop-blur-lg group-hover:bg-gray-950/50">
+                    <span className="flex items-center justify-center background-gradient-purple-text text-white relative font-normal font-monasans py-2 px-4 rounded-full transition z-20 bg-gray-950/70 backdrop-blur-lg group-hover:bg-gray-950/50 select-none">
                       View PDF Resume
                     </span>
                   </motion.a>
