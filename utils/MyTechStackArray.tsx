@@ -38,7 +38,6 @@ const MyTechStackArray: ItemsList[] = [
   { id: 8, proficiency: 60, color: "bg-[#37614d]", text: "MySQL", category: "database" },
   { id: 9, proficiency: 60, color: "bg-[#3e9cda]", text: "PostgreSQL", category: "database" },
   { id: 10, proficiency: 60, color: "bg-[#67b7d1]", text: "MongoDB", category: "database" },
-  { id: 11, proficiency: 70, color: "bg-[#563d7c]", text: "Bootstrap", category: "frontend" },
   { id: 12, proficiency: 100, color: "bg-[#e44d26]", text: "HTML", category: "frontend" },
   { id: 13, proficiency: 90, color: "bg-[#264de4]", text: "CSS", category: "frontend" },
   {
@@ -82,6 +81,7 @@ const MyTechStackArray: ItemsList[] = [
   { id: 26, proficiency: 80, color: "bg-[#ff4154]", text: "React Query", category: "frontend" },
   { id: 27, proficiency: 80, color: "bg-[#ff4785]", text: "Storybook", category: "frontend" },
   { id: 28, proficiency: 60, color: "bg-[#1c1e26]", text: "Express.js", category: "backend" },
+  { id: 29, proficiency: 50, color: "bg-[#42b883]", text: "Vue.js", category: "frontend" },
   { id: 30, proficiency: 50, color: "bg-[#DD0031]", text: "Angular", category: "frontend" },
   { id: 31, proficiency: 70, color: "bg-[#FC6D26]", text: "GitLab", category: "others" },
   {

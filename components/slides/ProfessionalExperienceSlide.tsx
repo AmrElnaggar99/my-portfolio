@@ -161,25 +161,39 @@ function MarqueeHeadline({ children }: { children: string }) {
 
 const experiences = [
   {
-    title: "Full Stack Engineer",
+    title: "Full Stack Engineer (Frontend focus)",
+    company: "Flightright",
+    location: "Berlin, Germany (Remote)",
+    duration: "May 2025 - Present",
+    description: [
+      "Proposed a strategy to <span style='font-weight:bold;color:#8080F4'>optimize frontend efficiency</span> by <span style='font-weight:bold;color:#8080F4'>+30%</span>, contributing to improved user experience and application security.",
+      "Shipped full-stack features using Next.js and Spring Boot, implementing <span style='font-weight:bold;color:#8080F4'>event-based tracking</span> and <span style='font-weight:bold;color:#8080F4'>A/B testing</span> with Amplitude.",
+      "Maintained end-to-end tests using <span style='font-weight:bold;color:#8080F4'>Cypress</span> to ensure application reliability.",
+      "Conducted code reviews across multiple teams, focusing on enhancing best practices, functionality and readability.",
+    ],
+    url: "https://www.flightright.com/",
+  },
+  {
+    title: "Full Stack Engineer (Frontend focus)",
     company: "Infrasoft",
     location: "Kuwait City, Kuwait (Remote)",
-    duration: "April 2023 - Present",
+    duration: "April 2023 - May 2025",
     description: [
-      "Maintained a robust suite of scalable full-stack applications using <span style='font-weight:bold;color:#8080F4'>React, TypeScript, Java, Spring Boot, and MySQL</span> and containerized with <span style='font-weight:bold;color:#8080F4'>Docker</span>.",
-      "Deployed applications on <span style='font-weight:bold;color:#8080F4'>AWS</span> using <span style='font-weight:bold;color:#8080F4'>Git</span> within a <span style='font-weight:bold;color:#8080F4'>Continuous Integration</span> environment.",
+      "Maintained a robust suite of full-stack applications using <span style='font-weight:bold;color:#8080F4'>React, TypeScript, Java, Spring Boot, and MySQL</span> and containerized with <span style='font-weight:bold;color:#8080F4'>Docker</span>.",
+      "Developed and consumed scalable <span style='font-weight:bold;color:#8080F4'>REST</span> and <span style='font-weight:bold;color:#8080F4'>GraphQL</span> APIs enabling efficient data access.",
+      "Deployed applications on <span style='font-weight:bold;color:#8080F4'>AWS</span> using <span style='font-weight:bold;color:#8080F4'>GitLab</span> within CI/CD environments.",
     ],
     url: "https://www.linkedin.com/company/isoft-co/",
   },
   {
     title: "Frontend Engineer",
     company: "GeoGebra",
-    location: "Linz, Austria",
+    location: "Linz, Austria (On-site)",
     duration: "August 2022 - April 2023",
     description: [
-      "Directed highly accessible and reusable UI components in <span style='font-weight:bold;color:#8080F4'>React, Next.js, TypeScript using Tailwind, Radix UI</span>, focusing on UX, optimization, and bundling; and offered documentation with <span style='font-weight:bold;color:#8080F4'>Storybook</span>.",
-      "Ensured a 100% Lighthouse score for <span style='font-weight:bold;color:#8080F4'>SEO</span> and performance by optimizing assets, implementing <span style='font-weight:bold;color:#8080F4'>server-side rendering (SSR)</span>, and improving Core Web Vitals.",
-      "Migrated test cases from Enzyme to <span style='font-weight:bold;color:#8080F4'>React Testing Library</span>, improving test reliability and alignment with React best practices.",
+      "Directed highly accessible and reusable UI components in <span style='font-weight:bold;color:#8080F4'>React, Next.js, TypeScript</span> using <span style='font-weight:bold;color:#8080F4'>Tailwind, Radix UI</span>, focusing on UX, optimization, and bundling; and offered documentation with <span style='font-weight:bold;color:#8080F4'>Storybook</span>.",
+      "Ensured a 100% Lighthouse score for SEO and performance by optimizing assets, implementing server-side rendering (SSR), and improving Core Web Vitals.",
+      "Migrated <span style='font-weight:bold;color:#8080F4'>100+</span> unit test cases from Enzyme to <span style='font-weight:bold;color:#8080F4'>React Testing Library</span>, improving test reliability and alignment with best practices.",
       "Conducted code review processes within a team of 7 engineers in an agile environment, focusing on enhancing <span style='font-weight:bold;color:#8080F4'>best practices, functionality, and readability</span>.",
     ],
     url: "https://www.geogebra.org",
@@ -190,15 +204,15 @@ const experiences = [
     location: "Toronto, Canada (Remote)",
     duration: "May 2022 - August 2022",
     description: [
-      "Built 2 scalable pixel-perfect full-stack web applications with <span style='font-weight:bold;color:#8080F4'>Next.js, React Query, and TypeScript</span>, leveraging <span style='font-weight:bold;color:#8080F4'>Node.js and NestJS</span> for REST Web Services.",
-      "Executed the installation and configuration of a <span style='font-weight:bold;color:#8080F4'>MongoDB</span> environment for two full-stack web applications, ensuring seamless data migration.",
+      "Built 2 pixel-perfect full stack web applications with <span style='font-weight:bold;color:#8080F4'>Next.js and TypeScript</span>, leveraging <span style='font-weight:bold;color:#8080F4'>NestJS</span> for backend.",
+      "Executed the installation and configuration of a <span style='font-weight:bold;color:#8080F4'>MongoDB</span> environment for full-stack web applications, ensuring seamless data migration.",
     ],
     url: "https://www.oncoustics.com",
   },
   {
     title: "Full Stack Engineer",
     company: "Aschl Management Systems",
-    location: "Schluesslberg, Austria",
+    location: "Schluesslberg, Austria (Hybrid)",
     duration: "October 2020 - August 2022",
     description: [
       "Engineered and deployed applications for the web with <span style='font-weight:bold;color:#8080F4'>JavaScript and PHP</span>, and built mobile and desktop applications using Windev in an MVC pattern.",
@@ -209,7 +223,7 @@ const experiences = [
   {
     title: "Full Stack Engineer (Internship)",
     company: "Vodafone",
-    location: "Smart Village, Egypt (Remote)",
+    location: "Smart Village, Egypt (On-site)",
     duration: "August 2020 - September 2020",
     description: [
       "Developed a data visualization dashboard using <span style='font-weight:bold;color:#8080F4'>React and ECharts</span>, enabling real-time insights into the data of over 1 million users.",
